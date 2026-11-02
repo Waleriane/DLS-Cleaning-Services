@@ -1034,615 +1034,159 @@ html{ scroll-padding-top:86px; }
      03 — OUR SERVICES (SERVIÇOS)
 ========================================== -->
 <style>
-
-
-
-/* =========================
-   SERVICES SECTION
-========================= */
-
+/* =========================================
+   03 — OUR SERVICES (novo visual: ícone redondo verde-água)
+========================================= */
 .dls-services{
-    /* cores usadas só nesta seção */
-    --navy:#063B4A;
-    --teal:#0D9FA5;
-    --white:#FFFFFF;
-    --text:#3B4F55;
-    --line:rgba(6,59,74,.12);
-    --shadow:0 20px 55px rgba(6,59,74,.10);
-
-    width:100%;
-    max-width:1440px;      /* antes 1220px — ocupa mais a tela */
-    margin:auto;
-    padding:50px 3vw;      /* antes 70px 22px — menos borda */
-    box-sizing:border-box;
-    font-family:'Montserrat',sans-serif;
-    color:var(--navy);
+  --navy:#063B4A; --teal:#0D9FA5; --text:#3B4F55;
+  background:linear-gradient(180deg,#EEF7F7 0%,#F6FAFA 100%);
+  padding:60px 3vw 64px;
+  font-family:'Montserrat',Arial,sans-serif;
+  color:var(--navy);
+  box-sizing:border-box;
 }
 .dls-services *{ box-sizing:border-box; margin:0; padding:0; }
+.svc-wrap{ max-width:1320px; margin:0 auto; }
 
-/* =========================
-   INTRO
-========================= */
+/* título centralizado */
+.svc-head{ text-align:center; max-width:720px; margin:0 auto 40px; }
+.svc-eyebrow{ color:var(--teal); font-size:12px; font-weight:700; letter-spacing:2.4px; text-transform:uppercase; margin-bottom:10px; }
+.svc-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(32px,3.4vw,46px); line-height:1.1; }
+.svc-title-line{ width:44px; height:2px; background:var(--teal); margin:16px auto 0; }
+.svc-intro-copy{ margin-top:16px; color:var(--text); font-size:15px; line-height:1.8; }
 
-.svc-section-intro{
-    display:grid;
-    grid-template-columns:1fr 1.25fr;
-    gap:70px;
-    align-items:end;
-    margin-bottom:36px;
-}
-
-.svc-eyebrow{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:var(--teal);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:2.2px;
-    text-transform:uppercase;
-    margin-bottom:14px;
-}
-
-.svc-eyebrow:before{
-    content:"";
-    width:34px;
-    height:2px;
-    background:var(--teal);
-}
-
-.svc-section-title{
-    font-family:"DM Serif Display",serif;
-    font-weight:400;
-    font-size:clamp(2.5rem,5vw,4.2rem);
-    line-height:.98;
-    letter-spacing:-1.5px;
-}
-
-.svc-intro-copy{
-    max-width:600px;
-    color:var(--text);
-    font-size:14px;
-    line-height:1.9;
-}
-
-/* =========================
-   SERVICE CARDS
-========================= */
-
-.svc-services-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr); /* os 4 serviços lado a lado */
-    gap:16px;
-}
-
+/* cards */
+.svc-services-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
 .svc-service-card{
-    position:relative;
-    min-height:470px;
-    background:var(--white);
-    border:1px solid var(--line);
-    overflow:hidden;
-    cursor:pointer;
-
-    transition:
-        transform .45s cubic-bezier(.2,.8,.2,1),
-        box-shadow .45s ease,
-        border-color .45s ease;
-
-    box-shadow:0 8px 30px rgba(6,59,74,.045);
+  background:#fff; border-radius:8px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 10px 30px rgba(6,59,74,.08); transition:transform .35s ease, box-shadow .35s ease;
 }
+.svc-service-card:hover{ transform:translateY(-6px); box-shadow:0 20px 44px rgba(6,59,74,.14); }
 
-.svc-service-card:hover{
-    transform:translateY(-7px);
-    box-shadow:var(--shadow);
-    border-color:rgba(13,159,165,.35);
+.svc-card-image{ position:relative; height:190px; }
+.svc-card-image .svc-photo{ position:absolute; inset:0; overflow:hidden; }
+.svc-card-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
+.svc-service-card:hover .svc-card-image img{ transform:scale(1.05); }
+
+/* ícone redondo verde-água encaixado entre foto e texto */
+.svc-icon{
+  position:absolute; left:22px; bottom:-32px; z-index:2;
+  width:66px; height:66px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--teal); color:#fff;
+  border:4px solid #fff; box-shadow:0 8px 20px rgba(13,159,165,.35);
+  transition:transform .35s ease;
 }
+.svc-icon svg{ width:30px; height:30px; }
+.svc-service-card:hover .svc-icon{ transform:scale(1.06) rotate(-4deg); }
 
-/* =========================
-   IMAGE
-========================= */
-
-.svc-card-image{
-    height:250px;
-    overflow:hidden;
-    position:relative;
-}
-
-.svc-card-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
-    display:block;
-
-    transition:transform .8s cubic-bezier(.2,.8,.2,1);
-}
-
-.svc-service-card:hover .svc-card-image img{
-    transform:scale(1.035);
-}
-
-.svc-image-shade{
-    position:absolute;
-    inset:0;
-
-    background:linear-gradient(
-        to top,
-        rgba(6,59,74,.55),
-        rgba(6,59,74,0) 60%
-    );
-}
-
-.svc-card-number{
-    position:absolute;
-    left:20px;
-    bottom:17px;
-
-    color:#fff;
-
-    font-size:10px;
-    font-weight:600;
-    letter-spacing:2px;
-}
-
-/* =========================
-   CARD BODY
-========================= */
-
-.svc-card-body{
-    padding:27px 24px 24px;
-}
-
-.svc-card-title{
-    font-family:"DM Serif Display",serif;
-    font-size:25px;
-    font-weight:400;
-    line-height:1.1;
-
-    margin-bottom:12px;
-}
-
-.svc-card-description{
-    color:var(--text);
-
-    font-size:12px;
-    line-height:1.75;
-
-    min-height:63px;
-}
-
-/* =========================
-   CARD FOOTER
-========================= */
-
-.svc-card-footer{
-    margin-top:22px;
-    padding-top:16px;
-
-    border-top:1px solid var(--line);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
+.svc-card-body{ padding:48px 24px 24px; display:flex; flex-direction:column; flex:1; }
+.svc-card-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:24px; line-height:1.15; margin-bottom:10px; }
+.svc-card-description{ color:var(--text); font-size:14px; line-height:1.7; flex:1; }
 .svc-learn{
-    color:var(--teal);
-
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.4px;
-    text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:8px; margin-top:20px; width:fit-content;
+  color:var(--teal); text-decoration:none; font-size:12px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase;
 }
+.svc-learn span{ transition:transform .25s ease; }
+.svc-learn:hover span{ transform:translateX(4px); }
 
-.svc-arrow{
-    width:34px;
-    height:34px;
-
-    border:1px solid rgba(13,159,165,.35);
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:var(--teal);
-
-    transition:.3s;
-}
-
-.svc-service-card:hover .svc-arrow{
-    background:var(--teal);
-    color:#fff;
-}
-
-/* =========================
-   VIEW ALL SERVICES
-========================= */
-
-.svc-all-services{
-    display:flex;
-    justify-content:center;
-
-    margin-top:34px;
-}
-
-.svc-all-services a{
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-
-    background:var(--navy);
-    color:#fff;
-
-    text-decoration:none;
-
-    padding:15px 25px;
-
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-
-    transition:.3s;
-}
-
-.svc-all-services a:hover{
-    background:var(--teal);
-}
-
-.svc-all-services a span{
-    font-size:16px;
-    line-height:0;
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media(max-width:1000px){
-
-    .svc-section-intro{
-        grid-template-columns:1fr;
-        gap:20px;
-    }
-
-    /* continua na horizontal: fileira que arrasta para o lado */
-    .svc-services-grid{
-        grid-template-columns:none;
-        grid-auto-flow:column;
-        grid-auto-columns:44%;
-        overflow-x:auto;
-        scroll-snap-type:x mandatory;
-        -webkit-overflow-scrolling:touch;
-        padding-bottom:14px;
-        scrollbar-width:thin;
-    }
-
-    .svc-service-card{
-        min-height:auto;
-        scroll-snap-align:start;
-    }
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:620px){
-
-    .dls-services{
-        padding:36px 12px;
-    }
-
-    .svc-section-intro{
-        gap:18px;
-        margin-bottom:32px;
-    }
-
-    .svc-section-title{
-        font-size:42px;
-    }
-
-    .svc-intro-copy{
-        font-size:13px;
-        line-height:1.8;
-    }
-
-    .svc-services-grid{
-        grid-auto-columns:82%; /* mostra um pedaço do próximo: convida a arrastar */
-        gap:12px;
-    }
-
-    .svc-service-card{
-        min-height:auto;
-    }
-
-    .svc-card-image{
-        height:220px;
-    }
-
-    .svc-card-body{
-        padding:27px 24px 25px;
-    }
-
-    .svc-card-title{
-        font-size:27px;
-    }
-
-    .svc-card-description{
-        min-height:auto;
-    }
-
-    .svc-all-services{
-        margin-top:28px;
-    }
-
-    .svc-all-services a{
-        width:100%;
-        justify-content:center;
-    }
-
-}
-
-
-/* dica de arrastar (só aparece quando os cards viram fileira arrastável) */
 .svc-swipe-hint{ display:none; }
+
+/* tablet e celular: fileira que arrasta para o lado */
 @media(max-width:1000px){
-    .svc-swipe-hint{
-        display:block;
-        text-align:right;
-        color:var(--teal);
-        font-size:10px;
-        font-weight:700;
-        letter-spacing:1.4px;
-        text-transform:uppercase;
-        margin-bottom:10px;
-    }
+  .svc-services-grid{
+    grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:44%;
+    overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding:4px 4px 18px; scrollbar-width:thin;
+  }
+  .svc-service-card{ scroll-snap-align:start; }
+  .svc-swipe-hint{ display:block; text-align:right; color:var(--teal); font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; margin-bottom:10px; }
+}
+@media(max-width:620px){
+  .dls-services{ padding:44px 12px 48px; }
+  .svc-head{ margin-bottom:28px; }
+  .svc-services-grid{ grid-auto-columns:80%; gap:14px; }
+  .svc-card-image{ height:170px; }
+  .svc-card-title{ font-size:23px; }
 }
 </style>
 
 <section class="dls-services" id="services">
+  <div class="svc-wrap">
 
-    <!-- INTRO -->
-
-    <div class="svc-section-intro">
-
-        <div>
-
-            <div class="svc-eyebrow">
-                Our Services
-            </div>
-
-            <h2 class="svc-section-title">
-                Care that goes<br>
-                beyond clean.
-            </h2>
-
-        </div>
-
-        <p class="svc-intro-copy">
-            From professional cleaning to reliable home improvements,
-            DLS Services delivers dependable solutions with attention
-            to detail, quality, and genuine care.
-        </p>
-
+    <div class="svc-head">
+      <div class="svc-eyebrow">Our Services</div>
+      <h2 class="svc-title">Premium Services for Every Need</h2>
+      <div class="svc-title-line"></div>
+      <p class="svc-intro-copy">From professional cleaning to reliable home improvements, DLS Services delivers dependable solutions with attention to detail, quality, and genuine care.</p>
     </div>
-
-
-    <!-- FOUR MAIN SERVICES -->
 
     <div class="svc-swipe-hint">Swipe to see all →</div>
 
     <div class="svc-services-grid">
 
-
-        <!-- 01 — REGULAR CLEANING -->
-
-        <article class="svc-service-card">
-
-            <div class="svc-card-image">
-
-                <img
-                    src="https://img.magnific.com/free-photo/front-view-woman-cleaning-home_23-2150453344.jpg"
-                    alt="Professional regular cleaning service"
-                >
-
-                <div class="svc-image-shade"></div>
-
-                <div class="svc-card-number">
-                    01 / 04
-                </div>
-
-            </div>
-
-            <div class="svc-card-body">
-
-                <h3 class="svc-card-title">
-                    Regular Cleaning
-                </h3>
-
-                <p class="svc-card-description">
-                    Reliable recurring care to keep your home
-                    consistently clean, fresh, and comfortable.
-                </p>
-
-                <div class="svc-card-footer">
-
-                    <span class="svc-learn">
-                        Explore Service
-                    </span>
-
-                    <span class="svc-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- 02 — DEEP CLEANING -->
-
-        <article class="svc-service-card">
-
-            <div class="svc-card-image">
-
-                <img
-                    src="https://img.magnific.com/free-photo/front-view-man-cleaning-indoors_23-2150454483.jpg"
-                    alt="Professional deep cleaning service"
-                >
-
-                <div class="svc-image-shade"></div>
-
-                <div class="svc-card-number">
-                    02 / 04
-                </div>
-
-            </div>
-
-            <div class="svc-card-body">
-
-                <h3 class="svc-card-title">
-                    Deep Cleaning
-                </h3>
-
-                <p class="svc-card-description">
-                    A detailed clean for spaces that need
-                    extra attention and a more thorough refresh.
-                </p>
-
-                <div class="svc-card-footer">
-
-                    <span class="svc-learn">
-                        Explore Service
-                    </span>
-
-                    <span class="svc-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- 03 — COMMERCIAL CLEANING -->
-
-        <article class="svc-service-card">
-
-            <div class="svc-card-image">
-
-                <img
-                    src="https://img.magnific.com/free-photo/full-shot-people-cleaning-office_23-2150454568.jpg"
-                    alt="Professional commercial cleaning service"
-                >
-
-                <div class="svc-image-shade"></div>
-
-                <div class="svc-card-number">
-                    03 / 04
-                </div>
-
-            </div>
-
-            <div class="svc-card-body">
-
-                <h3 class="svc-card-title">
-                    Commercial Cleaning
-                </h3>
-
-                <p class="svc-card-description">
-                    Professional cleaning solutions for offices,
-                    workspaces, common areas, and business environments.
-                </p>
-
-                <div class="svc-card-footer">
-
-                    <span class="svc-learn">
-                        Explore Service
-                    </span>
-
-                    <span class="svc-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- 04 — HANDYMAN & REMODELING -->
-
-        <article class="svc-service-card" id="handyman">
-
-            <div class="svc-card-image">
-
-                <img
-                    src="https://img.magnific.com/free-photo/people-renovating-house-concept_53876-20667.jpg"
-                    alt="Handyman and remodeling services"
-                >
-
-                <div class="svc-image-shade"></div>
-
-                <div class="svc-card-number">
-                    04 / 04
-                </div>
-
-            </div>
-
-            <div class="svc-card-body">
-
-                <h3 class="svc-card-title">
-                    Handyman & Remodeling
-                </h3>
-
-                <p class="svc-card-description">
-                    Reliable solutions for repairs, improvements,
-                    remodeling, and projects that transform your space.
-                </p>
-
-                <div class="svc-card-footer">
-
-                    <span class="svc-learn">
-                        Explore Service
-                    </span>
-
-                    <span class="svc-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
+      <!-- 01 — REGULAR CLEANING -->
+      <article class="svc-service-card">
+        <div class="svc-card-image">
+          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/front-view-woman-cleaning-home_23-2150453344.jpg" alt="Professional regular cleaning service" loading="lazy"></div>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+          </div>
+        </div>
+        <div class="svc-card-body">
+          <h3 class="svc-card-title">Regular Cleaning</h3>
+          <p class="svc-card-description">Reliable recurring care to keep your home consistently clean, fresh, and comfortable — weekly, bi-weekly or monthly.</p>
+          <a class="svc-learn" href="#quote">Get a Quote <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- 02 — DEEP CLEANING -->
+      <article class="svc-service-card">
+        <div class="svc-card-image">
+          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/front-view-man-cleaning-indoors_23-2150454483.jpg" alt="Professional deep cleaning service" loading="lazy"></div>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6z"/><path d="M18 13l.9 2.1L21 16l-2.1.9L18 19l-.9-2.1L15 16l2.1-.9z"/><path d="M17.5 3.5l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5z"/></svg>
+          </div>
+        </div>
+        <div class="svc-card-body">
+          <h3 class="svc-card-title">Deep Cleaning</h3>
+          <p class="svc-card-description">A detailed top-to-bottom clean for spaces that need extra attention and a more thorough refresh.</p>
+          <a class="svc-learn" href="#quote">Get a Quote <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- 03 — COMMERCIAL CLEANING -->
+      <article class="svc-service-card">
+        <div class="svc-card-image">
+          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/full-shot-people-cleaning-office_23-2150454568.jpg" alt="Professional commercial cleaning service" loading="lazy"></div>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 21v-4h6v4"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2"/></svg>
+          </div>
+        </div>
+        <div class="svc-card-body">
+          <h3 class="svc-card-title">Commercial Cleaning</h3>
+          <p class="svc-card-description">Professional cleaning for offices, workspaces, common areas, and business environments.</p>
+          <a class="svc-learn" href="#quote">Get a Quote <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- 04 — HANDYMAN & REMODELING -->
+      <article class="svc-service-card" id="handyman">
+        <div class="svc-card-image">
+          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/people-renovating-house-concept_53876-20667.jpg" alt="Handyman and remodeling services" loading="lazy"></div>
+          <div class="svc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"/></svg>
+          </div>
+        </div>
+        <div class="svc-card-body">
+          <h3 class="svc-card-title">Handyman &amp; Remodeling</h3>
+          <p class="svc-card-description">Repairs, improvements, summer kitchens and remodeling projects done with quality and attention to detail.</p>
+          <a class="svc-learn" href="#quote">Get a Quote <span>→</span></a>
+        </div>
+      </article>
 
     </div>
-
-
-    <!-- VIEW ALL SERVICES -->
-
-    <div class="svc-all-services">
-
-        <a href="#services">
-
-            View All Services
-
-            <span>→</span>
-
-        </a>
-
-    </div>
-
+  </div>
 </section>
 
 
