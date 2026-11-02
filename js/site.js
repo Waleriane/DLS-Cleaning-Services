@@ -71,12 +71,10 @@ var DLS_CONTACT = {
     if (page === 'services'){
       var hm = document.getElementById('handyman');
       key = (hm && hm.getBoundingClientRect().top + window.scrollY <= y) ? 'handyman' : 'services';
-      if (atBottom) key = 'contact';
-    } else if (page === 'about'){
-      key = atBottom ? 'contact' : 'about';
+    } else if (page === 'about' || page === 'contact'){
+      key = page;
     } else {
       key = 'home';
-      if (atBottom) key = 'contact';
     }
     mark(key);
   }

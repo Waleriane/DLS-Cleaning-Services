@@ -445,7 +445,7 @@ html{ scroll-padding-top:86px; }
       <a href="/#top" data-nav="home" class="active">Home</a>
       <a href="/services.html" data-nav="services">Services</a>
       <a href="/about.html" data-nav="about">About</a>
-      <a href="#contact" data-nav="contact">Contact</a>
+      <a href="/contact.html" data-nav="contact">Contact</a>
       <a href="/services.html#handyman" data-nav="handyman">Handyman &amp; Remodeling</a>
     </nav>
 
@@ -468,7 +468,7 @@ html{ scroll-padding-top:86px; }
     <a class="hd-mlink" href="/#top">Home</a>
     <a class="hd-mlink" href="/services.html">Services</a>
     <a class="hd-mlink" href="/about.html">About</a>
-    <a class="hd-mlink" href="#contact">Contact</a>
+    <a class="hd-mlink" href="/contact.html">Contact</a>
     <a class="hd-mlink" href="/services.html#handyman">Handyman &amp; Remodeling</a>
     <a class="hd-mcta" href="/#quote">Request a Free Estimate</a>
   </div>
@@ -6225,6 +6225,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
           <li><a href="/about.html">About</a></li>
           <li><a href="/#gallery">Gallery</a></li>
           <li><a href="/#reviews">Reviews</a></li>
+          <li><a href="/contact.html">Contact</a></li>
           <li><a href="/#quote">Free Estimate</a></li>
         </ul>
       </div>
@@ -6447,6 +6448,26 @@ body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
   .dls-form-note{ font-size:11px !important; }
   .dls-chat-brand-text span{ font-size:10px !important; }
   .gal-proof-item{ font-size:11px !important; }
+}
+
+/* FORMULÁRIO DE ORÇAMENTO — campos maiores (pedido da Nilva) */
+.dls-form-field label{ font-size:12.5px !important; margin-bottom:8px !important; letter-spacing:.06em !important; }
+.dls-form-field input, .dls-form-field select{ height:54px !important; padding:0 16px !important; font-size:16px !important; border-radius:10px !important; border-width:1.5px !important; }
+.dls-form-field textarea{ min-height:130px !important; padding:14px 16px !important; font-size:16px !important; border-radius:10px !important; border-width:1.5px !important; }
+.dls-form-field input:focus, .dls-form-field select:focus, .dls-form-field textarea:focus{ box-shadow:0 0 0 4px rgba(13,159,165,.12) !important; }
+.dls-form-grid{ gap:16px !important; }
+.dls-form-field{ margin-bottom:16px !important; }
+.dls-form-button{ min-height:52px !important; padding:0 26px !important; font-size:13px !important; border-radius:8px !important; }
+.dls-step-heading{ font-size:30px !important; }
+.dls-progress-step{ font-size:11px !important; }
+.dls-progress-number{ width:30px !important; height:30px !important; font-size:11px !important; }
+.dls-quote-form-card{ padding:34px !important; }
+@media (max-width:700px){
+  .dls-quote-form-card{ padding:24px 18px !important; }
+  .dls-form-grid{ gap:0 !important; }
+  .dls-form-field input, .dls-form-field select{ height:54px !important; }
+  .dls-form-button{ width:100%; }
+  .dls-step-buttons{ flex-wrap:wrap; }
 }
 </style>
 
