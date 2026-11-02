@@ -10,17 +10,17 @@ var DLS_SERVICES = {
     title: 'Regular Cleaning',
     text: 'Recurring cleaning to keep your home consistently clean, fresh and comfortable — so you can enjoy your space without worrying about the routine.',
     listTitle: "What's included",
-    list: ['Dusting','Making beds','Vacuuming carpets and rugs','Vacuuming and mopping floors','Cleaning counters and sinks','Exterior appliance cleaning','Complete bathroom cleaning','Trash removal'],
+    list: ['Dusting','Making beds','Vacuuming carpets and rugs','Vacuuming floors','Mopping floors','Cleaning countertops','Cleaning sinks','Cleaning cabinet exteriors','Exterior appliance cleaning','Complete bathroom cleaning','Trash removal'],
     note: 'Available weekly, bi-weekly or monthly. Your estimate depends on the size and needs of your home.',
     more: { label: 'See all cleaning services', href: '/services.html#cleaning' }
   },
   deep: {
     eyebrow: 'Detailed Cleaning',
     title: 'Deep Cleaning',
-    text: 'A more detailed clean that goes beyond routine maintenance — ideal when your home needs extra attention or a full refresh.',
+    text: 'A more detailed clean for spaces that need extra attention — ideal when a space has gone a long time without a detailed cleaning, or when you want a more complete clean.',
     listTitle: "What's included",
-    list: ['Everything in Regular Cleaning','Baseboards','Blinds','Ceiling fans','Detailed kitchen cleaning','Detailed bathroom cleaning','Areas that may have been neglected'],
-    note: "It's ideal when your home needs extra attention.",
+    list: ['Everything in Regular Cleaning','Detailed baseboard cleaning','Cleaning blinds','Cleaning ceiling fans','Detailed kitchen cleaning','Detailed bathroom cleaning','Cleaning neglected areas','Cleaning hard-to-reach areas'],
+    note: 'Available as an occasional or on-demand service.',
     more: { label: 'See all cleaning services', href: '/services.html#cleaning' }
   },
   commercial: {
@@ -29,7 +29,7 @@ var DLS_SERVICES = {
     text: 'Professional cleaning for offices and businesses, keeping your workplace clean, organized and welcoming for your team and clients.',
     listTitle: 'Areas we take care of',
     list: ['Workstations','Common areas','Cafeterias','Restrooms','Trash and recycling','Floor maintenance'],
-    note: 'Can be arranged on a recurring or as-needed basis.',
+    note: 'Available as recurring or on-demand cleaning, and adapted to the needs of each company.',
     more: { label: 'See all cleaning services', href: '/services.html#cleaning' }
   },
   handyman: {
@@ -37,65 +37,73 @@ var DLS_SERVICES = {
     title: 'Handyman & Remodeling',
     text: 'From small repairs to bigger projects — reliable solutions for repairs, improvements, installations and remodeling.',
     listTitle: 'Services',
-    list: ['Summer kitchens','Drywall, finish & texture','Masonry','Carpentry','Painting','Demolition','Appliance installation','General handyman services'],
-    note: 'Every project is different. Estimates are based on scope, materials, difficulty and the specific needs of each project. A site visit may be requested when necessary.',
+    list: ['Summer kitchens','Drywall, finish & texture','Handyman services','Masonry','Carpentry','Painting','Demolition','Appliance installation','Remodeling'],
+    note: 'Every project is different. Estimates are based on the scope of work, materials, complexity, urgency and the specific needs of each project. A site visit may be requested when necessary.',
     more: { label: 'Explore handyman services', href: '/services.html#handyman' }
   },
   'summer-kitchens': {
     eyebrow: 'Handyman · Outdoor',
     title: 'Summer Kitchens',
-    text: 'Custom outdoor kitchen projects designed around your space — a place to cook, gather and enjoy your backyard.',
-    listTitle: 'How it works',
-    list: ['We learn about your space and ideas','Site visit when necessary','Personalized estimate','Scope, materials and design defined with you'],
-    note: 'Estimates depend on the scope, materials, design and installation requirements.',
+    text: 'Creating and improving outdoor kitchens — evaluated according to each project and the needs of each client.',
+    listTitle: 'May include',
+    list: ['Construction','Installation','Finishing','Structural improvements'],
+    note: null,
     more: { label: 'See our summer kitchen photos', href: '/#gallery' }
   },
   drywall: {
     eyebrow: 'Remodeling',
     title: 'Drywall, Finish & Texture',
-    text: 'Clean finishes and interior improvements tailored to your project — from repairs to new walls and textures.',
-    listTitle: 'How it works', list: null, note: null
+    text: 'Clean finishes and wall improvements tailored to your project.',
+    listTitle: 'Services include', list: ['Drywall','Finishing','Wall texture','Repairs','Surface preparation'], note: null
   },
   'general-handyman': {
     eyebrow: 'Handyman',
     title: 'Handyman Services',
-    text: 'Practical repairs and maintenance for your home or property, handled with care and attention to detail.',
+    text: 'General maintenance and repairs for your property — the work involved depends on the evaluation of each request.',
     listTitle: 'How it works', list: null, note: null
   },
   masonry: {
     eyebrow: 'Remodeling',
     title: 'Masonry',
-    text: 'Reliable masonry solutions for residential and commercial projects.',
+    text: 'Construction and repair of masonry structures.',
     listTitle: 'How it works', list: null, note: null
   },
   carpentry: {
     eyebrow: 'Handyman',
     title: 'Carpentry',
-    text: 'Repairs, installations, improvements and customized carpentry work.',
+    text: 'Carpentry and woodwork for your home or property.',
     listTitle: 'How it works', list: null, note: null
   },
   painting: {
     eyebrow: 'Remodeling',
     title: 'Painting',
-    text: 'Interior and exterior painting to refresh and transform your space.',
+    text: 'Painting and space renewal for residential and commercial projects.',
     listTitle: 'How it works', list: null, note: null
   },
   demolition: {
     eyebrow: 'Remodeling',
     title: 'Demolition',
-    text: 'Demolition solutions for renovation and remodeling projects, preparing your space for what comes next.',
+    text: 'Demolition to prepare spaces for renovation and remodeling projects.',
     listTitle: 'How it works', list: null, note: null
   },
   appliance: {
     eyebrow: 'Installation',
     title: 'Appliance Installation',
-    text: 'Professional appliance installation for improvement and remodeling projects.',
+    text: 'Appliance installation, evaluated according to the equipment and the conditions of the site.',
     listTitle: 'How it works', list: null, note: null
+  },
+  remodeling: {
+    eyebrow: 'Remodeling',
+    title: 'Remodeling Projects',
+    text: 'From updating a single room to improving an entire property — the scope of work is defined according to each project.',
+    listTitle: 'Projects include',
+    list: ['Residential remodeling','Commercial remodeling','Home improvements','Space renovation','General property improvements'],
+    note: null
   }
 };
 /* passos padrão para os serviços de handyman sem lista própria */
-var DLS_HANDYMAN_STEPS = ['Tell us about your project','Site visit when necessary','Personalized estimate based on scope and materials','DLS takes care of the work with responsibility'];
-var DLS_HANDYMAN_NOTE = 'Every project is different — DLS does not use fixed prices. Estimates are based on the scope of work, materials and the specific needs of each project.';
+var DLS_HANDYMAN_STEPS = ['You tell us what you need','DLS reviews your request','Site visit when necessary','Your estimate is prepared and presented','Work begins after your approval'];
+var DLS_HANDYMAN_NOTE = 'DLS does not publish fixed prices. Estimates depend on the type of service, size of the space, amount of work, materials, complexity, urgency and your specific needs.';
 
 (function(){
   var modal = document.getElementById('dlsSvcModal');

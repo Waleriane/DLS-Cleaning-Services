@@ -4,7 +4,7 @@
 ========================================================= */
 var DLS_CONTACT = {
   phone:     '',   // ex.: '(407) 555-1234'
-  email:     '',   // ex.: 'contact@dlsservices.com'
+  email:     'dlsservices19@gmail.com',
   instagram: ''    // ex.: 'dlsservices'  (só o @, sem https)
 };
 
@@ -18,7 +18,8 @@ var DLS_CONTACT = {
   var texts = { phone:c.phone, email:c.email, instagram:c.instagram ? '@' + c.instagram.replace(/^@/,'') : '' };
   document.querySelectorAll('[data-contact]').forEach(function(a){
     var k = a.getAttribute('data-contact');
-    if (links[k]) a.setAttribute('href', links[k]); else { a.setAttribute('href', '/#quote'); a.removeAttribute('target'); }
+    if (links[k]) a.setAttribute('href', links[k]);
+    else if (!a.hasAttribute('data-text')) a.style.display = 'none';   /* sem o dado: esconde o ícone */
     if (a.hasAttribute('data-text')) a.textContent = texts[k] || '';
   });
   document.querySelectorAll('[data-show]').forEach(function(li){

@@ -1245,19 +1245,19 @@ html{ scroll-padding-top:86px; }
       </li>
       <li class="why-item">
         <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg></div>
-        <span>Professional<br>&amp; Trustworthy</span>
+        <span>Professional<br>&amp; Reliable</span>
       </li>
       <li class="why-item">
         <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="16" cy="15.5" r="2.6"/><path d="M16 14.3v1.3l.9.6"/></svg></div>
-        <span>Flexible<br>Scheduling</span>
+        <span>7+ Years of<br>Experience</span>
       </li>
       <li class="why-item">
         <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></div>
-        <span>Customized<br>Solutions</span>
+        <span>Personalized<br>Service</span>
       </li>
       <li class="why-item">
         <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="m9.8 9 1.6 1.6 2.9-3"/><path d="M8.6 13.6 7.5 21l4.5-2.4 4.5 2.4-1.1-7.4"/></svg></div>
-        <span>Consistent<br>Quality</span>
+        <span>Quality &amp;<br>Genuine Care</span>
       </li>
     </ul>
   </div>
@@ -2175,8 +2175,8 @@ html{ scroll-padding-top:86px; }
       </div>
       <div class="rv-promise">
         <div class="rv-promise-icon">◷</div>
-        <h3>On Time &amp; Reliable</h3>
-        <p>We show up when we say we will and finish what we start.</p>
+        <h3>Reliable &amp; Committed</h3>
+        <p>Committed to our clients and to every job we take on.</p>
       </div>
       <div class="rv-promise">
         <div class="rv-promise-icon">✦</div>
@@ -2185,8 +2185,8 @@ html{ scroll-padding-top:86px; }
       </div>
       <div class="rv-promise">
         <div class="rv-promise-icon">✓</div>
-        <h3>Clear Communication</h3>
-        <p>Straight answers, honest estimates and no surprises.</p>
+        <h3>Personalized Service</h3>
+        <p>Every project is evaluated according to your specific needs.</p>
       </div>
     </div>
 
@@ -3953,21 +3953,36 @@ function dlsGetAnswer(question){
 
 
 
-    /* respostas específicas primeiro (corrige: "regular cleaning" caía na resposta genérica) */
+    /* respostas conforme o BRIEFING (específicas primeiro) */
+    if(q.includes("garage") || q.includes("organiz") || q.includes("closet") || q.includes("outdoor area") || q.includes("patio clean") || q.includes("yard")){
+        return `Thanks for asking! DLS does not offer outdoor area cleaning, garage cleaning, light organization or closet organization.<br><br>Our cleaning services are Regular Cleaning, Deep Cleaning and Commercial Cleaning, plus add-ons for interior windows, refrigerator and oven. Would you like to know more about any of them?`;
+    }
+    if(q.includes("difference") || (q.includes("regular") && q.includes("deep"))){
+        return `Regular Cleaning is recurring maintenance (weekly, bi-weekly or monthly) to keep your home clean and pleasant.<br><br>Deep Cleaning includes everything from Regular Cleaning, plus detailed baseboards, blinds, ceiling fans, detailed kitchen and bathroom cleaning, neglected areas and hard-to-reach areas — ideal when a space hasn't had a detailed cleaning in a while.`;
+    }
     if(q.includes("regular") || q.includes("included") || q.includes("what do you clean")){
-        return `Our Regular Cleaning includes dusting, making beds, vacuuming carpets and rugs, vacuuming and mopping floors, cleaning counters and sinks, exterior appliance cleaning, complete bathroom cleaning, and trash removal.<br><br>We focus on the details that help your space feel fresh and cared for.`;
+        return `Our Regular Cleaning includes dusting, making beds, vacuuming carpets and rugs, vacuuming and mopping floors, cleaning countertops and sinks, cleaning cabinet exteriors, exterior appliance cleaning, complete bathroom cleaning, and trash removal.<br><br>It's available weekly, bi-weekly or monthly.`;
     }
     if(q.includes("deep clean")){
-        return `Deep Cleaning includes everything from Regular Cleaning, plus more detailed attention to areas that may have been neglected — such as baseboards, blinds, ceiling fans, detailed kitchen cleaning, and detailed bathroom cleaning.<br><br>It's ideal when your home needs extra attention.`;
+        return `Deep Cleaning includes everything from Regular Cleaning, plus detailed baseboard cleaning, blinds, ceiling fans, detailed kitchen cleaning, detailed bathroom cleaning, neglected areas and hard-to-reach areas.<br><br>It's ideal for spaces that haven't had a detailed cleaning in a while, or whenever you want a more complete clean.`;
     }
     if(q.includes("commercial") || q.includes("office") || q.includes("business")){
-        return `Yes! DLS Services also provides Commercial Cleaning — workstations, common areas, cafeterias, restrooms, trash and recycling, and floor maintenance.<br><br>It can be arranged on a recurring or as-needed basis.`;
+        return `Yes! DLS Services provides Commercial Cleaning — workstations, common areas, cafeterias, restrooms, trash and recycling, and floor maintenance.<br><br>It can be recurring or on-demand, and adapted to each company's needs.`;
     }
     if(q.includes("summer kitchen") || q.includes("outdoor kitchen")){
-        return `Yes. DLS offers Summer Kitchen projects as part of our Handyman & Remodeling services.<br><br>Estimates depend on the scope, materials, design, and installation requirements.`;
+        return `Yes. Summer Kitchens are part of our Handyman & Remodeling services — they can involve construction, installation, finishing and structural improvements.<br><br>Each project is evaluated according to your space and needs.`;
     }
-    if(q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("pricing")){
-        return `Every home and project is different, so DLS does not use one fixed price. The estimate depends on the type of service, size of the space, level of cleaning needed, materials and other project details.<br><br>The best next step is to <a href="#quote">request a free estimate</a>.`;
+    if(q.includes("remodel") || q.includes("renovat")){
+        return `DLS works with Residential Remodeling, Commercial Remodeling, Home Improvements, Space Renovation and General Property Improvements.<br><br>The scope is defined for each project. You can <a href="#quote">request an estimate</a> and tell us about your plans.`;
+    }
+    if(q.includes("email") || q.includes("contact") || q.includes("instagram") || q.includes("phone") || q.includes("call")){
+        return `You can reach DLS Services by email at <a href="mailto:dlsservices19@gmail.com">dlsservices19@gmail.com</a>, or <a href="#quote">request an estimate</a> right here on the site.`;
+    }
+    if(q.includes("area") || q.includes("serve") || q.includes("location") || q.includes("where") || q.includes("orlando")){
+        return `DLS Services serves Orlando, Florida and nearby areas.<br><br>Send your address through the <a href="#quote">estimate request</a> and the DLS team will confirm availability for your location.`;
+    }
+    if(q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("pricing") || q.includes("discount")){
+        return `DLS doesn't publish fixed prices — every estimate is personalized. It depends on the type of service, size of the space, amount of work, materials (quantity and quality), complexity, difficulty, urgency and your specific needs.<br><br>The best next step is to <a href="#quote">request a free estimate</a>.`;
     }
 
     /* CLEANING */
@@ -4146,8 +4161,8 @@ function dlsGetAnswer(question){
         Services include summer kitchens,
         drywall, finish and texture, masonry,
         carpentry, painting, demolition,
-        appliance installation, and general
-        handyman services.
+        appliance installation, general
+        handyman services, and remodeling.
 
         Would you like to tell us about your project?
         `;
@@ -5651,6 +5666,8 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 
                                 <!-- DATE / TIME -->
 
+                                <p class="dls-pref-note">Preferred date and time are a request — your appointment is confirmed only after DLS confirms availability.</p>
+
                                 <div class="dls-form-grid">
 
                                     <div class="dls-form-field">
@@ -6186,7 +6203,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
     <div class="ft-grid">
       <div class="ft-brand">
         <a class="ft-logo" href="/"><img src="imagens/logo-header.png" alt="DLS Services" width="520" height="329" loading="lazy"></a>
-        <p class="ft-about">Professional cleaning and handyman &amp; remodeling services — delivered with attention to detail and genuine care for your space.</p>
+        <p class="ft-about"><strong style="color:#063B4A">Clean spaces. Functional spaces. Better living.</strong><br>Professional cleaning, handyman &amp; remodeling services with attention to detail and genuine care for your space.</p>
         <div class="ft-social">
           <a data-contact="phone" href="#contact" aria-label="Call">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
@@ -6219,6 +6236,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
           <li><a href="/services.html#cleaning">Deep Cleaning</a></li>
           <li><a href="/services.html#cleaning">Commercial Cleaning</a></li>
           <li><a href="/services.html#handyman">Handyman &amp; Remodeling</a></li>
+          <li><a href="/services.html#remodeling">Remodeling</a></li>
           <li><a href="/#gallery">Summer Kitchens</a></li>
         </ul>
       </div>
@@ -6239,6 +6257,10 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
             <a data-contact="instagram" data-text="instagram" href="#contact" target="_blank" rel="noopener"></a>
           </li>
           <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+            <span>Orlando, Florida<br>&amp; nearby areas</span>
+          </li>
+          <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             <span>Monday – Friday<br>Starting at 8:00 AM</span>
           </li>
@@ -6250,7 +6272,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
   <div class="ft-bottom-band">
     <div class="ft-wrap">
       <div class="ft-bottom">
-        <span>© <span id="ftYear">2026</span> DLS Services. All rights reserved.</span>
+        <span>© <span id="ftYear">2026</span> DLS Services LLC. All rights reserved.</span>
         <a href="#top">Back to top ↑</a>
       </div>
     </div>
@@ -6398,6 +6420,7 @@ body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 .dls-progress-step{ font-size:10px !important; }
 .dls-form-button{ font-size:11px !important; }
 .dls-form-note{ font-size:11px !important; }
+.dls-pref-note{ margin:2px 0 12px; padding:9px 12px; background:#F2F8F8; border-left:3px solid #0D9FA5; border-radius:6px; font-size:12.5px; line-height:1.5; color:#3B4F55; }
 .dls-details-title{ font-size:10px !important; }
 .dls-quote-success p{ font-size:14px !important; }
 .dls-quote-image-overlay small{ font-size:10px !important; }
