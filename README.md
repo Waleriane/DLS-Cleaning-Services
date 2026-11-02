@@ -1,16 +1,20 @@
 # DLS Services — Site
 
 Site da DLS Services (House Cleaning + Handyman & Remodeling).
-Página única em HTML/CSS/JS puro, pronta para a Vercel (não precisa de build).
+Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 
 ## Estrutura
-- `index.html` — o site completo
+- `index.html` — página inicial (Home)
+- `services.html` — página de serviços (Cleaning + Handyman & Remodeling)
+- `js/site.js` — contatos (telefone, e-mail, Instagram) e funcionamento do menu, usado nas duas páginas
+- `js/servicos.js` — textos da janela "Learn More" de cada serviço
 - `imagens/` — logo, fotos da galeria, antes/depois, robô
 - `videos/` — vídeos do banner e imagens de capa
 - `secoes/` — cada seção separada (reserva/consulta)
 
 ## Onde editar
-- **Contatos (telefone, e-mail, Instagram):** no fim do `index.html`, bloco `CONTATOS DA DLS — PREENCHA AQUI`.
+- **Contatos (telefone, e-mail, Instagram):** no topo do `js/site.js` (vale para as duas páginas).
+- **Textos da janela de detalhes dos serviços:** `js/servicos.js`.
 - **Tamanho/cor dos textos:** bloco `AJUSTE GERAL DE LEITURA`, no fim do `index.html`.
 - **Avaliações reais:** seção Reviews — apague `hidden` do card depois de colocar o texto.
 
