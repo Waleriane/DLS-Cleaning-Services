@@ -72,12 +72,10 @@ var DLS_CONTACT = {
       var hm = document.getElementById('handyman');
       key = (hm && hm.getBoundingClientRect().top + window.scrollY <= y) ? 'handyman' : 'services';
       if (atBottom) key = 'contact';
+    } else if (page === 'about'){
+      key = atBottom ? 'contact' : 'about';
     } else {
       key = 'home';
-      var ab = document.getElementById('about');
-      if (ab && ab.getBoundingClientRect().top + window.scrollY <= y) key = 'about';
-      var sv = document.getElementById('services');
-      if (sv && sv.getBoundingClientRect().top + window.scrollY <= y) key = 'none';
       if (atBottom) key = 'contact';
     }
     mark(key);

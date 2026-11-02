@@ -6,6 +6,7 @@ Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 ## Estrutura
 - `index.html` — página inicial (Home)
 - `services.html` — página de serviços (Cleaning + Handyman & Remodeling)
+- `about.html` — página About Us
 - `js/site.js` — contatos (telefone, e-mail, Instagram) e funcionamento do menu, usado nas duas páginas
 - `js/servicos.js` — textos da janela "Learn More" de cada serviço
 - `imagens/` — logo, fotos da galeria, antes/depois, robô

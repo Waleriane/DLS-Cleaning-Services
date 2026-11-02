@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — DLS Services | Cleaning, Handyman &amp; Remodeling in Orlando, FL</title>
+<meta name="description" content="DLS Services LLC — 7+ years providing professional cleaning, handyman and remodeling services in Orlando, Florida and nearby areas.">
+<link rel="icon" href="imagens/logo-dls.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   BASE COMPARTILHADA (igual à página Services)
+========================================================= */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{ font-family:'Montserrat',Arial,sans-serif; color:#063B4A; background:#fff; overflow-x:hidden; -webkit-font-smoothing:antialiased; line-height:1.6; }
+img{ display:block; max-width:100%; }
+.sp-wrap{ max-width:1320px; margin:0 auto; padding:0 3vw; }
+.sp-eyebrow{ display:inline-flex; align-items:center; gap:12px; color:#0D9FA5; font-size:12px; font-weight:700; letter-spacing:2.4px; text-transform:uppercase; margin-bottom:12px; }
+.sp-eyebrow.line::before{ content:""; width:34px; height:2px; background:#0D9FA5; }
+.sp-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(32px,3.6vw,50px); line-height:1.06; }
+.sp-title span{ color:#0D9FA5; }
+.sp-text{ color:#3B4F55; font-size:15.5px; line-height:1.8; }
+.sp-head{ text-align:center; max-width:740px; margin:0 auto 40px; }
+.sp-head .sp-line{ width:44px; height:2px; background:#0D9FA5; margin:16px auto 0; }
+.sp-head .sp-text{ margin-top:16px; }
+.sp-btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:50px; padding:0 24px; border-radius:6px; text-decoration:none;
+  font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; transition:.25s ease; border:1px solid #0D9FA5; }
+.sp-btn.solid{ background:#0D9FA5; color:#fff; }
+.sp-btn.solid:hover{ background:#063B4A; border-color:#063B4A; transform:translateY(-2px); }
+.sp-btn.line{ background:#fff; color:#063B4A; }
+.sp-btn.line:hover{ background:#0D9FA5; color:#fff; }
+.sp-ic{ flex:none; width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:#0D9FA5; color:#fff; box-shadow:0 6px 16px rgba(13,159,165,.28); }
+.sp-ic svg{ width:21px; height:21px; }
+.sp-ic.soft{ background:#DDF2F2; color:#0D9FA5; box-shadow:none; }
+
+
+/* =========================================================
+   PÁGINA ABOUT
+========================================================= */
+/* HERO */
+.ab-hero{ position:relative; min-height:500px; display:flex; align-items:center; overflow:hidden; background:#F8FAF9; }
+.ab-hero > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+.ab-hero::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,rgba(248,250,249,.98) 0%,rgba(248,250,249,.93) 36%,rgba(248,250,249,.45) 62%,rgba(248,250,249,.05) 100%); }
+.ab-hero-copy{ position:relative; z-index:2; padding:64px 0; max-width:600px; }
+.ab-hero h1{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(44px,5.6vw,74px); line-height:1; letter-spacing:-.5px; }
+.ab-hero h1 span{ color:#0D9FA5; }
+.ab-hero .sp-text{ margin-top:20px; max-width:520px; font-size:16.5px; }
+.ab-btns{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+
+/* FAIXA DE CONFIANÇA */
+.ab-trust{ background:linear-gradient(180deg,#EEF7F7,#F6FAFA); border-bottom:1px solid #DDEBEB; }
+.ab-trust ul{ list-style:none; display:grid; grid-template-columns:repeat(4,1fr); }
+.ab-trust li{ display:flex; align-items:center; gap:14px; padding:24px 22px; border-right:1px solid rgba(6,59,74,.08); }
+.ab-trust li:last-child{ border-right:none; }
+.ab-trust strong{ display:block; font-size:14px; font-weight:700; margin-bottom:2px; }
+.ab-trust p{ font-size:13.5px; color:#3B4F55; line-height:1.45; }
+
+/* NOSSA HISTÓRIA */
+.ab-story{ padding:70px 0; background:#fff; }
+.ab-story-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center; }
+.ab-logo-box{ position:relative; min-height:380px; border-radius:14px; display:grid; place-items:center; padding:40px;
+  background:radial-gradient(circle at 80% 15%, rgba(13,159,165,.12), transparent 45%), #F2F8F8; box-shadow:0 18px 44px rgba(6,59,74,.08); }
+.ab-logo-box img{ width:min(360px,85%); height:auto; }
+.ab-years{ position:absolute; right:22px; top:22px; display:flex; align-items:center; gap:12px; background:#fff; border-radius:12px;
+  padding:12px 16px; box-shadow:0 10px 26px rgba(6,59,74,.12); }
+.ab-years b{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:34px; line-height:1; color:#0D9FA5; }
+.ab-years span{ font-size:12.5px; font-weight:700; line-height:1.3; text-transform:uppercase; letter-spacing:.06em; }
+.ab-story .sp-text{ margin-top:16px; }
+.ab-quote{ margin-top:24px; padding:16px 20px; border-left:3px solid #0D9FA5; background:#F2F8F8; border-radius:0 10px 10px 0;
+  font-family:'DM Serif Display',Georgia,serif; font-size:21px; line-height:1.4; color:#063B4A; }
+
+/* MISSÃO E VALORES */
+.ab-values{ padding:64px 0; background:linear-gradient(180deg,#EEF7F7 0%,#F6FAFA 100%); }
+.ab-values-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.ab-card{ background:#fff; border-radius:10px; padding:30px 24px 26px; box-shadow:0 10px 30px rgba(6,59,74,.08); transition:transform .35s ease, box-shadow .35s ease; }
+.ab-card:hover{ transform:translateY(-6px); box-shadow:0 20px 44px rgba(6,59,74,.14); }
+.ab-card .sp-ic{ width:60px; height:60px; border:4px solid #fff; box-shadow:0 8px 20px rgba(13,159,165,.32); margin-bottom:18px; }
+.ab-card .sp-ic svg{ width:27px; height:27px; }
+.ab-card h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:24px; margin-bottom:8px; }
+.ab-card p{ color:#3B4F55; font-size:14.5px; line-height:1.7; }
+
+/* O QUE FAZEMOS (liga com a página Services) */
+.ab-paths{ padding:64px 0; background:#fff; }
+.ab-paths-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.ab-path{ position:relative; display:block; min-height:300px; border-radius:12px; overflow:hidden; text-decoration:none; color:#fff;
+  box-shadow:0 14px 36px rgba(6,59,74,.12); }
+.ab-path img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+.ab-path:hover img{ transform:scale(1.05); }
+.ab-path::after{ content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(6,59,74,.88) 0%,rgba(6,59,74,.35) 55%,rgba(6,59,74,.05) 100%); }
+.ab-path-body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:26px 28px; }
+.ab-path .sp-ic{ width:54px; height:54px; border:3px solid #fff; margin-bottom:14px; }
+.ab-path h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:30px; line-height:1.1; }
+.ab-path p{ font-size:14.5px; color:rgba(255,255,255,.9); margin-top:6px; max-width:440px; }
+.ab-path .ab-go{ display:inline-flex; gap:8px; margin-top:14px; font-size:12px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#8FE3E6; }
+
+/* POR QUE ESCOLHER (claro) */
+.ab-why{ padding:64px 0 70px; background:linear-gradient(180deg,#F7F9F8 0%,#EEF5F5 100%); }
+.ab-why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+.ab-why-media{ position:relative; min-height:460px; border-radius:14px; overflow:hidden; box-shadow:0 22px 50px rgba(6,59,74,.14); }
+.ab-why-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 30%; }
+.ab-why .sp-text{ margin-top:16px; max-width:540px; }
+.ab-diffs{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:14px 20px; margin:26px 0 30px; }
+.ab-diffs li{ display:flex; align-items:center; gap:12px; font-size:14.5px; font-weight:600; line-height:1.35; }
+.ab-diffs .sp-ic{ width:40px; height:40px; }
+.ab-diffs .sp-ic svg{ width:19px; height:19px; }
+
+/* RESPONSIVO */
+@media (max-width:1000px){
+  .ab-trust ul{ grid-template-columns:1fr 1fr; }
+  .ab-trust li:nth-child(2){ border-right:none; }
+  .ab-trust li:nth-child(n+3){ border-top:1px solid rgba(6,59,74,.08); }
+  .ab-story-grid, .ab-why-grid{ grid-template-columns:1fr; gap:34px; }
+  .ab-logo-box{ min-height:300px; }
+  .ab-values-grid{ grid-template-columns:1fr 1fr; }
+  .ab-why-media{ min-height:340px; }
+}
+@media (max-width:640px){
+  .ab-hero{ display:block; min-height:0; }
+  .ab-hero > img{ position:relative; height:230px; object-position:65% center; }
+  .ab-hero::after{ display:none; }
+  .ab-hero-copy{ padding:30px 0 36px; }
+  .ab-hero h1{ font-size:44px; }
+  .ab-btns .sp-btn{ width:100%; }
+  .ab-trust li{ flex-direction:column; align-items:flex-start; gap:10px; padding:18px 14px; }
+  .ab-story, .ab-values, .ab-paths, .ab-why{ padding:46px 0; }
+  .ab-logo-box{ min-height:240px; padding:28px; }
+  .ab-years{ right:12px; top:12px; padding:10px 12px; }
+  .ab-logo-box{ padding-top:70px; }
+  .ab-years b{ font-size:28px; }
+  .ab-quote{ font-size:18px; }
+  .ab-values-grid{ grid-template-columns:1fr; gap:14px; }
+  .ab-paths-grid{ grid-template-columns:1fr; }
+  .ab-path{ min-height:260px; }
+  .ab-diffs{ grid-template-columns:1fr; }
+  .ab-why-media{ min-height:260px; }
+}
+</style>
+</head>
+<body data-page="about">
+
+<!-- =========================================
+     MENU DO TOPO
+========================================== -->
+<style>
+/* =========================================
+   MENU DO TOPO (fixo ao rolar)
+========================================= */
+html{ scroll-padding-top:86px; }
+.dls-header{
+  position:sticky; top:0; z-index:1000;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid rgba(6,59,74,.08);
+  font-family:'Montserrat',Arial,sans-serif;
+  transition:box-shadow .3s ease;
+}
+.dls-header.scrolled{ box-shadow:0 8px 30px rgba(6,59,74,.08); }
+.dls-header *{ box-sizing:border-box; margin:0; padding:0; }
+.hd-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; height:84px; display:flex; align-items:center; gap:28px; }
+.hd-logo{ display:flex; align-items:center; flex:none; }
+.hd-logo img{ height:62px; width:auto; display:block; }
+
+.hd-nav{ display:flex; align-items:center; gap:4px; margin:0 auto; }
+.hd-nav a{
+  position:relative; padding:10px 14px; color:#063B4A; text-decoration:none;
+  font-size:13px; font-weight:600; letter-spacing:.02em; white-space:nowrap; transition:color .2s ease;
+}
+.hd-nav a::after{
+  content:""; position:absolute; left:14px; right:14px; bottom:4px; height:2px; background:#0D9FA5;
+  transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+}
+.hd-nav a:hover, .hd-nav a.active{ color:#0D9FA5; }
+.hd-nav a:hover::after, .hd-nav a.active::after{ transform:scaleX(1); }
+
+.hd-icons{ display:flex; align-items:center; gap:8px; flex:none; }
+.hd-icon{
+  width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+  border:1px solid rgba(13,159,165,.35); color:#0D9FA5; background:#fff; transition:.25s ease;
+}
+.hd-icon svg{ width:18px; height:18px; }
+.hd-icon:hover{ background:#0D9FA5; color:#fff; border-color:#0D9FA5; transform:translateY(-2px); }
+
+.hd-burger{ display:none; width:44px; height:44px; border:1px solid rgba(6,59,74,.15); border-radius:10px; background:#fff; cursor:pointer;
+  flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+.hd-burger span{ display:block; width:20px; height:2px; background:#063B4A; border-radius:2px; transition:.3s ease; }
+.dls-header.open .hd-burger span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.dls-header.open .hd-burger span:nth-child(2){ opacity:0; }
+.dls-header.open .hd-burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* menu do celular (abre ao tocar no ☰) */
+.hd-mobile{ display:none; }
+
+@media (max-width:1180px){
+  .hd-nav a{ padding:10px 9px; font-size:12.5px; }
+  .hd-nav a::after{ left:9px; right:9px; }
+}
+@media (max-width:1020px){
+  .hd-wrap{ height:68px; }
+  .hd-logo img{ height:44px; }
+  .hd-nav{ display:none; }
+  .hd-icons{ margin-left:auto; }
+  .hd-burger{ display:flex; }
+  .hd-mobile{
+    display:block; max-height:0; overflow:hidden; background:#fff; transition:max-height .35s ease;
+    border-top:1px solid transparent;
+  }
+  .dls-header.open .hd-mobile{ max-height:480px; border-top-color:rgba(6,59,74,.08); }
+  .hd-mobile a.hd-mlink{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 6vw; color:#063B4A; text-decoration:none; font-size:16px; font-weight:600;
+    border-bottom:1px solid rgba(6,59,74,.06);
+  }
+  .hd-mobile a.hd-mlink::after{ content:"→"; color:#0D9FA5; }
+  .hd-mobile .hd-mcta{ display:block; margin:16px 6vw 20px; text-align:center; background:#0D9FA5; color:#fff; text-decoration:none;
+    padding:15px; border-radius:6px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  html{ scroll-padding-top:74px; }
+}
+@media (max-width:520px){
+  .hd-wrap{ gap:10px; }
+  .hd-logo img{ height:38px; }
+  .hd-icons{ gap:6px; }
+  .hd-icon{ width:36px; height:36px; }
+  .hd-icon svg{ width:16px; height:16px; }
+  .hd-burger{ width:40px; height:40px; }
+}
+@media (max-width:370px){
+  .hd-icon.hd-hide-xs{ display:none; } /* telas muito estreitas: esconde o e-mail para caber */
+}
+</style>
+
+<header class="dls-header" id="top">
+  <div class="hd-wrap">
+    <a class="hd-logo" href="/" aria-label="DLS Services — Home">
+      <img src="imagens/logo-header.png" alt="DLS Services — House Cleaning" width="520" height="329">
+    </a>
+
+    <nav class="hd-nav" aria-label="Main menu">
+      <a href="/#top" data-nav="home">Home</a>
+      <a href="/services.html" data-nav="services">Services</a>
+      <a href="/about.html" data-nav="about" class="active">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+      <a href="/services.html#handyman" data-nav="handyman">Handyman &amp; Remodeling</a>
+    </nav>
+
+    <div class="hd-icons">
+      <a class="hd-icon" data-contact="phone" href="#contact" aria-label="Call DLS Services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      </a>
+      <a class="hd-icon hd-hide-xs" data-contact="email" href="#contact" aria-label="Email DLS Services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+      </a>
+      <a class="hd-icon" data-contact="instagram" href="#contact" aria-label="DLS Services on Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+
+    <button class="hd-burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+
+  <div class="hd-mobile">
+    <a class="hd-mlink" href="/#top">Home</a>
+    <a class="hd-mlink" href="/services.html">Services</a>
+    <a class="hd-mlink" href="/about.html">About</a>
+    <a class="hd-mlink" href="#contact">Contact</a>
+    <a class="hd-mlink" href="/services.html#handyman">Handyman &amp; Remodeling</a>
+    <a class="hd-mcta" href="/#quote">Request a Free Estimate</a>
+  </div>
+</header>
+
+<!-- =========================================
+     01 — HERO
+========================================== -->
+<section class="ab-hero">
+  <img src="imagens/faixa.jpg" alt="Modern, clean and comfortable home interior">
+  <div class="sp-wrap" style="width:100%">
+    <div class="ab-hero-copy">
+      <div class="sp-eyebrow line">About Us</div>
+      <h1>A Cleaner,<br>More Comfortable<br><span>Tomorrow.</span></h1>
+      <p class="sp-text">DLS Services was built on the belief that every space deserves care, quality and attention to detail. We provide professional cleaning, handyman and remodeling services that make everyday life easier and more enjoyable.</p>
+      <div class="ab-btns">
+        <a class="sp-btn solid" href="#our-story">Our Story <span>↓</span></a>
+        <a class="sp-btn line" href="/#quote">Request a Free Estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     02 — FAIXA DE CONFIANÇA
+========================================== -->
+<section class="ab-trust" aria-label="Why clients trust DLS">
+  <div class="sp-wrap">
+    <ul>
+      <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg></span><div><strong>Professional Service</strong><p>Responsible service with attention to detail.</p></div></li>
+      <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="m9.8 9 1.6 1.6 2.9-3"/><path d="M8.6 13.6 7.5 21l4.5-2.4 4.5 2.4-1.1-7.4"/></svg></span><div><strong>7+ Years of Experience</strong><p>Skilled, responsible and committed.</p></div></li>
+      <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><strong>Quality Focused</strong><p>Careful work in every service.</p></div></li>
+      <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><div><strong>Customer Focused</strong><p>Your satisfaction is our priority.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================================
+     03 — NOSSA HISTÓRIA
+========================================== -->
+<section class="ab-story" id="our-story">
+  <div class="sp-wrap ab-story-grid">
+    <div class="ab-logo-box">
+      <img src="imagens/logo-dls.png" alt="DLS Services logo" width="900" height="644">
+      <div class="ab-years"><b>7+</b><span>Years of<br>Experience</span></div>
+    </div>
+    <div>
+      <div class="sp-eyebrow line">Our Story</div>
+      <h2 class="sp-title">Built on Trust,<br>Driven by <span>Excellence.</span></h2>
+      <p class="sp-text">DLS Services was founded with a simple purpose: to make homes, rental properties and businesses cleaner, more comfortable and more functional.</p>
+      <p class="sp-text">What started as a passion for helping people maintain their spaces has grown into a company serving Orlando, Florida and nearby areas with professional cleaning, handyman and remodeling services — built around professionalism, integrity, responsibility and care.</p>
+      <div class="ab-quote">“We care for your space with the same responsibility with which we built our name.”</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     04 — MISSÃO E VALORES
+========================================== -->
+<section class="ab-values">
+  <div class="sp-wrap">
+    <div class="sp-head">
+      <div class="sp-eyebrow">Our Mission &amp; Values</div>
+      <h2 class="sp-title">More Than a Service.<br>A Better Living <span>Experience.</span></h2>
+      <div class="sp-line"></div>
+    </div>
+    <div class="ab-values-grid">
+      <article class="ab-card"><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span><h3>Our Mission</h3><p>To provide reliable cleaning, handyman and remodeling solutions that make every space cleaner, more comfortable and more functional.</p></article>
+      <article class="ab-card"><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h3l3.5 3H14a1.5 1.5 0 0 0 0-3h-3"/><path d="M6 13l4.4-3.4a2 2 0 0 1 2.3-.1L17 12h4"/><path d="M3 18h4l3 2h7l4-3"/></svg></span><h3>Our Values</h3><p>Professionalism, responsibility, trust, quality and respect for every client's space.</p></article>
+      <article class="ab-card"><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span><h3>Our Commitment</h3><p>Consistent results with attention to detail and a genuine commitment to your satisfaction.</p></article>
+      <article class="ab-card"><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19 13 11"/></svg></span><h3>Better Living</h3><p>Clean spaces. Functional spaces. Better living — with more peace of mind and less worry about maintenance.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     05 — O QUE FAZEMOS (leva à página Services)
+========================================== -->
+<section class="ab-paths">
+  <div class="sp-wrap">
+    <div class="sp-head">
+      <div class="sp-eyebrow">What We Do</div>
+      <h2 class="sp-title">Two Areas. <span>One Standard of Care.</span></h2>
+      <div class="sp-line"></div>
+    </div>
+    <div class="ab-paths-grid">
+      <a class="ab-path" href="/services.html#cleaning">
+        <img src="imagens/servicos/commercial.jpg" alt="Professional cleaning services" loading="lazy">
+        <div class="ab-path-body">
+          <span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6z"/><path d="M18 13l.9 2.1L21 16l-2.1.9L18 19l-.9-2.1L15 16l2.1-.9z"/></svg></span>
+          <h3>Cleaning Services</h3>
+          <p>Regular, deep and commercial cleaning, plus add-ons for interior windows, refrigerator and oven.</p>
+          <span class="ab-go">Explore Cleaning <span>→</span></span>
+        </div>
+      </a>
+      <a class="ab-path" href="/services.html#handyman">
+        <img src="imagens/summer-kitchen-noite.jpg" alt="Summer kitchen project by DLS Services" loading="lazy">
+        <div class="ab-path-body">
+          <span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"/></svg></span>
+          <h3>Handyman &amp; Remodeling</h3>
+          <p>Summer kitchens, drywall, masonry, carpentry, painting, demolition, appliance installation and remodeling.</p>
+          <span class="ab-go">Explore Handyman <span>→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     06 — POR QUE ESCOLHER A DLS (versão clara)
+========================================== -->
+<section class="ab-why">
+  <div class="sp-wrap ab-why-grid">
+    <div class="ab-why-media">
+      <img src="imagens/servicos/drywall.jpg" alt="DLS professional at work" loading="lazy">
+    </div>
+    <div>
+      <div class="sp-eyebrow line">Why Choose DLS</div>
+      <h2 class="sp-title">Dedicated to the Details<br>That Make a <span>Difference.</span></h2>
+      <p class="sp-text">From routine cleaning and maintenance to handyman services and remodeling projects, we approach every job with the same level of care, responsibility and professionalism.</p>
+      <ul class="ab-diffs">
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg></span>Professional Service</li>
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></svg></span>Attention to Detail</li>
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Reliability</li>
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>Quality</li>
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Personalized Service</li>
+        <li><span class="sp-ic "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19 13 11"/></svg></span>Genuine Care</li>
+      </ul>
+      <a class="sp-btn solid" href="/#quote">Get a Free Estimate <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     RODAPÉ
+========================================== -->
+<style>
+/* =========================================
+   RODAPÉ (versão clara — logo nas cores originais)
+========================================= */
+.dls-footer{ font-family:'Montserrat',Arial,sans-serif; color:#063B4A; background:#F2F8F8; border-top:1px solid #DDEBEB; }
+.dls-footer *{ box-sizing:border-box; margin:0; padding:0; }
+.ft-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; }
+
+/* faixa de chamada verde-água */
+.ft-cta-band{ background:linear-gradient(90deg,#0D9FA5 0%,#0B8C92 100%); color:#fff; }
+.ft-cta{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:24px 0; }
+.ft-cta h2{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(22px,2.2vw,30px); line-height:1.15; }
+.ft-cta p{ font-size:14px; color:rgba(255,255,255,.88); margin-top:4px; }
+.ft-cta-btn{ display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:0 22px; background:#fff; color:#063B4A;
+  text-decoration:none; border-radius:6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; transition:.25s ease; }
+.ft-cta-btn:hover{ background:#063B4A; color:#fff; }
+
+/* colunas */
+.ft-grid{ display:grid; grid-template-columns:1.3fr 1fr 1.1fr 1.3fr; gap:36px; padding:30px 0 22px; }
+.ft-logo img{ height:72px; width:auto; display:block; }
+.ft-about{ margin-top:10px; font-size:13.5px; line-height:1.65; color:#3B4F55; max-width:330px; }
+.ft-social{ display:flex; gap:8px; margin-top:14px; }
+.ft-social a{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#0D9FA5; background:#fff;
+  border:1px solid rgba(13,159,165,.35); transition:.25s ease; }
+.ft-social a:hover{ background:#0D9FA5; border-color:#0D9FA5; color:#fff; }
+.ft-social svg{ width:16px; height:16px; }
+
+.ft-title{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0D9FA5; margin-bottom:12px; }
+.ft-list{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+.ft-list a, .ft-list span{ color:#3B4F55; text-decoration:none; font-size:14px; line-height:1.5; transition:color .2s ease; }
+.ft-list a:hover{ color:#0D9FA5; }
+.ft-contact li{ display:flex; gap:10px; align-items:flex-start; }
+.ft-contact svg{ width:18px; height:18px; flex:none; margin-top:1px; color:#0D9FA5; }
+
+/* barra final azul-escura fina */
+.ft-bottom-band{ background:#063B4A; }
+.ft-bottom{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 0; font-size:12.5px; color:rgba(255,255,255,.75); }
+.ft-bottom a{ color:#fff; text-decoration:none; }
+.ft-bottom a:hover{ color:#5FD3D7; }
+
+@media (max-width:1000px){
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:26px 28px; }
+}
+@media (max-width:600px){
+  .ft-wrap{ padding:0 18px; }
+  .ft-cta{ padding:22px 0; gap:14px; }
+  .ft-cta-btn{ width:100%; justify-content:center; }
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:24px 18px; padding:26px 0 20px; }
+  .ft-brand, .ft-contact-col{ grid-column:1 / -1; }
+  .ft-logo img{ height:62px; }
+  .ft-bottom{ flex-direction:column; text-align:center; gap:4px; }
+}
+</style>
+
+<footer class="dls-footer" id="contact">
+  <div class="ft-cta-band">
+    <div class="ft-wrap">
+      <div class="ft-cta">
+        <div>
+          <h2>Ready for a cleaner, better-kept space?</h2>
+          <p>Tell us what you need — we'll get back to you with the next steps.</p>
+        </div>
+        <a class="ft-cta-btn" href="/#quote">Request a Free Estimate <span>→</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-wrap">
+
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="ft-logo" href="/"><img src="imagens/logo-header.png" alt="DLS Services" width="520" height="329" loading="lazy"></a>
+        <p class="ft-about"><strong style="color:#063B4A">Clean spaces. Functional spaces. Better living.</strong><br>Professional cleaning, handyman &amp; remodeling services with attention to detail and genuine care for your space.</p>
+        <div class="ft-social">
+          <a data-contact="phone" href="#contact" aria-label="Call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          </a>
+          <a data-contact="email" href="#contact" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+          <a data-contact="instagram" href="#contact" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-title">Quick Links</div>
+        <ul class="ft-list">
+          <li><a href="/#top">Home</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#reviews">Reviews</a></li>
+          <li><a href="/#quote">Free Estimate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-title">Services</div>
+        <ul class="ft-list">
+          <li><a href="/services.html#cleaning">Regular Cleaning</a></li>
+          <li><a href="/services.html#cleaning">Deep Cleaning</a></li>
+          <li><a href="/services.html#cleaning">Commercial Cleaning</a></li>
+          <li><a href="/services.html#handyman">Handyman &amp; Remodeling</a></li>
+          <li><a href="/services.html#remodeling">Remodeling</a></li>
+          <li><a href="/#gallery">Summer Kitchens</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-contact-col">
+        <div class="ft-title">Contact</div>
+        <ul class="ft-list ft-contact">
+          <li data-show="phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <a data-contact="phone" data-text="phone" href="#contact"></a>
+          </li>
+          <li data-show="email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            <a data-contact="email" data-text="email" href="#contact"></a>
+          </li>
+          <li data-show="instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+            <a data-contact="instagram" data-text="instagram" href="#contact" target="_blank" rel="noopener"></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+            <span>Orlando, Florida<br>&amp; nearby areas</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Monday – Friday<br>Starting at 8:00 AM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="ft-bottom-band">
+    <div class="ft-wrap">
+      <div class="ft-bottom">
+        <span>© <span id="ftYear">2026</span> DLS Services LLC. All rights reserved.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+
+</body>
+</html>
