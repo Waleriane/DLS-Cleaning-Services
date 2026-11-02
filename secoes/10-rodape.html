@@ -1,63 +1,71 @@
 <style>
 /* =========================================
-   RODAPÉ
+   RODAPÉ (versão clara — logo nas cores originais)
 ========================================= */
-.dls-footer{ background:#042F3B; color:#fff; font-family:'Montserrat',Arial,sans-serif; }
+.dls-footer{ font-family:'Montserrat',Arial,sans-serif; color:#063B4A; background:#F2F8F8; border-top:1px solid #DDEBEB; }
 .dls-footer *{ box-sizing:border-box; margin:0; padding:0; }
 .ft-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; }
 
-/* faixa de chamada */
-.ft-cta{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
-  padding:26px 0; border-bottom:1px solid rgba(255,255,255,.10); }
-.ft-cta h2{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(24px,2.4vw,32px); line-height:1.1; }
-.ft-cta h2 span{ color:#5FD3D7; }
-.ft-cta-btn{ display:inline-flex; align-items:center; gap:12px; min-height:46px; padding:0 22px; background:#0D9FA5; color:#fff;
+/* faixa de chamada verde-água */
+.ft-cta-band{ background:linear-gradient(90deg,#0D9FA5 0%,#0B8C92 100%); color:#fff; }
+.ft-cta{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:24px 0; }
+.ft-cta h2{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(22px,2.2vw,30px); line-height:1.15; }
+.ft-cta p{ font-size:14px; color:rgba(255,255,255,.88); margin-top:4px; }
+.ft-cta-btn{ display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:0 22px; background:#fff; color:#063B4A;
   text-decoration:none; border-radius:6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; transition:.25s ease; }
-.ft-cta-btn:hover{ background:#fff; color:#042F3B; }
+.ft-cta-btn:hover{ background:#063B4A; color:#fff; }
 
 /* colunas */
-.ft-grid{ display:grid; grid-template-columns:1.4fr 1fr 1.1fr 1.3fr; gap:36px; padding:30px 0 24px; }
-.ft-logo img{ height:46px; width:auto; display:block; filter:brightness(0) invert(1); }
-.ft-about{ margin-top:12px; font-size:13.5px; line-height:1.65; color:rgba(255,255,255,.78); max-width:340px; }
+.ft-grid{ display:grid; grid-template-columns:1.3fr 1fr 1.1fr 1.3fr; gap:36px; padding:30px 0 22px; }
+.ft-logo img{ height:72px; width:auto; display:block; }
+.ft-about{ margin-top:10px; font-size:13.5px; line-height:1.65; color:#3B4F55; max-width:330px; }
 .ft-social{ display:flex; gap:8px; margin-top:14px; }
-.ft-social a{ width:36px; height:36px; border-radius:50%; display:grid; place-items:center; color:#fff;
-  border:1px solid rgba(255,255,255,.25); transition:.25s ease; }
-.ft-social a:hover{ background:#0D9FA5; border-color:#0D9FA5; }
+.ft-social a{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#0D9FA5; background:#fff;
+  border:1px solid rgba(13,159,165,.35); transition:.25s ease; }
+.ft-social a:hover{ background:#0D9FA5; border-color:#0D9FA5; color:#fff; }
 .ft-social svg{ width:16px; height:16px; }
 
-.ft-title{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#5FD3D7; margin-bottom:12px; }
+.ft-title{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0D9FA5; margin-bottom:12px; }
 .ft-list{ list-style:none; display:flex; flex-direction:column; gap:7px; }
-.ft-list a, .ft-list span{ color:rgba(255,255,255,.82); text-decoration:none; font-size:14px; line-height:1.5; transition:color .2s ease; }
-.ft-list a:hover{ color:#fff; }
-.ft-contact li{ display:flex; gap:12px; align-items:flex-start; }
-.ft-contact svg{ width:18px; height:18px; flex:none; margin-top:1px; color:#5FD3D7; }
+.ft-list a, .ft-list span{ color:#3B4F55; text-decoration:none; font-size:14px; line-height:1.5; transition:color .2s ease; }
+.ft-list a:hover{ color:#0D9FA5; }
+.ft-contact li{ display:flex; gap:10px; align-items:flex-start; }
+.ft-contact svg{ width:18px; height:18px; flex:none; margin-top:1px; color:#0D9FA5; }
 
-/* barra final */
-.ft-bottom{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
-  padding:14px 0 16px; border-top:1px solid rgba(255,255,255,.10); font-size:12.5px; color:rgba(255,255,255,.65); }
-.ft-bottom a{ color:rgba(255,255,255,.8); text-decoration:none; }
-.ft-bottom a:hover{ color:#fff; }
+/* barra final azul-escura fina */
+.ft-bottom-band{ background:#063B4A; }
+.ft-bottom{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 0; font-size:12.5px; color:rgba(255,255,255,.75); }
+.ft-bottom a{ color:#fff; text-decoration:none; }
+.ft-bottom a:hover{ color:#5FD3D7; }
 
 @media (max-width:1000px){
   .ft-grid{ grid-template-columns:1fr 1fr; gap:26px 28px; }
 }
 @media (max-width:600px){
   .ft-wrap{ padding:0 18px; }
-  .ft-cta{ padding:24px 0; gap:16px; }
+  .ft-cta{ padding:22px 0; gap:14px; }
   .ft-cta-btn{ width:100%; justify-content:center; }
   .ft-grid{ grid-template-columns:1fr 1fr; gap:24px 18px; padding:26px 0 20px; }
   .ft-brand, .ft-contact-col{ grid-column:1 / -1; }
-  .ft-bottom{ flex-direction:column; text-align:center; gap:6px; }
+  .ft-logo img{ height:62px; }
+  .ft-bottom{ flex-direction:column; text-align:center; gap:4px; }
 }
 </style>
 
 <footer class="dls-footer" id="contact">
-  <div class="ft-wrap">
-
-    <div class="ft-cta">
-      <h2>Ready for a cleaner,<br><span>better-kept space?</span></h2>
-      <a class="ft-cta-btn" href="#quote">Request a Free Estimate <span>→</span></a>
+  <div class="ft-cta-band">
+    <div class="ft-wrap">
+      <div class="ft-cta">
+        <div>
+          <h2>Ready for a cleaner, better-kept space?</h2>
+          <p>Tell us what you need — we'll get back to you with the next steps.</p>
+        </div>
+        <a class="ft-cta-btn" href="#quote">Request a Free Estimate <span>→</span></a>
+      </div>
     </div>
+  </div>
+  <div class="ft-wrap">
 
     <div class="ft-grid">
       <div class="ft-brand">
@@ -122,9 +130,13 @@
       </div>
     </div>
 
-    <div class="ft-bottom">
-      <span>© <span id="ftYear">2026</span> DLS Services. All rights reserved.</span>
-      <a href="#top">Back to top ↑</a>
+  </div>
+  <div class="ft-bottom-band">
+    <div class="ft-wrap">
+      <div class="ft-bottom">
+        <span>© <span id="ftYear">2026</span> DLS Services. All rights reserved.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
     </div>
   </div>
 </footer>
