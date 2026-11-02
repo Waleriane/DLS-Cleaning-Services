@@ -149,6 +149,12 @@ img{ display:block; max-width:100%; }
   .sp-remodel-media{ min-height:200px; }
   .sp-remodel-body{ padding:22px 20px 24px; }
 }
+/* enquadramento das fotos novas (fotos em pé dentro de cards deitados) */
+img[src$="servicos/regular.jpg"]{ object-position:50% 38%; }
+img[src$="servicos/drywall.jpg"]{ object-position:50% 28%; }
+img[src$="servicos/appliance.jpg"]{ object-position:50% 42%; }
+img[src$="servicos/carpentry.jpg"]{ object-position:50% 55%; }
+img[src$="servicos/remodeling.jpg"]{ object-position:50% 60%; }
 /* ---------- RESPONSIVO ---------- */
 @media (max-width:1100px){
   .svc-services-grid.c4{ grid-template-columns:repeat(2,1fr); }
@@ -366,7 +372,7 @@ html{ scroll-padding-top:86px; }
     <div class="svc-services-grid c3">
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80" alt="Regular residential cleaning" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/regular.jpg" alt="Regular residential cleaning" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -378,7 +384,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1000&q=80" alt="Deep kitchen cleaning" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/deep.jpg" alt="Deep kitchen cleaning" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6z"/><path d="M18 13l.9 2.1L21 16l-2.1.9L18 19l-.9-2.1L15 16l2.1-.9z"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -390,7 +396,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80" alt="Commercial office cleaning" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/commercial.jpg" alt="Commercial office cleaning" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 21v-4h6v4"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -422,8 +428,7 @@ html{ scroll-padding-top:86px; }
 <section class="sp-more">
   <div class="sp-wrap sp-more-grid">
     <div class="sp-more-media">
-      <!-- FOTO: trocar quando chegarem as fotos novas -->
-      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80" alt="Professional cleaning service" loading="lazy">
+            <img src="imagens/servicos/more-than-cleaning.jpg" alt="Professional cleaning service" loading="lazy">
     </div>
     <div>
       <div class="sp-eyebrow line">More Than Cleaning</div>
@@ -558,7 +563,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80" alt="Interior remodeling and drywall work" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/drywall.jpg" alt="Interior remodeling and drywall work" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9.3h18M3 14.6h18M9 4v5.3M15 9.3v5.3M9 14.6V20"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -570,7 +575,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/circular-saw-carpenter-using-circular-saw-wood_169016-17039.jpg" alt="Professional handyman working" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/handyman.jpg" alt="Professional handyman working" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-.4-.4-2.1z"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -594,7 +599,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://img.magnific.com/free-photo/circular-saw-carpenter-using-circular-saw-wood_169016-17039.jpg" alt="Professional carpentry work" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/carpentry.jpg" alt="Professional carpentry work" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15 15 3l2 2-3 3 2 2-3 3 2 2-3 3z"/><path d="M15 15l5 5"/><path d="M18 14l3 3-3 3-3-3z"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -618,7 +623,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?auto=format&fit=crop&w=1000&q=80" alt="Demolition and renovation project" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/demolition.jpg" alt="Demolition and renovation project" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l5 5-2 2-5-5z"/><path d="M12 7 4 15.5a1.8 1.8 0 0 0 2.5 2.5L15 9.5"/><path d="M14 5l2-2 4 4-1 1"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -630,7 +635,7 @@ html{ scroll-padding-top:86px; }
       </article>
       <article class="svc-service-card" data-card>
         <div class="svc-card-image">
-          <div class="svc-photo"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=80" alt="Kitchen appliance installation" loading="lazy"></div>
+          <div class="svc-photo"><img src="imagens/servicos/appliance.jpg" alt="Kitchen appliance installation" loading="lazy"></div>
           <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M5 10h14M8 6v2M8 13v3"/></svg></div>
         </div>
         <div class="svc-card-body">
@@ -644,7 +649,7 @@ html{ scroll-padding-top:86px; }
 
     <!-- REMODELING (destaque, do briefing) -->
     <article class="sp-remodel" id="remodeling" data-card>
-      <div class="sp-remodel-media"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" alt="Remodeling project" loading="lazy"></div>
+      <div class="sp-remodel-media"><img src="imagens/servicos/remodeling.jpg" alt="Remodeling project" loading="lazy"></div>
       <div class="sp-remodel-body">
         <div class="svc-cat">Remodeling</div>
         <h3 class="svc-card-title">Remodeling Projects</h3>
