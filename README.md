@@ -8,6 +8,9 @@ Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 - `services.html` — página de serviços (Cleaning + Handyman & Remodeling)
 - `about.html` — página About Us
 - `contact.html` — página Contact (formulário curto, assistente e área atendida)
+- `handyman.html` — página Handyman & Remodeling
+- `js/respostas.js` — respostas do assistente virtual (chat da página e pop-up)
+- `js/chat-popup.js` — botão flutuante do assistente em todas as páginas
 - `js/site.js` — contatos (telefone, e-mail, Instagram) e funcionamento do menu, usado nas duas páginas
 - `js/servicos.js` — textos da janela "Learn More" de cada serviço
 - `imagens/` — logo, fotos da galeria, antes/depois, robô

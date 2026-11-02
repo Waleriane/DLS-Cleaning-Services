@@ -69,9 +69,8 @@ var DLS_CONTACT = {
     var y = window.scrollY + 140, key;
     var atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
     if (page === 'services'){
-      var hm = document.getElementById('handyman');
-      key = (hm && hm.getBoundingClientRect().top + window.scrollY <= y) ? 'handyman' : 'services';
-    } else if (page === 'about' || page === 'contact'){
+      key = 'services';
+    } else if (page === 'about' || page === 'contact' || page === 'handyman'){
       key = page;
     } else {
       key = 'home';

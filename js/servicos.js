@@ -39,7 +39,7 @@ var DLS_SERVICES = {
     listTitle: 'Services',
     list: ['Summer kitchens','Drywall, finish & texture','Handyman services','Masonry','Carpentry','Painting','Demolition','Appliance installation','Remodeling'],
     note: 'Every project is different. Estimates are based on the scope of work, materials, complexity, urgency and the specific needs of each project. A site visit may be requested when necessary.',
-    more: { label: 'Explore handyman services', href: '/services.html#handyman' }
+    more: { label: 'Explore handyman services', href: '/handyman.html' }
   },
   'summer-kitchens': {
     eyebrow: 'Handyman · Outdoor',
