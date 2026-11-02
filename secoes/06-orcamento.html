@@ -1,0 +1,1748 @@
+<style>
+    /* =========================================================
+       DLS SERVICES — COMPACT QUOTE SECTION
+    ========================================================= */
+
+    .dls-compact-quote {
+        width: 100%;
+        background: #F8FAF9;
+        padding: 55px 3vw; /* bordas laterais iguais às outras seções */
+        box-sizing: border-box;
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-compact-quote * {
+        box-sizing: border-box;
+    }
+
+    .dls-quote-container {
+        width: 100%;
+        max-width: 1320px; /* antes 1180px */
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+       TOP AREA
+    ========================================================= */
+
+    .dls-quote-header {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 35px;
+    }
+
+    .dls-quote-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        color: #0D9FA5;
+
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.3px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 12px;
+    }
+
+    .dls-quote-eyebrow::before,
+    .dls-quote-eyebrow::after {
+        content: "";
+
+        width: 24px;
+        height: 1px;
+
+        background: #0D9FA5;
+    }
+
+    .dls-quote-title {
+        margin: 0 0 12px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 400;
+
+        line-height: 1.05;
+    }
+
+    .dls-quote-title span {
+        color: #0D9FA5;
+    }
+
+    .dls-quote-description {
+        margin: 0;
+
+        color: #53656A;
+
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       MAIN LAYOUT
+    ========================================================= */
+
+    .dls-quote-main {
+        display: grid;
+
+        grid-template-columns: 0.85fr 1.15fr;
+
+        gap: 22px;
+
+        align-items: stretch;
+    }
+
+
+    /* =========================================================
+       IMAGE
+    ========================================================= */
+
+    .dls-quote-image {
+        position: relative;
+
+        min-height: 510px;
+
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #042F3B;
+    }
+
+    .dls-quote-image img {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+    }
+
+    .dls-quote-image-overlay {
+        position: absolute;
+
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+
+        padding: 17px 19px;
+
+        background: rgba(4, 47, 59, 0.88);
+
+        border-radius: 10px;
+
+        color: #FFFFFF;
+    }
+
+    .dls-quote-image-overlay small {
+        display: block;
+
+        margin-bottom: 5px;
+
+        color: #0D9FA5;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.7px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-quote-image-overlay strong {
+        display: block;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 19px;
+        font-weight: 400;
+
+        line-height: 1.2;
+    }
+
+
+    /* =========================================================
+       FORM AREA
+    ========================================================= */
+
+    .dls-quote-form-card {
+        position: relative;
+
+        background: #FFFFFF;
+
+        border: 1px solid rgba(6, 59, 74, 0.10);
+
+        border-radius: 18px;
+
+        padding: 30px;
+
+        box-shadow:
+            0 15px 45px rgba(4, 47, 59, 0.06);
+
+        overflow: hidden;
+    }
+
+
+    /* =========================================================
+       PROGRESS
+    ========================================================= */
+
+    .dls-form-progress {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 22px;
+    }
+
+    .dls-progress-step {
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color: #A5B2B5;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.2px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-progress-number {
+        width: 25px;
+        height: 25px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #EEF3F3;
+
+        color: #7B8B8F;
+
+        font-size: 9px;
+    }
+
+    .dls-progress-step.active {
+        color: #042F3B;
+    }
+
+    .dls-progress-step.active .dls-progress-number {
+        background: #0D9FA5;
+        color: #FFFFFF;
+    }
+
+    .dls-progress-line {
+        flex: 1;
+
+        height: 1px;
+
+        background: #E4EBEC;
+
+        max-width: 80px;
+    }
+
+
+    /* =========================================================
+       SLIDER
+    ========================================================= */
+
+    .dls-form-window {
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+    .dls-form-slider {
+        display: flex;
+
+        width: 200%;
+
+        transition: transform 0.55s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    .dls-form-step {
+        width: 50%;
+
+        flex: 0 0 50%;
+    }
+
+    .dls-form-step-inner {
+        padding-right: 1px;
+    }
+
+
+    /* =========================================================
+       FORM HEADINGS
+    ========================================================= */
+
+    .dls-step-heading {
+        margin: 0 0 5px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 27px;
+        font-weight: 400;
+
+        line-height: 1.15;
+    }
+
+    .dls-step-description {
+        margin: 0 0 20px;
+
+        color: #53656A;
+
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       FIELDS
+    ========================================================= */
+
+    .dls-form-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .dls-form-field {
+        margin-bottom: 12px;
+    }
+
+    .dls-form-field.full {
+        grid-column: 1 / -1;
+    }
+
+    .dls-form-field label {
+        display: block;
+
+        margin-bottom: 6px;
+
+        color: #042F3B;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 0.8px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-form-field label span {
+        color: #0D9FA5;
+    }
+
+    .dls-form-field input,
+    .dls-form-field select,
+    .dls-form-field textarea {
+        width: 100%;
+
+        border: 1px solid #DDE5E6;
+
+        border-radius: 6px;
+
+        background: #FBFCFC;
+
+        color: #042F3B;
+
+        font-family: 'Montserrat', Arial, sans-serif;
+
+        font-size: 11px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+    .dls-form-field input,
+    .dls-form-field select {
+        height: 40px;
+
+        padding: 0 12px;
+    }
+
+    .dls-form-field textarea {
+        min-height: 80px;
+
+        padding: 11px 12px;
+
+        resize: vertical;
+    }
+
+    .dls-form-field input:focus,
+    .dls-form-field select:focus,
+    .dls-form-field textarea:focus {
+        border-color: #0D9FA5;
+
+        background: #FFFFFF;
+
+        box-shadow:
+            0 0 0 3px rgba(13, 159, 165, 0.08);
+    }
+
+    .dls-form-field input::placeholder,
+    .dls-form-field textarea::placeholder {
+        color: #A8B4B6;
+    }
+
+    .dls-form-field input[readonly] {
+        background: #F1F5F5;
+
+        color: #718185;
+    }
+
+
+    /* =========================================================
+       CLEANING DETAILS
+    ========================================================= */
+
+    .dls-cleaning-details {
+        display: none;
+
+        margin: 3px 0 13px;
+
+        padding: 13px;
+
+        background: #F4FAFA;
+
+        border: 1px solid rgba(13, 159, 165, 0.12);
+
+        border-radius: 8px;
+    }
+
+    .dls-details-title {
+        margin-bottom: 11px;
+
+        color: #0D9FA5;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-cleaning-details .dls-form-field {
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .dls-step-buttons {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-top: 8px;
+    }
+
+    .dls-form-button {
+        border: none;
+
+        min-height: 42px;
+
+        padding: 0 20px;
+
+        border-radius: 5px;
+
+        font-family: 'Montserrat', Arial, sans-serif;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+    .dls-next-button,
+    .dls-submit-button {
+        margin-left: auto;
+
+        background: #042F3B;
+
+        color: #FFFFFF;
+    }
+
+    .dls-next-button:hover,
+    .dls-submit-button:hover {
+        background: #0D9FA5;
+    }
+
+    .dls-back-button {
+        background: transparent;
+
+        color: #53656A;
+
+        padding-left: 0;
+    }
+
+    .dls-back-button:hover {
+        color: #0D9FA5;
+    }
+
+
+    /* =========================================================
+       DISCLAIMER
+    ========================================================= */
+
+    .dls-form-note {
+        margin: 15px 0 0;
+
+        color: #8A989B;
+
+        font-size: 8px;
+
+        line-height: 1.6;
+
+        text-align: center;
+    }
+
+
+    /* =========================================================
+       SUCCESS
+    ========================================================= */
+
+    .dls-quote-success {
+        display: none;
+
+        padding: 50px 25px;
+
+        text-align: center;
+    }
+
+    .dls-success-icon {
+        width: 48px;
+        height: 48px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #DDF2F2;
+
+        color: #0D9FA5;
+
+        font-size: 20px;
+    }
+
+    .dls-quote-success h3 {
+        margin: 0 0 8px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 28px;
+        font-weight: 400;
+    }
+
+    .dls-quote-success p {
+        max-width: 390px;
+
+        margin: 0 auto;
+
+        color: #53656A;
+
+        font-size: 10px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+        .dls-compact-quote {
+            padding: 45px 18px;
+        }
+
+        .dls-quote-main {
+            grid-template-columns: 0.75fr 1.25fr;
+
+            gap: 16px;
+        }
+
+        .dls-quote-image {
+            min-height: 520px;
+        }
+
+        .dls-quote-form-card {
+            padding: 25px;
+        }
+
+        .dls-step-heading {
+            font-size: 25px;
+        }
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+        .dls-compact-quote {
+            padding: 38px 12px;
+        }
+
+        .dls-quote-header {
+            margin-bottom: 25px;
+        }
+
+        .dls-quote-title {
+            font-size: 35px;
+        }
+
+        .dls-quote-description {
+            font-size: 10px;
+
+            max-width: 330px;
+
+            margin: 0 auto;
+        }
+
+        .dls-quote-main {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+        .dls-quote-image {
+            width: 100%;
+
+            height: 190px;
+            min-height: 190px;
+
+            border-radius: 14px;
+        }
+
+        .dls-quote-image-overlay {
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+
+            padding: 11px 13px;
+        }
+
+        .dls-quote-image-overlay small {
+            font-size: 7px;
+        }
+
+        .dls-quote-image-overlay strong {
+            font-size: 16px;
+        }
+
+        .dls-quote-form-card {
+            width: 100%;
+
+            padding: 23px 18px;
+
+            border-radius: 14px;
+        }
+
+        .dls-form-progress {
+            margin-bottom: 18px;
+        }
+
+        .dls-progress-step {
+            font-size: 7px;
+        }
+
+        .dls-progress-number {
+            width: 23px;
+            height: 23px;
+        }
+
+        .dls-progress-line {
+            max-width: none;
+        }
+
+        .dls-step-heading {
+            font-size: 26px;
+        }
+
+        .dls-step-description {
+            font-size: 9px;
+
+            margin-bottom: 17px;
+        }
+
+        .dls-form-grid {
+            grid-template-columns: 1fr;
+
+            gap: 0;
+        }
+
+        .dls-form-field.full {
+            grid-column: auto;
+        }
+
+        .dls-form-field {
+            margin-bottom: 11px;
+        }
+
+        .dls-form-field input,
+        .dls-form-field select {
+            height: 44px;
+
+            font-size: 12px;
+
+            border-radius: 7px;
+        }
+
+        .dls-form-field textarea {
+            min-height: 90px;
+
+            font-size: 12px;
+
+            border-radius: 7px;
+        }
+
+        .dls-form-field label {
+            font-size: 8px;
+        }
+
+        .dls-cleaning-details {
+            padding: 11px;
+
+            margin-bottom: 11px;
+        }
+
+        .dls-step-buttons {
+            margin-top: 8px;
+        }
+
+        .dls-form-button {
+            min-height: 44px;
+
+            padding: 0 17px;
+
+            font-size: 8px;
+        }
+
+        .dls-form-note {
+            font-size: 7px;
+        }
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 380px) {
+
+        .dls-quote-title {
+            font-size: 31px;
+        }
+
+        .dls-quote-image {
+            height: 170px;
+            min-height: 170px;
+        }
+
+        .dls-quote-form-card {
+            padding: 20px 15px;
+        }
+
+        .dls-step-heading {
+            font-size: 24px;
+        }
+    }
+</style>
+
+
+<section class="dls-compact-quote" id="quote">
+
+    <div class="dls-quote-container">
+
+
+        <!-- =====================================================
+             HEADER
+        ===================================================== -->
+
+        <div class="dls-quote-header">
+
+            <div class="dls-quote-eyebrow">
+                REQUEST A QUOTE
+            </div>
+
+            <h2 class="dls-quote-title">
+                Let's take care
+                <br>
+                <span>of your space.</span>
+            </h2>
+
+            <p class="dls-quote-description">
+                Tell us a little about what you need.
+                We'll review your request and get back
+                to you with the next steps.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             IMAGE + FORM
+        ===================================================== -->
+
+        <div class="dls-quote-main">
+
+
+            <!-- IMAGE -->
+
+            <div class="dls-quote-image">
+
+                <img
+                    src="imagens/orcamento.jpg"
+                    alt="DLS Services professional cleaning a wooden table"
+                    loading="lazy"
+                    style="object-position: 68% 30%;"
+                >
+
+                <div class="dls-quote-image-overlay">
+
+                    <small>
+                        DLS SERVICES
+                    </small>
+
+                    <strong>
+                        Your space deserves
+                        genuine care.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="dls-quote-form-card">
+
+
+                <!-- PROGRESS -->
+
+                <div class="dls-form-progress">
+
+                    <div
+                        class="dls-progress-step active"
+                        id="dlsProgressOne"
+                    >
+
+                        <div class="dls-progress-number">
+                            01
+                        </div>
+
+                        <span>
+                            Your Information
+                        </span>
+
+                    </div>
+
+
+                    <div class="dls-progress-line"></div>
+
+
+                    <div
+                        class="dls-progress-step"
+                        id="dlsProgressTwo"
+                    >
+
+                        <div class="dls-progress-number">
+                            02
+                        </div>
+
+                        <span>
+                            Project Details
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM WINDOW -->
+
+                <div class="dls-form-window">
+
+                    <form
+                        id="dlsQuoteForm"
+                        class="dls-form-slider"
+                    >
+
+
+                        <!-- =================================================
+                             STEP 1
+                        ================================================== -->
+
+                        <div class="dls-form-step">
+
+                            <div class="dls-form-step-inner">
+
+                                <h3 class="dls-step-heading">
+                                    Tell us about you.
+                                </h3>
+
+                                <p class="dls-step-description">
+                                    Start with your contact and property
+                                    information.
+                                </p>
+
+
+                                <!-- NAME -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            First Name <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            name="first_name"
+                                            placeholder="First name"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Last Name <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            name="last_name"
+                                            placeholder="Last name"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- CONTACT -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Email <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="you@email.com"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Phone <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="dlsPhone"
+                                            name="phone"
+                                            placeholder="(000) 000-0000"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- ADDRESS -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Street Address <span>*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        placeholder="Street address"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- ZIP / CITY / STATE -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            ZIP Code <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="dlsZip"
+                                            name="zip"
+                                            placeholder="ZIP code"
+                                            maxlength="5"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            City
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="dlsCity"
+                                            name="city"
+                                            placeholder="City"
+                                            readonly
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        State
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="dlsState"
+                                        name="state"
+                                        placeholder="State"
+                                        readonly
+                                    >
+
+                                </div>
+
+
+                                <!-- SERVICE -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Service Type <span>*</span>
+                                    </label>
+
+                                    <select
+                                        name="service_type"
+                                        id="dlsService"
+                                        required
+                                    >
+
+                                        <option
+                                            value=""
+                                            selected
+                                            disabled
+                                        >
+                                            Select a service
+                                        </option>
+
+                                        <option value="Regular Cleaning">
+                                            Regular Cleaning
+                                        </option>
+
+                                        <option value="Deep Cleaning">
+                                            Deep Cleaning
+                                        </option>
+
+                                        <option value="Commercial Cleaning">
+                                            Commercial Cleaning
+                                        </option>
+
+                                        <option value="Handyman & Remodeling">
+                                            Handyman & Remodeling
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- NEXT -->
+
+                                <div class="dls-step-buttons">
+
+                                    <button
+                                        type="button"
+                                        class="dls-form-button dls-next-button"
+                                        id="dlsNextButton"
+                                    >
+                                        Continue
+                                        <span> →</span>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             STEP 2
+                        ================================================== -->
+
+                        <div class="dls-form-step">
+
+                            <div class="dls-form-step-inner">
+
+                                <h3 class="dls-step-heading">
+                                    Tell us about the project.
+                                </h3>
+
+                                <p class="dls-step-description">
+                                    A few more details will help us
+                                    understand what you need.
+                                </p>
+
+
+                                <!-- CLEANING DETAILS -->
+
+                                <div
+                                    class="dls-cleaning-details"
+                                    id="dlsCleaningDetails"
+                                >
+
+                                    <div class="dls-details-title">
+                                        Cleaning Details
+                                    </div>
+
+
+                                    <div class="dls-form-grid">
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Bedrooms
+                                            </label>
+
+                                            <select name="bedrooms">
+
+                                                <option value="">
+                                                    Select
+                                                </option>
+
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5+</option>
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Bathrooms
+                                            </label>
+
+                                            <select name="bathrooms">
+
+                                                <option value="">
+                                                    Select
+                                                </option>
+
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4+</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="dls-form-grid">
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Approx. Square Feet
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                name="square_feet"
+                                                placeholder="e.g. 2,000"
+                                            >
+
+                                        </div>
+
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Cleaning Frequency
+                                            </label>
+
+                                            <select name="frequency">
+
+                                                <option value="">
+                                                    Select frequency
+                                                </option>
+
+                                                <option>
+                                                    One-Time
+                                                </option>
+
+                                                <option>
+                                                    Weekly
+                                                </option>
+
+                                                <option>
+                                                    Bi-Weekly
+                                                </option>
+
+                                                <option>
+                                                    Monthly
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- DATE / TIME -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Preferred Date
+                                        </label>
+
+                                        <input
+                                            type="date"
+                                            name="preferred_date"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Preferred Time
+                                        </label>
+
+                                        <select name="preferred_time">
+
+                                            <option value="">
+                                                Select time
+                                            </option>
+
+                                            <option>
+                                                Morning
+                                            </option>
+
+                                            <option>
+                                                Midday
+                                            </option>
+
+                                            <option>
+                                                Afternoon
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- NOTES -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Tell Us More
+                                    </label>
+
+                                    <textarea
+                                        name="notes"
+                                        placeholder="Tell us about your cleaning, repair, or remodeling needs..."
+                                    ></textarea>
+
+                                </div>
+
+
+                                <!-- BUTTONS -->
+
+                                <div class="dls-step-buttons">
+
+                                    <button
+                                        type="button"
+                                        class="dls-form-button dls-back-button"
+                                        id="dlsBackButton"
+                                    >
+                                        ← Back
+                                    </button>
+
+
+                                    <button
+                                        type="submit"
+                                        class="dls-form-button dls-submit-button"
+                                    >
+                                        Request Estimate
+                                        <span> →</span>
+                                    </button>
+
+                                </div>
+
+
+                                <p class="dls-form-note">
+                                    Estimates are personalized based on
+                                    the scope and details of each project.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- =================================================
+                         SUCCESS
+                    ================================================== -->
+
+                    <div
+                        class="dls-quote-success"
+                        id="dlsQuoteSuccess"
+                    >
+
+                        <div class="dls-success-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            Request Received
+                        </h3>
+
+                        <p>
+                            Thank you for contacting DLS Services.
+                            Our team will review your request and
+                            get back to you with the next steps.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+(function () {
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const dlsQuoteForm =
+        document.getElementById("dlsQuoteForm");
+
+    const dlsNextButton =
+        document.getElementById("dlsNextButton");
+
+    const dlsBackButton =
+        document.getElementById("dlsBackButton");
+
+    const dlsProgressOne =
+        document.getElementById("dlsProgressOne");
+
+    const dlsProgressTwo =
+        document.getElementById("dlsProgressTwo");
+
+    const dlsQuoteSuccess =
+        document.getElementById("dlsQuoteSuccess");
+
+    const dlsPhone =
+        document.getElementById("dlsPhone");
+
+    const dlsZip =
+        document.getElementById("dlsZip");
+
+    const dlsCity =
+        document.getElementById("dlsCity");
+
+    const dlsState =
+        document.getElementById("dlsState");
+
+    const dlsService =
+        document.getElementById("dlsService");
+
+    const dlsCleaningDetails =
+        document.getElementById("dlsCleaningDetails");
+
+
+    /* =========================================================
+       PHONE MASK
+    ========================================================= */
+
+    dlsPhone.addEventListener(
+        "input",
+        function(event) {
+
+            let value =
+                event.target.value
+                .replace(/\D/g, "")
+                .slice(0, 10);
+
+
+            if (value.length > 6) {
+
+                event.target.value =
+                    "(" +
+                    value.substring(0, 3) +
+                    ") " +
+                    value.substring(3, 6) +
+                    "-" +
+                    value.substring(6);
+
+            } else if (value.length > 3) {
+
+                event.target.value =
+                    "(" +
+                    value.substring(0, 3) +
+                    ") " +
+                    value.substring(3);
+
+            } else {
+
+                event.target.value = value;
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       ZIP CODE LOOKUP
+    ========================================================= */
+
+    dlsZip.addEventListener(
+        "input",
+        async function(event) {
+
+            let zip =
+                event.target.value
+                .replace(/\D/g, "")
+                .slice(0, 5);
+
+
+            event.target.value = zip;
+
+
+            if (zip.length === 5) {
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `https://api.zippopotam.us/us/${zip}`
+                        );
+
+
+                    if (response.ok) {
+
+                        const data =
+                            await response.json();
+
+
+                        dlsCity.value =
+                            data.places[0]["place name"];
+
+
+                        dlsState.value =
+                            data.places[0]["state abbreviation"];
+
+                    }
+
+                } catch (error) {
+
+                    console.log(
+                        "ZIP lookup unavailable."
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       SHOW CLEANING DETAILS
+    ========================================================= */
+
+    function updateDlsCleaningDetails() {
+
+        const service =
+            dlsService.value;
+
+
+        if (
+            service === "Regular Cleaning" ||
+            service === "Deep Cleaning"
+        ) {
+
+            dlsCleaningDetails.style.display =
+                "block";
+
+        } else {
+
+            dlsCleaningDetails.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    dlsService.addEventListener(
+        "change",
+        updateDlsCleaningDetails
+    );
+
+
+    /* =========================================================
+       VALIDATE STEP 1
+    ========================================================= */
+
+    function validateStepOne() {
+
+        const stepOne =
+            document.querySelector(
+                ".dls-form-step:first-child"
+            );
+
+
+        const requiredFields =
+            stepOne.querySelectorAll(
+                "input[required], select[required]"
+            );
+
+
+        let valid = true;
+
+
+        requiredFields.forEach(
+            function(field) {
+
+                if (!field.checkValidity()) {
+
+                    field.reportValidity();
+
+                    valid = false;
+
+                }
+
+            }
+        );
+
+
+        return valid;
+
+    }
+
+
+    /* =========================================================
+       GO TO STEP 2
+    ========================================================= */
+
+    dlsNextButton.addEventListener(
+        "click",
+        function() {
+
+            if (!validateStepOne()) {
+                return;
+            }
+
+
+            dlsQuoteForm.style.transform =
+                "translateX(-50%)";
+
+
+            dlsProgressOne.classList.remove(
+                "active"
+            );
+
+
+            dlsProgressTwo.classList.add(
+                "active"
+            );
+
+
+            /*
+                Keep the second step at the
+                user's viewport position.
+            */
+
+            document
+                .querySelector(".dls-quote-form-card")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+        }
+    );
+
+
+    /* =========================================================
+       BACK TO STEP 1
+    ========================================================= */
+
+    dlsBackButton.addEventListener(
+        "click",
+        function() {
+
+            dlsQuoteForm.style.transform =
+                "translateX(0)";
+
+
+            dlsProgressTwo.classList.remove(
+                "active"
+            );
+
+
+            dlsProgressOne.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       SUBMIT
+    ========================================================= */
+
+    dlsQuoteForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            /*
+                Connect this form to your Wix Form,
+                CRM, Jotform, Make, Zapier,
+                Google Sheets or webhook.
+
+                The current code only shows
+                the success state.
+            */
+
+
+            dlsQuoteForm.style.display =
+                "none";
+
+
+            document.querySelector(
+                ".dls-form-progress"
+            ).style.display = "none";
+
+
+            dlsQuoteSuccess.style.display =
+                "block";
+
+        }
+    );
+
+})();
+</script>

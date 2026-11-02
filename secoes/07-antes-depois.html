@@ -1,0 +1,582 @@
+<style>
+    .dls-before-after-section {
+        width: 100%;
+        background: #F8FAF9;
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-before-after-section * {
+        box-sizing: border-box;
+    }
+
+    .dba-slider-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 1320px; /* antes 1180px */
+        margin: 0 auto;
+        padding: 40px 3vw; /* bordas iguais às outras seções */
+    }
+
+    .dba-slide {
+        display: none;
+        width: 100%;
+        min-height: 390px;
+        background: #FFFFFF;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(4, 47, 59, 0.08);
+    }
+
+    .dba-slide.active {
+        display: flex;
+        animation: dbaFade 0.7s ease;
+    }
+
+    @keyframes dbaFade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    /* =========================================
+       IMAGE AREA
+    ========================================= */
+
+    .dba-slide-image {
+        width: 55%;
+        min-height: 390px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dba-slide-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+
+    /* =========================================
+       BEFORE / AFTER
+    ========================================= */
+
+    .dba-before-after {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        min-height: 390px;
+    }
+
+    .dba-before-after-item {
+        width: 50%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dba-before-after-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .dba-before-after-label {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 7px 13px;
+        background: rgba(4, 47, 59, 0.88);
+        color: #FFFFFF;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-radius: 30px;
+    }
+
+    .dba-before-after-label.after {
+        background: #0D9FA5;
+    }
+
+    /* linha divisória entre ANTES e DEPOIS */
+    .dba-before-after-item + .dba-before-after-item {
+        border-left: 3px solid #FFFFFF;
+    }
+
+
+    /* =========================================
+       TEXT AREA
+    ========================================= */
+
+    .dba-slide-content {
+        width: 45%;
+        padding: 50px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dba-slide-eyebrow {
+        color: #0D9FA5;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+    }
+
+    .dba-slide-title {
+        margin: 0 0 18px;
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 36px;
+        line-height: 1.12;
+        font-weight: 400;
+    }
+
+    .dba-slide-title span {
+        color: #0D9FA5;
+    }
+
+    .dba-slide-text {
+        margin: 0 0 25px;
+        color: #53656A;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 440px;
+    }
+
+    .dba-slide-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        width: fit-content;
+        padding: 13px 20px;
+        background: #042F3B;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slide-button:hover {
+        background: #0D9FA5;
+    }
+
+
+    /* =========================================
+       CONTROLS
+    ========================================= */
+
+    .dba-slider-controls {
+        position: absolute;
+        bottom: 55px;
+        right: 55px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 5;
+    }
+
+    .dba-slider-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(4, 47, 59, 0.25);
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slider-dot.active {
+        width: 24px;
+        border-radius: 10px;
+        background: #0D9FA5;
+    }
+
+
+    /* =========================================
+       ARROWS
+    ========================================= */
+
+    .dba-slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(4, 47, 59, 0.15);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: #042F3B;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slider-arrow:hover {
+        background: #0D9FA5;
+        color: #FFFFFF;
+        border-color: #0D9FA5;
+    }
+
+    .dba-slider-prev {
+        left: 8px;
+    }
+
+    .dba-slider-next {
+        right: 8px;
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================= */
+
+    @media (max-width: 900px) {
+
+        .dba-slide {
+            min-height: 350px;
+        }
+
+        .dba-slide-image {
+            min-height: 350px;
+        }
+
+        .dba-before-after {
+            min-height: 350px;
+        }
+
+        .dba-slide-content {
+            padding: 35px 30px;
+        }
+
+        .dba-slide-title {
+            font-size: 30px;
+        }
+
+        .dba-slide-text {
+            font-size: 12px;
+        }
+
+        .dba-slider-controls {
+            bottom: 30px;
+            right: 35px;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 650px) {
+
+        .dba-slider-wrapper {
+            padding: 20px 16px;
+        }
+
+        .dba-slide.active {
+            display: block;
+        }
+
+        .dba-slide {
+            min-height: auto;
+            border-radius: 16px;
+        }
+
+        .dba-slide-image {
+            width: 100%;
+            height: 235px;
+            min-height: 235px;
+        }
+
+        .dba-before-after {
+            height: 235px;
+            min-height: 235px;
+        }
+
+        .dba-slide-content {
+            width: 100%;
+            padding: 28px 25px 32px;
+            min-height: 245px;
+        }
+
+        .dba-slide-eyebrow {
+            font-size: 9px;
+            margin-bottom: 10px;
+        }
+
+        .dba-slide-title {
+            font-size: 27px;
+            margin-bottom: 13px;
+        }
+
+        .dba-slide-text {
+            font-size: 11px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .dba-slide-button {
+            padding: 11px 16px;
+            font-size: 9px;
+        }
+
+        .dba-slider-arrow {
+            width: 32px;
+            height: 32px;
+            font-size: 15px;
+        }
+
+        .dba-slider-prev {
+            left: 24px;
+        }
+
+        .dba-slider-next {
+            right: 24px;
+        }
+
+        .dba-slider-controls {
+            position: absolute;
+            bottom: 255px;
+            right: 28px;
+        }
+    }
+    /* ===== AJUSTES: altura fixa dos slides (foto em pé não estica o card) ===== */
+    .dba-slide { height: 440px; }
+    .dba-slide-image img,
+    .dba-before-after-item img {
+        position: absolute;
+        inset: 0;
+    }
+    .dba-before-after { position: relative; }
+    @media (max-width: 900px) {
+        .dba-slide { height: 380px; }
+    }
+    @media (max-width: 650px) {
+        .dba-slide { height: auto; }
+        .dba-slider-arrow { top: 137px; } /* setas no meio da foto */
+        .dba-slider-controls { bottom: 50px; right: 40px; } /* bolinhas no canto de baixo */
+    }
+
+</style>
+
+
+<section class="dls-before-after-section" id="before-after" aria-label="Before and after">
+
+    <div class="dba-slider-wrapper">
+
+
+        <!-- =========================================
+             SLIDE 1 — BEFORE & AFTER
+        ========================================== -->
+
+        <div class="dba-slide active">
+
+            <div class="dba-slide-image">
+
+                <div class="dba-before-after">
+
+                    <!-- BEFORE -->
+                    <div class="dba-before-after-item">
+
+                        <img
+                            src="imagens/antes-quarto.jpg"
+                            alt="Bedroom before cleaning"
+                        >
+
+                        <span class="dba-before-after-label">
+                            Before
+                        </span>
+
+                    </div>
+
+
+                    <!-- AFTER -->
+                    <div class="dba-before-after-item">
+
+                        <img
+                            src="imagens/depois-quarto.jpg"
+                            alt="Bedroom after professional cleaning"
+                        >
+
+                        <span class="dba-before-after-label after">
+                            After
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dba-slide-content">
+
+                <div class="dba-slide-eyebrow">
+                    THE DLS DIFFERENCE
+                </div>
+
+                <h2 class="dba-slide-title">
+                    A Cleaner Space.
+                    <br>
+                    <span>A Better Feeling.</span>
+                </h2>
+
+                <p class="dba-slide-text">
+                    At DLS Services, we believe cleaning is more
+                    than making a space look better. It's about
+                    creating a home that feels comfortable,
+                    fresh, and cared for.
+                </p>
+
+                <a
+                    href="#quote"
+                    class="dba-slide-button"
+                >
+                    REQUEST A QUOTE
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SLIDE 2 — KITCHEN
+        ========================================== -->
+
+        <div class="dba-slide">
+
+            <div class="dba-slide-image">
+
+                <img
+                    src="imagens/summer-kitchen-noite.jpg"
+                    alt="Outdoor summer kitchen after professional cleaning"
+                >
+
+            </div>
+
+
+            <div class="dba-slide-content">
+
+                <div class="dba-slide-eyebrow">
+                    PROFESSIONAL CLEANING
+                </div>
+
+                <h2 class="dba-slide-title">
+                    Care in
+                    <br>
+                    <span>Every Detail.</span>
+                </h2>
+
+                <p class="dba-slide-text">
+                    From kitchens and bathrooms to everyday
+                    living spaces, our team works with attention
+                    to detail and genuine care for your space.
+                </p>
+
+                <a
+                    href="#services"
+                    class="dba-slide-button"
+                >
+                    EXPLORE CLEANING
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             ARROWS
+        ========================================== -->
+
+        <button
+            class="dba-slider-arrow dba-slider-prev"
+            data-dir="-1"
+            aria-label="Previous slide"
+        >
+            ‹
+        </button>
+
+        <button
+            class="dba-slider-arrow dba-slider-next"
+            data-dir="1"
+            aria-label="Next slide"
+        >
+            ›
+        </button>
+
+
+        <!-- =========================================
+             DOTS
+        ========================================== -->
+
+        <div class="dba-slider-controls">
+
+            <button
+                class="dba-slider-dot active"
+                data-go="0"
+                aria-label="Slide 1"
+            ></button>
+
+            <button
+                class="dba-slider-dot"
+                data-go="1"
+                aria-label="Slide 2"
+            ></button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+/* Antes e depois — código isolado (não mexe no banner do topo) */
+(function () {
+    var box = document.querySelector('.dls-before-after-section');
+    if (!box) return;
+    var slides = box.querySelectorAll('.dba-slide');
+    var dots = box.querySelectorAll('.dba-slider-dot');
+    var current = 0, timer;
+
+    function show(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === current); });
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+    function restart() {
+        clearInterval(timer);
+        timer = setInterval(function () { show(current + 1); }, 8000); /* troca a cada 8 segundos */
+    }
+    box.querySelectorAll('[data-dir]').forEach(function (b) {
+        b.addEventListener('click', function () { show(current + Number(b.getAttribute('data-dir'))); restart(); });
+    });
+    box.querySelectorAll('[data-go]').forEach(function (b) {
+        b.addEventListener('click', function () { show(Number(b.getAttribute('data-go'))); restart(); });
+    });
+    restart();
+})();
+</script>

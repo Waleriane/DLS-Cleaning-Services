@@ -1,0 +1,6798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLS Services — Professional Cleaning & Handyman</title>
+<meta name="description" content="Professional cleaning, deep cleaning, commercial cleaning and handyman & remodeling services by DLS Services.">
+<link rel="icon" href="imagens/logo-dls.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- =========================================
+     01 — BANNER (HERO) — estilos
+========================================== -->
+<style>
+:root {
+  --navy: #063B4A;
+  --teal: #0D9FA5;
+  --soft-teal: #DDF2F2;
+  --off-white: #F8FAF9;
+  --white: #FFFFFF;
+  --text: #3B4F55;
+
+  /* ===== AJUSTE DE ESPAÇOS (mude só estes números) ===== */
+  --hero-altura: 580px;      /* altura do banner no computador (antes 680px) */
+  --margem-lateral: 5vw;     /* espaço do texto até a borda esquerda (antes 7vw) */
+  --espaco-topo: 40px;       /* espaço acima do texto (antes 70px) */
+  --espaco-baixo: 95px;      /* espaço abaixo do texto (antes 120px) */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--off-white);
+  color: var(--navy);
+}
+
+.dls-hero {
+  position: relative;
+  width: 100%;
+  min-height: var(--hero-altura);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.dls-slider {
+  position: relative;
+  min-height: var(--hero-altura);
+  padding-top: 0;
+}
+
+.dls-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(25px);
+  transition: opacity .75s ease, transform .9s ease, visibility .75s ease;
+}
+
+.dls-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.dls-copy {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-baixo) var(--margem-lateral);
+  background: var(--white);
+}
+
+.dls-copy-inner {
+  max-width: 570px;
+}
+
+.dls-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.dls-eyebrow::before {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background: var(--teal);
+}
+
+.dls-title {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: clamp(44px, 4.4vw, 72px);
+  line-height: .98;
+  letter-spacing: -.025em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.dls-title span { color: var(--teal); }
+
+.dls-description {
+  max-width: 510px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 34px;
+}
+
+.dls-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dls-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: all .25s ease;
+}
+
+.dls-btn-primary {
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid var(--teal);
+}
+
+.dls-btn-primary:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.dls-btn-secondary {
+  color: var(--teal);
+  background: transparent;
+  border: 1px solid var(--teal);
+}
+
+.dls-btn-secondary:hover {
+  background: var(--soft-teal);
+  transform: translateY(-2px);
+}
+
+.dls-image {
+  position: relative;
+  overflow: hidden;
+  background: #dfe9e8;
+}
+
+.dls-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(6,59,74,.12) 0%, rgba(6,59,74,0) 35%);
+  pointer-events: none;
+}
+
+.dls-image img,
+.dls-image video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.01);
+}
+
+.dls-slide.active .dls-image img,
+.dls-slide.active .dls-image video {
+  animation: dlsZoom 12s ease forwards;
+}
+
+@keyframes dlsZoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.08); }
+}
+
+.dls-badges {
+  position: absolute;
+  z-index: 10;
+  left: var(--margem-lateral);
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.dls-badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.dls-badge-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(13,159,165,.45);
+  border-radius: 50%;
+  color: var(--teal);
+  font-size: 13px;
+}
+
+.dls-controls {
+  position: absolute;
+  z-index: 30;
+  right: 4.2%;
+  bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dls-count {
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  background: rgba(255,255,255,.9); /* fundinho claro: lê bem sobre vídeo escuro */
+  padding: 7px 12px;
+  border-radius: 20px;
+}
+
+.dls-line {
+  width: 105px;
+  height: 2px;
+  background: rgba(255,255,255,.75);
+  overflow: hidden;
+}
+
+.dls-line-progress {
+  width: 50%;
+  height: 100%;
+  background: var(--teal);
+  transition: transform .4s ease;
+}
+
+.dls-arrow {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(6,59,74,.16);
+  background: rgba(255,255,255,.9);
+  color: var(--navy);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all .25s ease;
+}
+
+.dls-arrow:hover {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+}
+
+.dls-division {
+  position: absolute;
+  z-index: 10;
+  right: 4.2%;
+  top: 112px;
+  padding: 8px 13px;
+  background: rgba(255,255,255,.92);
+  color: var(--navy);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.dls-mobile-nav { display: none; }
+
+/* Telas médias: esconde o 3º selo para não invadir o vídeo */
+@media (max-width: 1150px) {
+  .dls-badges { gap: 18px; }
+  .dls-badge:nth-child(3) { display: none; }
+}
+
+@media (max-width: 900px) {
+  .dls-slider, .dls-hero { min-height: 700px; }
+  .dls-slide {
+    inset: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 55% 45%;
+  }
+  .dls-copy {
+    order: 2;
+    padding: 28px var(--margem-lateral) 90px;
+    align-items: flex-start;
+  }
+  .dls-image {
+    order: 1;
+  }
+  .dls-title { font-size: clamp(42px, 10vw, 64px); }
+  .dls-description { font-size: 13px; line-height: 1.65; margin-bottom: 22px; }
+  .dls-badges { display: none; }
+  .dls-controls { right: var(--margem-lateral); bottom: 25px; }
+  .dls-division { top: 18px; right: var(--margem-lateral); }
+}
+
+@media (max-width: 520px) {
+  .dls-slider, .dls-hero { min-height: 680px; }
+  .dls-slide { grid-template-rows: 43% 57%; }
+  .dls-copy { padding-top: 22px; }
+  .dls-eyebrow { font-size: 9px; margin-bottom: 13px; }
+  .dls-title { font-size: 43px; }
+  .dls-actions { gap: 8px; }
+  .dls-btn { width: 100%; min-height: 46px; }
+  .dls-controls { bottom: 18px; }
+  .dls-line { width: 65px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================
+     00 — MENU DO TOPO
+========================================== -->
+<style>
+/* =========================================
+   MENU DO TOPO (fixo ao rolar)
+========================================= */
+html{ scroll-padding-top:86px; }
+.dls-header{
+  position:sticky; top:0; z-index:1000;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid rgba(6,59,74,.08);
+  font-family:'Montserrat',Arial,sans-serif;
+  transition:box-shadow .3s ease;
+}
+.dls-header.scrolled{ box-shadow:0 8px 30px rgba(6,59,74,.08); }
+.dls-header *{ box-sizing:border-box; margin:0; padding:0; }
+.hd-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; height:84px; display:flex; align-items:center; gap:28px; }
+.hd-logo{ display:flex; align-items:center; flex:none; }
+.hd-logo img{ height:62px; width:auto; display:block; }
+
+.hd-nav{ display:flex; align-items:center; gap:4px; margin:0 auto; }
+.hd-nav a{
+  position:relative; padding:10px 14px; color:#063B4A; text-decoration:none;
+  font-size:13px; font-weight:600; letter-spacing:.02em; white-space:nowrap; transition:color .2s ease;
+}
+.hd-nav a::after{
+  content:""; position:absolute; left:14px; right:14px; bottom:4px; height:2px; background:#0D9FA5;
+  transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+}
+.hd-nav a:hover, .hd-nav a.active{ color:#0D9FA5; }
+.hd-nav a:hover::after, .hd-nav a.active::after{ transform:scaleX(1); }
+
+.hd-icons{ display:flex; align-items:center; gap:8px; flex:none; }
+.hd-icon{
+  width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+  border:1px solid rgba(13,159,165,.35); color:#0D9FA5; background:#fff; transition:.25s ease;
+}
+.hd-icon svg{ width:18px; height:18px; }
+.hd-icon:hover{ background:#0D9FA5; color:#fff; border-color:#0D9FA5; transform:translateY(-2px); }
+
+.hd-burger{ display:none; width:44px; height:44px; border:1px solid rgba(6,59,74,.15); border-radius:10px; background:#fff; cursor:pointer;
+  flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+.hd-burger span{ display:block; width:20px; height:2px; background:#063B4A; border-radius:2px; transition:.3s ease; }
+.dls-header.open .hd-burger span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.dls-header.open .hd-burger span:nth-child(2){ opacity:0; }
+.dls-header.open .hd-burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* menu do celular (abre ao tocar no ☰) */
+.hd-mobile{ display:none; }
+
+@media (max-width:1180px){
+  .hd-nav a{ padding:10px 9px; font-size:12.5px; }
+  .hd-nav a::after{ left:9px; right:9px; }
+}
+@media (max-width:1020px){
+  .hd-wrap{ height:68px; }
+  .hd-logo img{ height:44px; }
+  .hd-nav{ display:none; }
+  .hd-icons{ margin-left:auto; }
+  .hd-burger{ display:flex; }
+  .hd-mobile{
+    display:block; max-height:0; overflow:hidden; background:#fff; transition:max-height .35s ease;
+    border-top:1px solid transparent;
+  }
+  .dls-header.open .hd-mobile{ max-height:480px; border-top-color:rgba(6,59,74,.08); }
+  .hd-mobile a.hd-mlink{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 6vw; color:#063B4A; text-decoration:none; font-size:16px; font-weight:600;
+    border-bottom:1px solid rgba(6,59,74,.06);
+  }
+  .hd-mobile a.hd-mlink::after{ content:"→"; color:#0D9FA5; }
+  .hd-mobile .hd-mcta{ display:block; margin:16px 6vw 20px; text-align:center; background:#0D9FA5; color:#fff; text-decoration:none;
+    padding:15px; border-radius:6px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  html{ scroll-padding-top:74px; }
+}
+@media (max-width:520px){
+  .hd-wrap{ gap:10px; }
+  .hd-logo img{ height:38px; }
+  .hd-icons{ gap:6px; }
+  .hd-icon{ width:36px; height:36px; }
+  .hd-icon svg{ width:16px; height:16px; }
+  .hd-burger{ width:40px; height:40px; }
+}
+@media (max-width:370px){
+  .hd-icon.hd-hide-xs{ display:none; } /* telas muito estreitas: esconde o e-mail para caber */
+}
+</style>
+
+<header class="dls-header" id="top">
+  <div class="hd-wrap">
+    <a class="hd-logo" href="#top" aria-label="DLS Services — Home">
+      <img src="imagens/logo-header.png" alt="DLS Services — House Cleaning" width="520" height="329">
+    </a>
+
+    <nav class="hd-nav" aria-label="Main menu">
+      <a href="#top" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#handyman">Handyman &amp; Remodeling</a>
+    </nav>
+
+    <div class="hd-icons">
+      <a class="hd-icon" data-contact="phone" href="#contact" aria-label="Call DLS Services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      </a>
+      <a class="hd-icon hd-hide-xs" data-contact="email" href="#contact" aria-label="Email DLS Services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+      </a>
+      <a class="hd-icon" data-contact="instagram" href="#contact" aria-label="DLS Services on Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+
+    <button class="hd-burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+
+  <div class="hd-mobile">
+    <a class="hd-mlink" href="#top">Home</a>
+    <a class="hd-mlink" href="#services">Services</a>
+    <a class="hd-mlink" href="#about">About</a>
+    <a class="hd-mlink" href="#contact">Contact</a>
+    <a class="hd-mlink" href="#handyman">Handyman &amp; Remodeling</a>
+    <a class="hd-mcta" href="#quote">Request a Free Estimate</a>
+  </div>
+</header>
+
+
+<!-- =========================================
+     01 — BANNER (HERO)
+========================================== -->
+<section class="dls-hero" aria-label="DLS Services hero">
+
+
+
+  <div class="dls-slider">
+
+    <!-- CLEANING SLIDE -->
+    <article class="dls-slide active" data-slide="0">
+      <div class="dls-copy">
+        <div class="dls-copy-inner">
+          <div class="dls-eyebrow">Professional Cleaning Services</div>
+
+          <h1 class="dls-title">
+            Elevated Cleaning.<br>
+            <span>Exceptional Living.</span>
+          </h1>
+
+          <p class="dls-description">
+            Reliable, detail-oriented cleaning solutions for homes,
+            businesses and spaces that deserve professional care.
+          </p>
+
+          <div class="dls-actions">
+            <a href="#quote" class="dls-btn dls-btn-primary">
+              Request a Free Estimate
+            </a>
+            <a href="#services" class="dls-btn dls-btn-secondary">
+              Explore Cleaning
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dls-image">
+        <!-- VÍDEO HOUSE CLEANING (Magnific: pressure water machine) -->
+        <video
+          class="dls-video"
+          src="videos/house-cleaning.mp4"
+          poster="videos/poster-cleaning.jpg"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="House cleaning video"
+        ></video>
+      </div>
+
+      <div class="dls-badges">
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✓</span>
+          7+ Years Experience
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✦</span>
+          Attention to Detail
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">♡</span>
+          Customer Focused
+        </div>
+      </div>
+
+      <div class="dls-division">01 · Cleaning Services</div>
+    </article>
+
+    <!-- HANDYMAN SLIDE -->
+    <article class="dls-slide" data-slide="1">
+      <div class="dls-copy">
+        <div class="dls-copy-inner">
+          <div class="dls-eyebrow">Handyman & Remodeling</div>
+
+          <h2 class="dls-title">
+            Reliable Solutions.<br>
+            <span>Quality Work.</span>
+          </h2>
+
+          <p class="dls-description">
+            From everyday repairs to home improvements, DLS delivers
+            dependable solutions with professionalism and attention to detail.
+          </p>
+
+          <div class="dls-actions">
+            <a href="#quote" class="dls-btn dls-btn-primary">
+              Request a Project Estimate
+            </a>
+            <a href="#handyman" class="dls-btn dls-btn-secondary">
+              Explore Handyman
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dls-image">
+        <!-- VÍDEO HANDYMAN (Magnific: hands keeping chair kitchen) -->
+        <video
+          class="dls-video"
+          src="videos/handyman.mp4"
+          poster="videos/poster-handyman.jpg"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Handyman video"
+        ></video>
+      </div>
+
+      <div class="dls-badges">
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✓</span>
+          Professional Service
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✦</span>
+          Quality Workmanship
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">♡</span>
+          Reliable Solutions
+        </div>
+      </div>
+
+      <div class="dls-division">02 · Handyman & Remodeling</div>
+    </article>
+
+    <div class="dls-controls">
+      <div class="dls-count"><span id="dlsCurrent">01</span> / 02</div>
+      <div class="dls-line">
+        <div class="dls-line-progress" id="dlsProgress"></div>
+      </div>
+      <button class="dls-arrow" id="dlsPrev" aria-label="Previous slide">‹</button>
+      <button class="dls-arrow" id="dlsNext" aria-label="Next slide">›</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const slides = document.querySelectorAll('.dls-slide');
+  const current = document.getElementById('dlsCurrent');
+  const progress = document.getElementById('dlsProgress');
+  const next = document.getElementById('dlsNext');
+  const prev = document.getElementById('dlsPrev');
+
+  let index = 0;
+  let timer;
+  const interval = 12000;
+
+  function showSlide(newIndex) {
+    index = (newIndex + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    // Toca só o vídeo do slide ativo e pausa os outros (economiza internet e bateria)
+    slides.forEach((slide, i) => {
+      const video = slide.querySelector('video');
+      if (!video) return;
+      if (i === index) {
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    current.textContent = String(index + 1).padStart(2, '0');
+    progress.style.transform = `translateX(${index * 100}%)`;
+  }
+
+  function startAutoPlay() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(index + 1), interval);
+  }
+
+  next.addEventListener('click', () => {
+    showSlide(index + 1);
+    startAutoPlay();
+  });
+
+  prev.addEventListener('click', () => {
+    showSlide(index - 1);
+    startAutoPlay();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      showSlide(index + 1);
+      startAutoPlay();
+    }
+    if (event.key === 'ArrowLeft') {
+      showSlide(index - 1);
+      startAutoPlay();
+    }
+  });
+
+  showSlide(0);
+  startAutoPlay();
+})();
+</script>
+
+
+<!-- =========================================
+     02 — OUR STORY (SOBRE)
+========================================== -->
+<style>
+    .dls-about-story {
+        width: 100%;
+        background: #F8FAF9;
+        padding: 40px 3vw; /* antes 70px 25px — menos borda */
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-about-story * {
+        box-sizing: border-box;
+    }
+
+    .dls-about-story-container {
+        max-width: 1380px; /* antes 1180px — ocupa mais a largura da tela */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 42% 58%;
+        min-height: 470px;
+    }
+
+
+    /* =========================================
+       LOGO SIDE
+    ========================================= */
+
+    .dls-about-logo-side {
+        background: #FFFFFF; /* antes #042F3B (verde escuro) */
+        border-right: 1px solid #E3EEEE; /* linha fina separando logo e texto */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 55px;
+        overflow: hidden;
+    }
+
+    .dls-about-logo-side::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(13, 159, 165, 0.18);
+        border-radius: 50%;
+        top: -100px;
+        left: -90px;
+    }
+
+    .dls-about-logo-side::after {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 330px;
+        border: 1px solid rgba(13, 159, 165, 0.12);
+        border-radius: 50%;
+        right: -180px;
+        bottom: -170px;
+    }
+
+    .dls-about-logo-wrapper {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .dls-about-logo {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* removido o filtro que deixava a logo branca: agora aparece nas cores originais */
+    }
+
+    .dls-about-logo-line {
+        display: none; /* escondida: a logo nova já tem a linha dela embaixo de HOUSE CLEANING */
+        width: 45px;
+        height: 2px;
+        background: #0D9FA5;
+        margin: 25px auto 0;
+    }
+
+
+    /* =========================================
+       CONTENT SIDE
+    ========================================= */
+
+    .dls-about-content {
+        background: #FFFFFF;
+        padding: 65px 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dls-about-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #0D9FA5;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+
+    .dls-about-eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: #0D9FA5;
+    }
+
+    .dls-about-title {
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 45px;
+        line-height: 1.08;
+        font-weight: 400;
+        margin: 0 0 24px;
+        max-width: 540px;
+    }
+
+    .dls-about-title span {
+        color: #0D9FA5;
+    }
+
+    .dls-about-text {
+        color: #3B4F55;
+        font-size: 13px;
+        line-height: 1.9;
+        max-width: 540px;
+        margin: 0 0 15px;
+    }
+
+    .dls-about-quote {
+        margin-top: 22px;
+        padding: 18px 0 18px 20px;
+        border-left: 2px solid #0D9FA5;
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 18px;
+        line-height: 1.45;
+        max-width: 500px;
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================= */
+
+    @media (max-width: 950px) {
+
+        .dls-about-story {
+            padding: 32px 3vw;
+        }
+
+        .dls-about-story-container {
+            grid-template-columns: 40% 60%;
+        }
+
+        .dls-about-logo-side {
+            padding: 35px;
+        }
+
+        .dls-about-logo {
+            max-width: 290px;
+        }
+
+        .dls-about-content {
+            padding: 50px 45px;
+        }
+
+        .dls-about-title {
+            font-size: 37px;
+        }
+
+        .dls-about-text {
+            font-size: 12px;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 700px) {
+
+        .dls-about-story {
+            padding: 20px 12px;
+        }
+
+        .dls-about-story-container {
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+        }
+
+        .dls-about-logo-side {
+            width: 100%;
+            min-height: 245px;
+            border-right: none;
+            border-bottom: 1px solid #E3EEEE;
+            padding: 35px 25px;
+        }
+
+        .dls-about-logo {
+            max-width: 250px;
+        }
+
+        .dls-about-logo-line {
+            margin-top: 18px;
+        }
+
+        .dls-about-content {
+            width: 100%;
+            padding: 38px 25px 42px;
+        }
+
+        .dls-about-eyebrow {
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 13px;
+        }
+
+        .dls-about-title {
+            font-size: 31px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .dls-about-text {
+            font-size: 11px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .dls-about-quote {
+            font-size: 15px;
+            margin-top: 18px;
+            padding-left: 16px;
+        }
+    }
+
+
+    /* =========================================
+       SMALL MOBILE
+    ========================================= */
+
+    @media (max-width: 400px) {
+
+        .dls-about-logo-side {
+            min-height: 220px;
+        }
+
+        .dls-about-logo {
+            max-width: 180px;
+        }
+
+        .dls-about-content {
+            padding: 32px 21px 36px;
+        }
+
+        .dls-about-title {
+            font-size: 28px;
+        }
+    }
+</style>
+
+
+<section class="dls-about-story" id="about">
+
+    <div class="dls-about-story-container">
+
+
+        <!-- =========================================
+             LEFT — LOGO
+        ========================================== -->
+
+        <div class="dls-about-logo-side">
+
+            <div class="dls-about-logo-wrapper">
+
+                <!-- LOGO DA DLS (arquivo na pasta imagens/) -->
+                <img
+                    class="dls-about-logo"
+                    src="imagens/logo-dls.png"
+                    width="900" height="644"
+                    alt="DLS Services - House Cleaning"
+                >
+
+                <div class="dls-about-logo-line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             RIGHT — CONTENT
+        ========================================== -->
+
+        <div class="dls-about-content">
+
+            <div class="dls-about-eyebrow">
+                OUR STORY
+            </div>
+
+
+            <h2 class="dls-about-title">
+                Built on Trust,
+                <br>
+                <span>Driven by Excellence.</span>
+            </h2>
+
+
+            <p class="dls-about-text">
+                DLS Services was founded with a simple purpose:
+                to make homes, rentals, and businesses cleaner,
+                safer, and more functional.
+            </p>
+
+
+            <p class="dls-about-text">
+                What started as a passion for helping people
+                maintain their spaces has grown into a trusted
+                cleaning and handyman service, serving our
+                community with professionalism, integrity,
+                and care.
+            </p>
+
+
+            <div class="dls-about-quote">
+                We care for your space with the same
+                responsibility with which we built our name.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     03 — OUR SERVICES (SERVIÇOS)
+========================================== -->
+<style>
+
+
+
+/* =========================
+   SERVICES SECTION
+========================= */
+
+.dls-services{
+    /* cores usadas só nesta seção */
+    --navy:#063B4A;
+    --teal:#0D9FA5;
+    --white:#FFFFFF;
+    --text:#3B4F55;
+    --line:rgba(6,59,74,.12);
+    --shadow:0 20px 55px rgba(6,59,74,.10);
+
+    width:100%;
+    max-width:1440px;      /* antes 1220px — ocupa mais a tela */
+    margin:auto;
+    padding:50px 3vw;      /* antes 70px 22px — menos borda */
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+    color:var(--navy);
+}
+.dls-services *{ box-sizing:border-box; margin:0; padding:0; }
+
+/* =========================
+   INTRO
+========================= */
+
+.svc-section-intro{
+    display:grid;
+    grid-template-columns:1fr 1.25fr;
+    gap:70px;
+    align-items:end;
+    margin-bottom:36px;
+}
+
+.svc-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--teal);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2.2px;
+    text-transform:uppercase;
+    margin-bottom:14px;
+}
+
+.svc-eyebrow:before{
+    content:"";
+    width:34px;
+    height:2px;
+    background:var(--teal);
+}
+
+.svc-section-title{
+    font-family:"DM Serif Display",serif;
+    font-weight:400;
+    font-size:clamp(2.5rem,5vw,4.2rem);
+    line-height:.98;
+    letter-spacing:-1.5px;
+}
+
+.svc-intro-copy{
+    max-width:600px;
+    color:var(--text);
+    font-size:14px;
+    line-height:1.9;
+}
+
+/* =========================
+   SERVICE CARDS
+========================= */
+
+.svc-services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr); /* os 4 serviços lado a lado */
+    gap:16px;
+}
+
+.svc-service-card{
+    position:relative;
+    min-height:470px;
+    background:var(--white);
+    border:1px solid var(--line);
+    overflow:hidden;
+    cursor:pointer;
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        box-shadow .45s ease,
+        border-color .45s ease;
+
+    box-shadow:0 8px 30px rgba(6,59,74,.045);
+}
+
+.svc-service-card:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
+    border-color:rgba(13,159,165,.35);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.svc-card-image{
+    height:250px;
+    overflow:hidden;
+    position:relative;
+}
+
+.svc-card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+
+    transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.svc-service-card:hover .svc-card-image img{
+    transform:scale(1.035);
+}
+
+.svc-image-shade{
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(6,59,74,.55),
+        rgba(6,59,74,0) 60%
+    );
+}
+
+.svc-card-number{
+    position:absolute;
+    left:20px;
+    bottom:17px;
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+/* =========================
+   CARD BODY
+========================= */
+
+.svc-card-body{
+    padding:27px 24px 24px;
+}
+
+.svc-card-title{
+    font-family:"DM Serif Display",serif;
+    font-size:25px;
+    font-weight:400;
+    line-height:1.1;
+
+    margin-bottom:12px;
+}
+
+.svc-card-description{
+    color:var(--text);
+
+    font-size:12px;
+    line-height:1.75;
+
+    min-height:63px;
+}
+
+/* =========================
+   CARD FOOTER
+========================= */
+
+.svc-card-footer{
+    margin-top:22px;
+    padding-top:16px;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.svc-learn{
+    color:var(--teal);
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+}
+
+.svc-arrow{
+    width:34px;
+    height:34px;
+
+    border:1px solid rgba(13,159,165,.35);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--teal);
+
+    transition:.3s;
+}
+
+.svc-service-card:hover .svc-arrow{
+    background:var(--teal);
+    color:#fff;
+}
+
+/* =========================
+   VIEW ALL SERVICES
+========================= */
+
+.svc-all-services{
+    display:flex;
+    justify-content:center;
+
+    margin-top:34px;
+}
+
+.svc-all-services a{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+
+    background:var(--navy);
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:15px 25px;
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+    transition:.3s;
+}
+
+.svc-all-services a:hover{
+    background:var(--teal);
+}
+
+.svc-all-services a span{
+    font-size:16px;
+    line-height:0;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1000px){
+
+    .svc-section-intro{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    /* continua na horizontal: fileira que arrasta para o lado */
+    .svc-services-grid{
+        grid-template-columns:none;
+        grid-auto-flow:column;
+        grid-auto-columns:44%;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        padding-bottom:14px;
+        scrollbar-width:thin;
+    }
+
+    .svc-service-card{
+        min-height:auto;
+        scroll-snap-align:start;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:620px){
+
+    .dls-services{
+        padding:36px 12px;
+    }
+
+    .svc-section-intro{
+        gap:18px;
+        margin-bottom:32px;
+    }
+
+    .svc-section-title{
+        font-size:42px;
+    }
+
+    .svc-intro-copy{
+        font-size:13px;
+        line-height:1.8;
+    }
+
+    .svc-services-grid{
+        grid-auto-columns:82%; /* mostra um pedaço do próximo: convida a arrastar */
+        gap:12px;
+    }
+
+    .svc-service-card{
+        min-height:auto;
+    }
+
+    .svc-card-image{
+        height:220px;
+    }
+
+    .svc-card-body{
+        padding:27px 24px 25px;
+    }
+
+    .svc-card-title{
+        font-size:27px;
+    }
+
+    .svc-card-description{
+        min-height:auto;
+    }
+
+    .svc-all-services{
+        margin-top:28px;
+    }
+
+    .svc-all-services a{
+        width:100%;
+        justify-content:center;
+    }
+
+}
+
+
+/* dica de arrastar (só aparece quando os cards viram fileira arrastável) */
+.svc-swipe-hint{ display:none; }
+@media(max-width:1000px){
+    .svc-swipe-hint{
+        display:block;
+        text-align:right;
+        color:var(--teal);
+        font-size:10px;
+        font-weight:700;
+        letter-spacing:1.4px;
+        text-transform:uppercase;
+        margin-bottom:10px;
+    }
+}
+</style>
+
+<section class="dls-services" id="services">
+
+    <!-- INTRO -->
+
+    <div class="svc-section-intro">
+
+        <div>
+
+            <div class="svc-eyebrow">
+                Our Services
+            </div>
+
+            <h2 class="svc-section-title">
+                Care that goes<br>
+                beyond clean.
+            </h2>
+
+        </div>
+
+        <p class="svc-intro-copy">
+            From professional cleaning to reliable home improvements,
+            DLS Services delivers dependable solutions with attention
+            to detail, quality, and genuine care.
+        </p>
+
+    </div>
+
+
+    <!-- FOUR MAIN SERVICES -->
+
+    <div class="svc-swipe-hint">Swipe to see all →</div>
+
+    <div class="svc-services-grid">
+
+
+        <!-- 01 — REGULAR CLEANING -->
+
+        <article class="svc-service-card">
+
+            <div class="svc-card-image">
+
+                <img
+                    src="https://img.magnific.com/free-photo/front-view-woman-cleaning-home_23-2150453344.jpg"
+                    alt="Professional regular cleaning service"
+                >
+
+                <div class="svc-image-shade"></div>
+
+                <div class="svc-card-number">
+                    01 / 04
+                </div>
+
+            </div>
+
+            <div class="svc-card-body">
+
+                <h3 class="svc-card-title">
+                    Regular Cleaning
+                </h3>
+
+                <p class="svc-card-description">
+                    Reliable recurring care to keep your home
+                    consistently clean, fresh, and comfortable.
+                </p>
+
+                <div class="svc-card-footer">
+
+                    <span class="svc-learn">
+                        Explore Service
+                    </span>
+
+                    <span class="svc-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 02 — DEEP CLEANING -->
+
+        <article class="svc-service-card">
+
+            <div class="svc-card-image">
+
+                <img
+                    src="https://img.magnific.com/free-photo/front-view-man-cleaning-indoors_23-2150454483.jpg"
+                    alt="Professional deep cleaning service"
+                >
+
+                <div class="svc-image-shade"></div>
+
+                <div class="svc-card-number">
+                    02 / 04
+                </div>
+
+            </div>
+
+            <div class="svc-card-body">
+
+                <h3 class="svc-card-title">
+                    Deep Cleaning
+                </h3>
+
+                <p class="svc-card-description">
+                    A detailed clean for spaces that need
+                    extra attention and a more thorough refresh.
+                </p>
+
+                <div class="svc-card-footer">
+
+                    <span class="svc-learn">
+                        Explore Service
+                    </span>
+
+                    <span class="svc-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 03 — COMMERCIAL CLEANING -->
+
+        <article class="svc-service-card">
+
+            <div class="svc-card-image">
+
+                <img
+                    src="https://img.magnific.com/free-photo/full-shot-people-cleaning-office_23-2150454568.jpg"
+                    alt="Professional commercial cleaning service"
+                >
+
+                <div class="svc-image-shade"></div>
+
+                <div class="svc-card-number">
+                    03 / 04
+                </div>
+
+            </div>
+
+            <div class="svc-card-body">
+
+                <h3 class="svc-card-title">
+                    Commercial Cleaning
+                </h3>
+
+                <p class="svc-card-description">
+                    Professional cleaning solutions for offices,
+                    workspaces, common areas, and business environments.
+                </p>
+
+                <div class="svc-card-footer">
+
+                    <span class="svc-learn">
+                        Explore Service
+                    </span>
+
+                    <span class="svc-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 04 — HANDYMAN & REMODELING -->
+
+        <article class="svc-service-card" id="handyman">
+
+            <div class="svc-card-image">
+
+                <img
+                    src="https://img.magnific.com/free-photo/people-renovating-house-concept_53876-20667.jpg"
+                    alt="Handyman and remodeling services"
+                >
+
+                <div class="svc-image-shade"></div>
+
+                <div class="svc-card-number">
+                    04 / 04
+                </div>
+
+            </div>
+
+            <div class="svc-card-body">
+
+                <h3 class="svc-card-title">
+                    Handyman & Remodeling
+                </h3>
+
+                <p class="svc-card-description">
+                    Reliable solutions for repairs, improvements,
+                    remodeling, and projects that transform your space.
+                </p>
+
+                <div class="svc-card-footer">
+
+                    <span class="svc-learn">
+                        Explore Service
+                    </span>
+
+                    <span class="svc-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- VIEW ALL SERVICES -->
+
+    <div class="svc-all-services">
+
+        <a href="#services">
+
+            View All Services
+
+            <span>→</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     04 — IMAGEM LARGA
+========================================== -->
+<style>
+/* =========================================
+   04 — IMAGEM LARGA (ocupa a tela toda na horizontal)
+========================================= */
+.dls-faixa{
+  width:100%;
+  height:clamp(260px, 38vw, 520px); /* altura: mínimo 260px, máximo 520px */
+  overflow:hidden;
+  background:#DDF2F2;
+}
+.dls-faixa img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+</style>
+
+<!-- 04 — IMAGEM LARGA: coloque o arquivo em imagens/faixa.jpg -->
+<section class="dls-faixa" aria-label="DLS Services">
+  <img src="imagens/faixa.jpg" alt="DLS Services" loading="lazy" onerror="this.closest('section').style.display='none'">
+</section>
+
+
+<!-- =========================================
+     05 — GALLERY (fotos do depois)
+========================================== -->
+<style>
+/* =========================================
+   05 — GALLERY (fotos do DEPOIS dos serviços)
+========================================= */
+.dls-gallery{
+  --navy:#063B4A; --teal:#0D9FA5; --soft:#DDF2F2; --text:#3B4F55;
+  background:#F8FAF9;
+  padding:56px 3vw 64px;
+  font-family:'Montserrat',Arial,sans-serif;
+  color:var(--navy);
+  box-sizing:border-box;
+}
+.dls-gallery *{ box-sizing:border-box; margin:0; padding:0; }
+.gal-wrap{ max-width:1440px; margin:0 auto; }
+
+/* Cabeçalho */
+.gal-head{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; margin-bottom:26px; }
+.gal-eyebrow{ display:flex; align-items:center; gap:12px; color:var(--teal); font-size:11px; font-weight:700; letter-spacing:2.2px; text-transform:uppercase; margin-bottom:14px; }
+.gal-eyebrow::before{ content:""; width:34px; height:2px; background:var(--teal); }
+.gal-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(38px,4.4vw,60px); line-height:1; letter-spacing:-1px; }
+.gal-title span{ color:var(--teal); }
+.gal-intro{ color:var(--text); font-size:14px; line-height:1.85; max-width:560px; }
+.gal-intro strong{ color:var(--navy); font-weight:600; }
+
+/* Faixa de garantias: deixa claro o que são as fotos */
+.gal-proof{ display:flex; flex-wrap:wrap; gap:10px 28px; padding:16px 0; margin-bottom:26px; border-top:1px solid rgba(6,59,74,.10); border-bottom:1px solid rgba(6,59,74,.10); }
+.gal-proof-item{ display:flex; align-items:center; gap:9px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); }
+.gal-proof-icon{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center; background:var(--soft); color:var(--teal); font-size:12px; }
+
+/* Grade de fotos: 4 por linha no computador */
+.gal-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.gal-item{ position:relative; overflow:hidden; background:#dfe9e8; aspect-ratio:4/5; cursor:zoom-in; border:0; display:block; width:100%; }
+.gal-item img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.2,.8,.2,1); }
+.gal-item.gal-wide{ grid-column:span 2; aspect-ratio:auto; } /* foto larga ocupa 2 espaços */
+.gal-item:hover img{ transform:scale(1.04); }
+.gal-item::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(6,59,74,.72) 0%, rgba(6,59,74,0) 45%); pointer-events:none; }
+
+/* Selo fixo "AFTER" em todas as fotos */
+.gal-badge{ position:absolute; top:12px; left:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; background:#fff; color:var(--navy); font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:6px 10px; border-radius:20px; box-shadow:0 4px 14px rgba(6,59,74,.12); }
+.gal-badge i{ font-style:normal; color:var(--teal); font-size:11px; }
+
+/* Nome do ambiente sempre visível */
+.gal-label{ position:absolute; left:16px; right:16px; bottom:14px; z-index:2; color:#fff; text-align:left; }
+.gal-label b{ display:block; font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:20px; line-height:1.15; }
+.gal-label small{ display:block; font-size:9px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; opacity:.85; margin-top:4px; }
+
+.gal-note{ margin-top:18px; color:var(--text); font-size:11px; text-align:center; }
+
+/* Foto ampliada (ao clicar) */
+.gal-lightbox{ position:fixed; inset:0; z-index:9999; background:rgba(4,30,38,.92); display:none; align-items:center; justify-content:center; padding:24px; }
+.gal-lightbox.open{ display:flex; }
+.gal-lightbox figure{ max-width:min(1100px,100%); max-height:100%; display:flex; flex-direction:column; align-items:center; }
+.gal-lightbox img{ max-width:100%; max-height:80vh; object-fit:contain; display:block; }
+.gal-lightbox figcaption{ color:#fff; margin-top:14px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; text-align:center; }
+.gal-lb-btn{ position:absolute; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); color:#fff; font-size:22px; cursor:pointer; }
+.gal-lb-close{ top:18px; right:18px; }
+.gal-lb-prev{ left:18px; top:50%; transform:translateY(-50%); }
+.gal-lb-next{ right:18px; top:50%; transform:translateY(-50%); }
+
+@media(max-width:1000px){
+  .gal-head{ grid-template-columns:1fr; gap:16px; }
+  .gal-grid{ grid-template-columns:repeat(2,1fr); }
+  .gal-item.gal-wide{ aspect-ratio:16/9; }
+}
+@media(max-width:620px){
+  .dls-gallery{ padding:40px 12px 48px; }
+  .gal-grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
+  .gal-label b{ font-size:16px; }
+  .gal-badge{ top:8px; left:8px; font-size:8px; padding:5px 8px; }
+  .gal-proof{ gap:10px 18px; }
+  .gal-proof-item{ font-size:10px; }
+  .gal-lb-prev,.gal-lb-next{ top:auto; bottom:18px; transform:none; }
+}
+</style>
+
+<section class="dls-gallery" id="gallery" aria-label="Gallery of finished work">
+  <div class="gal-wrap">
+
+    <div class="gal-head">
+      <div>
+        <div class="gal-eyebrow">Our Work · After Service</div>
+        <h2 class="gal-title">The Finished Result.<br><span>Real Spaces, Real Care.</span></h2>
+      </div>
+      <p class="gal-intro">
+        Every photo in this gallery was taken <strong>right after our team finished the job</strong>
+        — this is how we leave our clients' kitchens, bathrooms, closets and outdoor spaces.
+      </p>
+    </div>
+
+    <div class="gal-proof">
+      <div class="gal-proof-item"><span class="gal-proof-icon">✓</span>Photographed after service</div>
+      <div class="gal-proof-item"><span class="gal-proof-icon">⌂</span>Real client spaces</div>
+      <div class="gal-proof-item"><span class="gal-proof-icon">✦</span>Same standard on every visit</div>
+    </div>
+
+    <div class="gal-grid">
+      <!-- Para adicionar foto: copie um bloco <button> e troque imagem e nomes -->
+      <button class="gal-item gal-wide" type="button" data-title="Summer Kitchen">
+        <img src="imagens/galeria-07.jpg" alt="Outdoor summer kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Summer Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Summer Kitchen">
+        <img src="imagens/galeria-08.jpg" alt="Covered summer kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Summer Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Bathroom">
+        <img src="imagens/galeria-02.jpg" alt="Bathroom after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Bathroom</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Laundry Room">
+        <img src="imagens/galeria-03.jpg" alt="Laundry room after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Laundry Room</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Kitchen">
+        <img src="imagens/galeria-04.jpg" alt="Kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Custom Closet">
+        <img src="imagens/galeria-05.jpg" alt="Custom closet after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Custom Closet</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Primary Bathroom">
+        <img src="imagens/galeria-06.jpg" alt="Primary bathroom after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Primary Bathroom</b><small>After cleaning</small></span>
+      </button>
+    </div>
+
+    <p class="gal-note">Tap any photo to see it larger.</p>
+  </div>
+
+  <div class="gal-lightbox" id="galLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="gal-lb-btn gal-lb-close" type="button" aria-label="Close">×</button>
+    <button class="gal-lb-btn gal-lb-prev" type="button" aria-label="Previous photo">‹</button>
+    <figure><img src="" alt=""><figcaption></figcaption></figure>
+    <button class="gal-lb-btn gal-lb-next" type="button" aria-label="Next photo">›</button>
+  </div>
+</section>
+
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.dls-gallery .gal-item'));
+  var box = document.getElementById('galLightbox');
+  if (!box || !items.length) return;
+  var img = box.querySelector('img'), cap = box.querySelector('figcaption'), i = 0;
+  function show(n){
+    i = (n + items.length) % items.length;
+    var src = items[i].querySelector('img');
+    img.src = src.src; img.alt = src.alt;
+    cap.textContent = items[i].getAttribute('data-title') + ' — after service · ' + (i+1) + ' / ' + items.length;
+  }
+  function open(n){ show(n); box.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ box.classList.remove('open'); document.body.style.overflow=''; }
+  items.forEach(function(el, n){ el.addEventListener('click', function(){ open(n); }); });
+  box.querySelector('.gal-lb-close').addEventListener('click', close);
+  box.querySelector('.gal-lb-prev').addEventListener('click', function(){ show(i-1); });
+  box.querySelector('.gal-lb-next').addEventListener('click', function(){ show(i+1); });
+  box.addEventListener('click', function(e){ if (e.target === box) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') { e.stopPropagation(); show(i+1); }
+    if (e.key === 'ArrowLeft') { e.stopPropagation(); show(i-1); }
+  }, true);
+})();
+</script>
+
+
+<!-- =========================================
+     06 — ANTES E DEPOIS
+========================================== -->
+<style>
+    .dls-before-after-section {
+        width: 100%;
+        background: #F8FAF9;
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-before-after-section * {
+        box-sizing: border-box;
+    }
+
+    .dba-slider-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 1320px; /* antes 1180px */
+        margin: 0 auto;
+        padding: 40px 3vw; /* bordas iguais às outras seções */
+    }
+
+    .dba-slide {
+        display: none;
+        width: 100%;
+        min-height: 390px;
+        background: #FFFFFF;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(4, 47, 59, 0.08);
+    }
+
+    .dba-slide.active {
+        display: flex;
+        animation: dbaFade 0.7s ease;
+    }
+
+    @keyframes dbaFade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+
+    /* =========================================
+       IMAGE AREA
+    ========================================= */
+
+    .dba-slide-image {
+        width: 55%;
+        min-height: 390px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dba-slide-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+
+    /* =========================================
+       BEFORE / AFTER
+    ========================================= */
+
+    .dba-before-after {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        min-height: 390px;
+    }
+
+    .dba-before-after-item {
+        width: 50%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dba-before-after-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .dba-before-after-label {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 7px 13px;
+        background: rgba(4, 47, 59, 0.88);
+        color: #FFFFFF;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-radius: 30px;
+    }
+
+    .dba-before-after-label.after {
+        background: #0D9FA5;
+    }
+
+    /* linha divisória entre ANTES e DEPOIS */
+    .dba-before-after-item + .dba-before-after-item {
+        border-left: 3px solid #FFFFFF;
+    }
+
+
+    /* =========================================
+       TEXT AREA
+    ========================================= */
+
+    .dba-slide-content {
+        width: 45%;
+        padding: 50px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dba-slide-eyebrow {
+        color: #0D9FA5;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+    }
+
+    .dba-slide-title {
+        margin: 0 0 18px;
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 36px;
+        line-height: 1.12;
+        font-weight: 400;
+    }
+
+    .dba-slide-title span {
+        color: #0D9FA5;
+    }
+
+    .dba-slide-text {
+        margin: 0 0 25px;
+        color: #3B4F55;
+        font-size: 13px;
+        line-height: 1.8;
+        max-width: 440px;
+    }
+
+    .dba-slide-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        width: fit-content;
+        padding: 13px 20px;
+        background: #042F3B;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slide-button:hover {
+        background: #0D9FA5;
+    }
+
+
+    /* =========================================
+       CONTROLS
+    ========================================= */
+
+    .dba-slider-controls {
+        position: absolute;
+        bottom: 55px;
+        right: 55px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 5;
+    }
+
+    .dba-slider-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(4, 47, 59, 0.25);
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slider-dot.active {
+        width: 24px;
+        border-radius: 10px;
+        background: #0D9FA5;
+    }
+
+
+    /* =========================================
+       ARROWS
+    ========================================= */
+
+    .dba-slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(4, 47, 59, 0.15);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: #042F3B;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .dba-slider-arrow:hover {
+        background: #0D9FA5;
+        color: #FFFFFF;
+        border-color: #0D9FA5;
+    }
+
+    .dba-slider-prev {
+        left: 8px;
+    }
+
+    .dba-slider-next {
+        right: 8px;
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================= */
+
+    @media (max-width: 900px) {
+
+        .dba-slide {
+            min-height: 350px;
+        }
+
+        .dba-slide-image {
+            min-height: 350px;
+        }
+
+        .dba-before-after {
+            min-height: 350px;
+        }
+
+        .dba-slide-content {
+            padding: 35px 30px;
+        }
+
+        .dba-slide-title {
+            font-size: 30px;
+        }
+
+        .dba-slide-text {
+            font-size: 12px;
+        }
+
+        .dba-slider-controls {
+            bottom: 30px;
+            right: 35px;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 650px) {
+
+        .dba-slider-wrapper {
+            padding: 20px 16px;
+        }
+
+        .dba-slide.active {
+            display: block;
+        }
+
+        .dba-slide {
+            min-height: auto;
+            border-radius: 16px;
+        }
+
+        .dba-slide-image {
+            width: 100%;
+            height: 235px;
+            min-height: 235px;
+        }
+
+        .dba-before-after {
+            height: 235px;
+            min-height: 235px;
+        }
+
+        .dba-slide-content {
+            width: 100%;
+            padding: 28px 25px 32px;
+            min-height: 245px;
+        }
+
+        .dba-slide-eyebrow {
+            font-size: 9px;
+            margin-bottom: 10px;
+        }
+
+        .dba-slide-title {
+            font-size: 27px;
+            margin-bottom: 13px;
+        }
+
+        .dba-slide-text {
+            font-size: 11px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .dba-slide-button {
+            padding: 11px 16px;
+            font-size: 9px;
+        }
+
+        .dba-slider-arrow {
+            width: 32px;
+            height: 32px;
+            font-size: 15px;
+        }
+
+        .dba-slider-prev {
+            left: 24px;
+        }
+
+        .dba-slider-next {
+            right: 24px;
+        }
+
+        .dba-slider-controls {
+            position: absolute;
+            bottom: 255px;
+            right: 28px;
+        }
+    }
+    /* ===== AJUSTES: altura fixa dos slides (foto em pé não estica o card) ===== */
+    .dba-slide { height: 440px; }
+    .dba-slide-image img,
+    .dba-before-after-item img {
+        position: absolute;
+        inset: 0;
+    }
+    .dba-before-after { position: relative; }
+    @media (max-width: 900px) {
+        .dba-slide { height: 380px; }
+    }
+    @media (max-width: 650px) {
+        .dba-slide { height: auto; }
+        .dba-slider-arrow { top: 137px; } /* setas no meio da foto */
+        .dba-slider-controls { bottom: 50px; right: 40px; } /* bolinhas no canto de baixo */
+    }
+
+</style>
+
+
+<section class="dls-before-after-section" id="before-after" aria-label="Before and after">
+
+    <div class="dba-slider-wrapper">
+
+
+        <!-- =========================================
+             SLIDE 1 — BEFORE & AFTER
+        ========================================== -->
+
+        <div class="dba-slide active">
+
+            <div class="dba-slide-image">
+
+                <div class="dba-before-after">
+
+                    <!-- BEFORE -->
+                    <div class="dba-before-after-item">
+
+                        <img
+                            src="imagens/antes-quarto.jpg"
+                            alt="Bedroom before cleaning"
+                        >
+
+                        <span class="dba-before-after-label">
+                            Before
+                        </span>
+
+                    </div>
+
+
+                    <!-- AFTER -->
+                    <div class="dba-before-after-item">
+
+                        <img
+                            src="imagens/depois-quarto.jpg"
+                            alt="Bedroom after professional cleaning"
+                        >
+
+                        <span class="dba-before-after-label after">
+                            After
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dba-slide-content">
+
+                <div class="dba-slide-eyebrow">
+                    THE DLS DIFFERENCE
+                </div>
+
+                <h2 class="dba-slide-title">
+                    A Cleaner Space.
+                    <br>
+                    <span>A Better Feeling.</span>
+                </h2>
+
+                <p class="dba-slide-text">
+                    At DLS Services, we believe cleaning is more
+                    than making a space look better. It's about
+                    creating a home that feels comfortable,
+                    fresh, and cared for.
+                </p>
+
+                <a
+                    href="#quote"
+                    class="dba-slide-button"
+                >
+                    REQUEST A QUOTE
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SLIDE 2 — KITCHEN
+        ========================================== -->
+
+        <div class="dba-slide">
+
+            <div class="dba-slide-image">
+
+                <img
+                    src="imagens/summer-kitchen-noite.jpg"
+                    alt="Outdoor summer kitchen after professional cleaning"
+                >
+
+            </div>
+
+
+            <div class="dba-slide-content">
+
+                <div class="dba-slide-eyebrow">
+                    PROFESSIONAL CLEANING
+                </div>
+
+                <h2 class="dba-slide-title">
+                    Care in
+                    <br>
+                    <span>Every Detail.</span>
+                </h2>
+
+                <p class="dba-slide-text">
+                    From kitchens and bathrooms to everyday
+                    living spaces, our team works with attention
+                    to detail and genuine care for your space.
+                </p>
+
+                <a
+                    href="#services"
+                    class="dba-slide-button"
+                >
+                    EXPLORE CLEANING
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             ARROWS
+        ========================================== -->
+
+        <button
+            class="dba-slider-arrow dba-slider-prev"
+            data-dir="-1"
+            aria-label="Previous slide"
+        >
+            ‹
+        </button>
+
+        <button
+            class="dba-slider-arrow dba-slider-next"
+            data-dir="1"
+            aria-label="Next slide"
+        >
+            ›
+        </button>
+
+
+        <!-- =========================================
+             DOTS
+        ========================================== -->
+
+        <div class="dba-slider-controls">
+
+            <button
+                class="dba-slider-dot active"
+                data-go="0"
+                aria-label="Slide 1"
+            ></button>
+
+            <button
+                class="dba-slider-dot"
+                data-go="1"
+                aria-label="Slide 2"
+            ></button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+/* Antes e depois — código isolado (não mexe no banner do topo) */
+(function () {
+    var box = document.querySelector('.dls-before-after-section');
+    if (!box) return;
+    var slides = box.querySelectorAll('.dba-slide');
+    var dots = box.querySelectorAll('.dba-slider-dot');
+    var current = 0, timer;
+
+    function show(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === current); });
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+    function restart() {
+        clearInterval(timer);
+        timer = setInterval(function () { show(current + 1); }, 8000); /* troca a cada 8 segundos */
+    }
+    box.querySelectorAll('[data-dir]').forEach(function (b) {
+        b.addEventListener('click', function () { show(current + Number(b.getAttribute('data-dir'))); restart(); });
+    });
+    box.querySelectorAll('[data-go]').forEach(function (b) {
+        b.addEventListener('click', function () { show(Number(b.getAttribute('data-go'))); restart(); });
+    });
+    restart();
+})();
+</script>
+
+
+<!-- =========================================
+     07 — AVALIAÇÕES (REVIEWS)
+========================================== -->
+<style>
+/* =========================================
+   AVALIAÇÕES (REVIEWS) — novo design
+========================================= */
+.dls-reviews{
+  --navy:#063B4A; --deep:#042F3B; --teal:#0D9FA5; --soft:#DDF2F2; --text:#3B4F55; --line:#E4EBEA;
+  background:#FFFFFF;
+  padding:64px 3vw 70px;
+  font-family:'Montserrat',Arial,sans-serif;
+  color:var(--navy);
+  box-sizing:border-box;
+}
+.dls-reviews *{ box-sizing:border-box; margin:0; padding:0; }
+.rv-wrap{ max-width:1320px; margin:0 auto; }
+
+/* Cabeçalho */
+.rv-head{ display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:end; margin-bottom:34px; }
+.rv-eyebrow{ display:flex; align-items:center; gap:12px; color:var(--teal); font-size:11px; font-weight:700; letter-spacing:2.2px; text-transform:uppercase; margin-bottom:14px; }
+.rv-eyebrow::before{ content:""; width:34px; height:2px; background:var(--teal); }
+.rv-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(38px,4.4vw,60px); line-height:1.02; letter-spacing:-1px; }
+.rv-title span{ color:var(--teal); }
+.rv-intro{ color:var(--text); font-size:14px; line-height:1.85; max-width:520px; }
+
+/* Faixa principal escura */
+.rv-band{
+  position:relative; overflow:hidden;
+  display:grid; grid-template-columns:1.15fr 1fr 1fr 1fr;
+  background:var(--deep); color:#fff; border-radius:22px;
+}
+.rv-band::before{ /* círculo decorativo */
+  content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.08); right:-120px; top:-170px; pointer-events:none;
+}
+.rv-google{ padding:38px 36px; border-right:1px solid rgba(255,255,255,.10); display:flex; flex-direction:column; justify-content:center; }
+.rv-google-label{ font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.rv-stars{ color:#F5C451; font-size:26px; letter-spacing:4px; margin:10px 0 6px; line-height:1; }
+.rv-google-text{ font-family:'DM Serif Display',Georgia,serif; font-size:24px; line-height:1.2; }
+.rv-google-sub{ font-size:12px; line-height:1.7; color:rgba(255,255,255,.7); margin-top:8px; max-width:300px; }
+
+.rv-promise{ padding:38px 30px; border-right:1px solid rgba(255,255,255,.10); }
+.rv-promise:last-child{ border-right:none; }
+.rv-promise-icon{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:rgba(13,159,165,.18); color:#5FD3D7; font-size:18px; margin-bottom:18px; }
+.rv-promise h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:22px; line-height:1.15; margin-bottom:8px; }
+.rv-promise p{ font-size:12px; line-height:1.7; color:rgba(255,255,255,.68); }
+
+/* Cards de avaliações reais (aparecem quando tiverem texto) */
+.rv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px; }
+.rv-grid:not(:has(.rv-card:not([hidden]))){ display:none; } /* sem avaliações = esconde a área */
+.rv-card{ background:#F8FAF9; border:1px solid var(--line); border-radius:18px; padding:28px; display:flex; flex-direction:column; position:relative; }
+.rv-card::before{ content:"“"; position:absolute; top:6px; right:22px; font-family:'DM Serif Display',Georgia,serif; font-size:90px; line-height:1; color:var(--soft); }
+.rv-card-stars{ color:#F5C451; font-size:14px; letter-spacing:2px; margin-bottom:14px; }
+.rv-card-text{ font-family:'DM Serif Display',Georgia,serif; font-size:19px; line-height:1.4; color:var(--navy); flex:1; position:relative; }
+.rv-author{ display:flex; align-items:center; gap:11px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line); }
+.rv-avatar{ width:38px; height:38px; border-radius:50%; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:13px; font-weight:700; }
+.rv-author b{ display:block; font-size:12px; font-weight:700; color:var(--navy); }
+.rv-author small{ display:block; font-size:10px; color:#62767B; margin-top:2px; }
+
+/* Chamada final */
+.rv-cta{ margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  background:var(--soft); border-radius:18px; padding:26px 32px; }
+.rv-cta h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:26px; line-height:1.15; color:var(--navy); }
+.rv-cta p{ font-size:12px; color:var(--text); margin-top:5px; }
+.rv-buttons{ display:flex; gap:10px; flex-wrap:wrap; }
+.rv-btn{ display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 22px; border-radius:6px; text-decoration:none;
+  font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; transition:.25s ease; }
+.rv-btn-dark{ background:var(--deep); color:#fff; border:1px solid var(--deep); }
+.rv-btn-dark:hover{ background:var(--teal); border-color:var(--teal); }
+.rv-btn-line{ background:#fff; color:var(--deep); border:1px solid rgba(4,47,59,.18); }
+.rv-btn-line:hover{ border-color:var(--teal); color:var(--teal); }
+
+/* Tablet */
+@media(max-width:1000px){
+  .rv-head{ grid-template-columns:1fr; gap:16px; }
+  .rv-band{ grid-template-columns:1fr 1fr 1fr; }
+  .rv-google{ grid-column:1 / -1; border-right:none; border-bottom:1px solid rgba(255,255,255,.10); }
+  .rv-grid{ grid-template-columns:1fr 1fr; }
+}
+/* Celular */
+@media(max-width:650px){
+  .dls-reviews{ padding:44px 12px 50px; }
+  .rv-band{ grid-template-columns:1fr; border-radius:18px; }
+  .rv-google{ padding:30px 24px; }
+  .rv-promise{ padding:22px 24px; border-right:none; border-bottom:1px solid rgba(255,255,255,.10);
+    display:grid; grid-template-columns:44px 1fr; gap:0 14px; align-items:start; }
+  .rv-promise:last-child{ border-bottom:none; }
+  .rv-promise-icon{ margin-bottom:0; grid-row:span 2; }
+  .rv-promise h3{ font-size:20px; margin-bottom:4px; }
+  .rv-grid{ grid-template-columns:1fr; gap:12px; }
+  .rv-cta{ padding:24px 20px; }
+  .rv-buttons, .rv-btn{ width:100%; justify-content:center; }
+}
+</style>
+
+<section class="dls-reviews" id="reviews" aria-label="Client reviews">
+  <div class="rv-wrap">
+
+    <div class="rv-head">
+      <div>
+        <div class="rv-eyebrow">Client Reviews</div>
+        <h2 class="rv-title">Trusted by the<br><span>People We Serve.</span></h2>
+      </div>
+      <p class="rv-intro">
+        Every job is a chance to earn our clients' trust — with reliable service,
+        attention to detail and an experience they can feel confident about.
+      </p>
+    </div>
+
+    <div class="rv-band">
+      <div class="rv-google">
+        <div class="rv-google-label">Reviews on Google</div>
+        <div class="rv-stars" aria-hidden="true">★★★★★</div>
+        <div class="rv-google-text">See what our clients say about us.</div>
+        <p class="rv-google-sub">Real feedback from homeowners and businesses we've served.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">◷</div>
+        <h3>On Time &amp; Reliable</h3>
+        <p>We show up when we say we will and finish what we start.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">✦</div>
+        <h3>Detail-Focused Work</h3>
+        <p>Every corner checked, every surface cared for — visit after visit.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">✓</div>
+        <h3>Clear Communication</h3>
+        <p>Straight answers, honest estimates and no surprises.</p>
+      </div>
+    </div>
+
+    <!-- AVALIAÇÕES REAIS: copie o texto de uma avaliação do Google, troque nome/iniciais
+         e APAGUE a palavra "hidden" do card para ele aparecer.
+         Enquanto todos estiverem com "hidden", esta área fica escondida. -->
+    <div class="rv-grid">
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">AB</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">CD</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">EF</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+    </div>
+
+    <div class="rv-cta">
+      <div>
+        <h3>Worked with us recently?</h3>
+        <p>Your review helps other families and businesses choose with confidence.</p>
+      </div>
+      <div class="rv-buttons">
+        <!-- Os dois botões abrem o perfil da DLS no Google -->
+        <a class="rv-btn rv-btn-line" href="https://share.google/36vPb43xz5mpIJVYI" target="_blank" rel="noopener">Read Our Reviews</a>
+        <a class="rv-btn rv-btn-dark" href="https://share.google/36vPb43xz5mpIJVYI" target="_blank" rel="noopener">Leave a Google Review <span>→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================================
+     08 — ASSISTENTE VIRTUAL
+========================================== -->
+<style>
+
+/* =========================================================
+   DLS VIRTUAL ASSISTANT
+========================================================= */
+
+.dls-ai-section{
+    width:100%;
+    background:#F8FAF9;
+    padding:100px 24px;
+    font-family:'Montserrat',sans-serif;
+    color:#063B4A;
+    overflow:hidden;
+}
+
+.dls-ai-container{
+    max-width:1180px;
+    margin:0 auto;
+
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+
+    gap:80px;
+    align-items:center;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.dls-ai-content{
+    max-width:510px;
+}
+
+.dls-ai-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:20px;
+
+    color:#0D9FA5;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.dls-ai-eyebrow::before{
+    content:"";
+
+    width:35px;
+    height:2px;
+
+    background:#0D9FA5;
+}
+
+.dls-ai-title{
+    margin:0 0 24px;
+
+    font-family:'DM Serif Display',serif;
+
+    font-size:clamp(42px,5vw,64px);
+
+    font-weight:400;
+    line-height:1;
+
+    letter-spacing:-1px;
+
+    color:#063B4A;
+}
+
+.dls-ai-title span{
+    color:#0D9FA5;
+}
+
+.dls-ai-description{
+    max-width:500px;
+
+    margin-bottom:35px;
+
+    color:#3B4F55;
+
+    font-size:14px;
+    line-height:1.85;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.dls-ai-features{
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:35px;
+}
+
+.dls-ai-feature{
+    display:flex;
+    align-items:flex-start;
+
+    gap:14px;
+}
+
+.dls-ai-icon{
+    flex:none;
+
+    width:35px;
+    height:35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(13,159,165,.35);
+
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    color:#0D9FA5;
+
+    font-size:12px;
+    font-weight:700;
+
+    box-shadow:0 5px 18px rgba(6,59,74,.06);
+}
+
+.dls-ai-feature strong{
+    display:block;
+
+    margin-bottom:4px;
+
+    color:#063B4A;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.dls-ai-feature p{
+    margin:0;
+
+    color:#3B4F55;
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.dls-ai-button{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:14px;
+
+    min-height:52px;
+
+    padding:0 25px;
+
+    background:#063B4A;
+
+    color:#FFFFFF;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    border-radius:2px;
+
+    transition:.3s ease;
+}
+
+.dls-ai-button span{
+    font-size:18px;
+}
+
+.dls-ai-button:hover{
+    background:#0D9FA5;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   AI CHAT OUTER
+========================================================= */
+
+.dls-ai-chat-wrapper{
+    position:relative;
+
+    width:100%;
+
+    max-width:560px;
+
+    justify-self:end;
+}
+
+
+/* decorative glow */
+
+.dls-ai-glow{
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:-70px;
+    top:-80px;
+
+    background:rgba(13,159,165,.13);
+
+    filter:blur(70px);
+
+    border-radius:50%;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   CHAT WINDOW
+========================================================= */
+
+.dls-ai-chat{
+
+    position:relative;
+
+    width:100%;
+
+    background:#FFFFFF;
+
+    border:1px solid rgba(6,59,74,.10);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 80px rgba(6,59,74,.14),
+        0 5px 20px rgba(6,59,74,.05);
+}
+
+
+/* =========================================================
+   CHAT TOP BAR
+========================================================= */
+
+.dls-chat-header{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:17px 20px;
+
+    background:#063B4A;
+
+    color:#FFFFFF;
+}
+
+.dls-chat-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+}
+
+
+/* ROBOT */
+
+.dls-chat-avatar{
+
+    width:54px;
+    height:54px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    border:2px solid rgba(255,255,255,.55);
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.18);
+}
+
+.dls-chat-avatar img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+
+/* brand text */
+
+.dls-chat-brand-text strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+.dls-chat-brand-text span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:rgba(255,255,255,.68);
+
+    font-size:9px;
+}
+
+.dls-chat-brand-text i{
+
+    width:6px;
+    height:6px;
+
+    display:block;
+
+    background:#38D6A5;
+
+    border-radius:50%;
+
+    box-shadow:0 0 8px rgba(56,214,165,.7);
+}
+
+
+/* status */
+
+.dls-chat-status{
+
+    width:9px;
+    height:9px;
+
+    background:#38D6A5;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 0 5px rgba(56,214,165,.12),
+        0 0 12px rgba(56,214,165,.6);
+}
+
+
+/* =========================================================
+   CHAT BODY
+========================================================= */
+
+.dls-chat-body{
+
+    min-height:390px;
+
+    max-height:430px;
+
+    overflow-y:auto;
+
+    padding:25px 22px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(13,159,165,.07),
+            transparent 35%
+        ),
+        #F8FAF9;
+}
+
+
+/* scrollbar */
+
+.dls-chat-body::-webkit-scrollbar{
+    width:5px;
+}
+
+.dls-chat-body::-webkit-scrollbar-thumb{
+    background:#DDF2F2;
+    border-radius:20px;
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.dls-message{
+    max-width:88%;
+
+    margin-bottom:20px;
+}
+
+.dls-message-ai{
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+}
+
+
+/* small robot next to message */
+
+.dls-message-avatar{
+
+    width:30px;
+    height:30px;
+
+    flex:none;
+
+    overflow:hidden;
+
+    border-radius:50%;
+
+    background:#FFFFFF;
+
+    border:1px solid rgba(13,159,165,.25);
+
+    box-shadow:0 3px 10px rgba(6,59,74,.08);
+}
+
+.dls-message-avatar img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.dls-message-content{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+}
+
+.dls-message-label{
+
+    margin-bottom:5px;
+
+    color:#0D9FA5;
+
+    font-size:8px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.dls-message p{
+
+    margin:0;
+
+    padding:13px 15px;
+
+    background:#FFFFFF;
+
+    border:1px solid rgba(6,59,74,.07);
+
+    border-radius:4px 15px 15px 15px;
+
+    color:#3B4F55;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+    box-shadow:
+        0 5px 18px rgba(6,59,74,.04);
+}
+
+
+/* =========================================================
+   USER MESSAGE
+========================================================= */
+
+.dls-user-message{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:20px;
+}
+
+.dls-user-message p{
+
+    max-width:80%;
+
+    margin:0;
+
+    padding:12px 15px;
+
+    background:#0D9FA5;
+
+    color:#FFFFFF;
+
+    border-radius:15px 4px 15px 15px;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    box-shadow:
+        0 6px 18px rgba(13,159,165,.18);
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.dls-options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin:
+
+        0 0 22px 40px;
+}
+
+.dls-options button{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:12px 14px;
+
+    background:#FFFFFF;
+
+    border:1px solid rgba(13,159,165,.18);
+
+    border-radius:10px;
+
+    color:#063B4A;
+
+    text-align:left;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    box-shadow:
+        0 3px 12px rgba(6,59,74,.03);
+}
+
+.dls-options button span{
+
+    color:#0D9FA5;
+
+    font-size:14px;
+
+    transition:.25s ease;
+}
+
+.dls-options button:hover{
+
+    background:#DDF2F2;
+
+    border-color:#0D9FA5;
+
+    transform:translateX(3px);
+}
+
+.dls-options button:hover span{
+    transform:translateX(3px);
+}
+
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.dls-typing{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:13px 15px;
+
+    background:#FFFFFF;
+
+    border-radius:4px 15px 15px 15px;
+
+    box-shadow:0 5px 18px rgba(6,59,74,.04);
+}
+
+.dls-typing span{
+
+    width:5px;
+    height:5px;
+
+    background:#0D9FA5;
+
+    border-radius:50%;
+
+    animation:dlsTyping 1.2s infinite;
+}
+
+.dls-typing span:nth-child(2){
+    animation-delay:.15s;
+}
+
+.dls-typing span:nth-child(3){
+    animation-delay:.3s;
+}
+
+@keyframes dlsTyping{
+
+    0%,60%,100%{
+        opacity:.25;
+        transform:translateY(0);
+    }
+
+    30%{
+        opacity:1;
+        transform:translateY(-3px);
+    }
+}
+
+
+/* =========================================================
+   CHAT INPUT
+========================================================= */
+
+.dls-chat-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px 15px;
+
+    border-top:1px solid rgba(6,59,74,.08);
+
+    background:#FFFFFF;
+}
+
+.dls-chat-input input{
+
+    flex:1;
+
+    min-width:0;
+
+    border:none;
+
+    outline:none;
+
+    background:#F8FAF9;
+
+    border-radius:20px;
+
+    padding:11px 14px;
+
+    color:#063B4A;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-size:10px;
+}
+
+.dls-chat-input input::placeholder{
+    color:#6E8085;
+}
+
+
+/* SEND BUTTON */
+
+.dls-send{
+
+    width:38px;
+    height:38px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+
+    background:#0D9FA5;
+
+    border-radius:50%;
+
+    color:#FFFFFF;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.dls-send:hover{
+
+    background:#063B4A;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   QUICK LINK
+========================================================= */
+
+.dls-chat-footer{
+
+    padding:8px 15px 13px;
+
+    background:#FFFFFF;
+
+    text-align:center;
+
+    color:#6E8085;
+
+    font-size:8px;
+
+    letter-spacing:.5px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .dls-ai-section{
+        padding:80px 24px;
+    }
+
+    .dls-ai-container{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+    }
+
+    .dls-ai-content{
+
+        max-width:650px;
+    }
+
+    .dls-ai-chat-wrapper{
+
+        max-width:650px;
+
+        justify-self:start;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .dls-ai-section{
+        padding:65px 18px;
+    }
+
+    .dls-ai-title{
+        font-size:42px;
+    }
+
+    .dls-ai-description{
+
+        font-size:13px;
+
+        line-height:1.8;
+    }
+
+    .dls-ai-button{
+        width:100%;
+    }
+
+    .dls-chat-body{
+
+        min-height:380px;
+
+        padding:20px 15px;
+    }
+
+    .dls-chat-header{
+        padding:14px 15px;
+    }
+
+    .dls-chat-avatar{
+
+        width:48px;
+        height:48px;
+    }
+
+    .dls-options{
+        margin-left:38px;
+    }
+
+    .dls-chat-input input{
+        font-size:11px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE PATCH — MOBILE / TABLET / DESKTOP
+   Corrige cortes horizontais e adapta o chat a telas pequenas
+========================================================= */
+
+
+
+.dls-ai-section,
+.dls-ai-container,
+.dls-ai-content,
+.dls-ai-chat-wrapper,
+.dls-ai-chat,
+.dls-chat-header,
+.dls-chat-body,
+.dls-chat-input,
+.dls-chat-footer {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.dls-ai-section {
+    width: 100%;
+    overflow-x: clip;
+}
+
+.dls-ai-container {
+    width: 100%;
+}
+
+.dls-ai-chat-wrapper {
+    width: 100%;
+}
+
+.dls-ai-chat {
+    width: 100%;
+}
+
+.dls-chat-body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.dls-message,
+.dls-message-content,
+.dls-message p,
+.dls-user-message,
+.dls-user-message p,
+.dls-options,
+.dls-options button {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.dls-message p,
+.dls-user-message p,
+.dls-options button {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .dls-ai-section {
+        padding: 70px 24px;
+    }
+
+    .dls-ai-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 50px;
+    }
+
+    .dls-ai-content,
+    .dls-ai-chat-wrapper {
+        width: 100%;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .dls-ai-chat-wrapper {
+        justify-self: stretch;
+    }
+
+    .dls-ai-glow {
+        right: -100px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .dls-ai-section {
+        width: 100%;
+        padding: 50px 14px;
+    }
+
+    .dls-ai-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+    }
+
+    .dls-ai-content,
+    .dls-ai-chat-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dls-ai-title {
+        font-size: clamp(34px, 10vw, 42px);
+        line-height: 1.05;
+        letter-spacing: -0.7px;
+    }
+
+    .dls-ai-description {
+        width: 100%;
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.75;
+    }
+
+    .dls-ai-button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dls-ai-chat-wrapper {
+        overflow: visible;
+    }
+
+    .dls-ai-glow {
+        width: 180px;
+        height: 180px;
+        right: -55px;
+        top: -45px;
+        filter: blur(55px);
+    }
+
+    .dls-ai-chat {
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    .dls-chat-header {
+        padding: 13px 13px;
+    }
+
+    .dls-chat-brand {
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .dls-chat-avatar {
+        width: 44px;
+        height: 44px;
+    }
+
+    .dls-chat-brand-text {
+        min-width: 0;
+    }
+
+    .dls-chat-brand-text strong {
+        font-size: 12px;
+    }
+
+    .dls-chat-brand-text span {
+        font-size: 8px;
+        white-space: nowrap;
+    }
+
+    .dls-chat-status {
+        flex: none;
+        margin-left: 8px;
+    }
+
+    .dls-chat-body {
+        min-height: 360px;
+        max-height: 430px;
+        padding: 18px 12px;
+    }
+
+    .dls-message {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 17px;
+    }
+
+    .dls-message-ai {
+        gap: 8px;
+    }
+
+    .dls-message-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .dls-message-content {
+        flex: 1;
+        min-width: 0;
+        max-width: calc(100% - 36px);
+    }
+
+    .dls-message p {
+        width: auto;
+        max-width: 100%;
+        padding: 11px 12px;
+        font-size: 10.5px;
+        line-height: 1.65;
+    }
+
+    .dls-user-message {
+        width: 100%;
+    }
+
+    .dls-user-message p {
+        max-width: 82%;
+        font-size: 10.5px;
+        line-height: 1.55;
+        padding: 11px 12px;
+    }
+
+    .dls-options {
+        width: calc(100% - 36px);
+        max-width: calc(100% - 36px);
+        margin: 0 0 20px 36px;
+    }
+
+    .dls-options button {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 11px;
+        font-size: 9.5px;
+        line-height: 1.35;
+        gap: 8px;
+    }
+
+    .dls-options button span {
+        flex: none;
+    }
+
+    .dls-chat-input {
+        width: 100%;
+        padding: 11px 10px;
+        gap: 7px;
+    }
+
+    .dls-chat-input input {
+        width: 100%;
+        min-width: 0;
+        font-size: 11px;
+        padding: 10px 12px;
+    }
+
+    .dls-send {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+    }
+
+    .dls-chat-footer {
+        padding: 8px 10px 11px;
+        font-size: 7.5px;
+        line-height: 1.4;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .dls-ai-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dls-ai-title {
+        font-size: 33px;
+    }
+
+    .dls-chat-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dls-chat-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dls-chat-brand-text strong {
+        font-size: 11px;
+    }
+
+    .dls-chat-brand-text span {
+        font-size: 7px;
+    }
+
+    .dls-chat-body {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .dls-options {
+        width: calc(100% - 34px);
+        max-width: calc(100% - 34px);
+        margin-left: 34px;
+    }
+
+    .dls-user-message p {
+        max-width: 88%;
+    }
+}
+
+
+.dls-ai-section, .dls-ai-section *{ box-sizing:border-box; }
+.dls-ai-section{ padding-left:3vw; padding-right:3vw; }
+.dls-ai-container{ max-width:1320px; }
+/* reserva: se a imagem do robô não carregar, mostra "DLS" */
+.dls-chat-avatar, .dls-message-avatar{ position:relative; }
+.dls-avatar-fallback{ position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+  background:#DDF2F2; color:#0D9FA5; font-weight:700; font-size:11px; letter-spacing:.5px; }
+.dls-message-avatar .dls-avatar-fallback{ font-size:8px; }
+.no-img .dls-avatar-fallback{ display:flex; }
+
+/* ROBÔ em cima do chat */
+.dls-ai-robot{ position:absolute; z-index:3; width:190px; height:auto; right:36px; top:-158px;
+  filter:drop-shadow(0 18px 30px rgba(6,59,74,.18)); pointer-events:none; }
+.dls-ai-chat-wrapper{ position:relative; margin-top:150px; }
+@media (max-width:900px){
+  .dls-ai-chat-wrapper{ margin-top:0; }
+  .dls-ai-robot{ position:relative; display:block; right:auto; top:auto; width:170px; margin:0 auto -22px; }
+}
+@media (max-width:600px){ .dls-ai-robot{ width:150px; margin-bottom:-18px; } }
+</style>
+
+<section class="dls-ai-section" id="assistant" aria-label="DLS Virtual Assistant">
+
+
+<div class="dls-ai-container">
+
+
+<!-- =====================================================
+     LEFT CONTENT
+===================================================== -->
+
+<div class="dls-ai-content">
+
+
+<div class="dls-ai-eyebrow">
+DLS VIRTUAL ASSISTANT
+</div>
+
+
+<h2 class="dls-ai-title">
+
+Need help finding<br>
+
+<span>the right service?</span>
+
+</h2>
+
+
+<p class="dls-ai-description">
+
+Not sure which DLS service is right for you?
+
+Our virtual assistant can answer common questions,
+help you understand our services, and guide you
+toward requesting a free estimate.
+
+</p>
+
+
+<div class="dls-ai-features">
+
+
+<div class="dls-ai-feature">
+
+<div class="dls-ai-icon">
+✓
+</div>
+
+<div>
+
+<strong>Service Guidance</strong>
+
+<p>
+Find the cleaning or remodeling service that best fits your needs.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="dls-ai-feature">
+
+<div class="dls-ai-icon">
+?
+</div>
+
+<div>
+
+<strong>Quick Answers</strong>
+
+<p>
+Get answers to common questions before requesting your estimate.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="dls-ai-feature">
+
+<div class="dls-ai-icon">
+→
+</div>
+
+<div>
+
+<strong>Easy Next Step</strong>
+
+<p>
+When you're ready, we'll guide you toward requesting an estimate.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<a href="#quote" class="dls-ai-button">
+
+Request a Free Estimate
+
+<span>→</span>
+
+</a>
+
+
+</div>
+
+
+<!-- =====================================================
+     RIGHT — AI CHAT
+===================================================== -->
+
+<div class="dls-ai-chat-wrapper">
+
+
+<div class="dls-ai-glow"></div>
+
+<img class="dls-ai-robot" src="imagens/robo-dls.webp" alt="DLS Assistant robot" width="560" height="560" loading="lazy">
+
+
+<div class="dls-ai-chat">
+
+
+<!-- HEADER -->
+
+<div class="dls-chat-header">
+
+
+<div class="dls-chat-brand">
+
+
+<div class="dls-chat-avatar">
+
+<img
+src="imagens/robo-avatar.jpg" data-robo
+alt="DLS Virtual Assistant"
+>
+
+<span class="dls-avatar-fallback">DLS</span>
+</div>
+
+
+<div class="dls-chat-brand-text">
+
+<strong>
+DLS Assistant
+</strong>
+
+<span>
+
+<i></i>
+
+Online & ready to help
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="dls-chat-status"></div>
+
+
+</div>
+
+
+<!-- CHAT -->
+
+<div class="dls-chat-body" id="dlsChatBody">
+
+
+<!-- INITIAL MESSAGE -->
+
+<div class="dls-message dls-message-ai">
+
+
+<div class="dls-message-avatar">
+
+<img
+src="imagens/robo-avatar.jpg" data-robo
+alt="DLS Assistant"
+>
+<span class="dls-avatar-fallback">DLS</span>
+</div>
+
+
+<div class="dls-message-content">
+
+<span class="dls-message-label">
+DLS Assistant
+</span>
+
+<p>
+
+Hi! I'm the DLS Virtual Assistant.
+
+How can I help you today?
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- QUICK QUESTIONS -->
+
+<div class="dls-options">
+
+
+<button type="button" data-ask="I need cleaning">
+
+I need cleaning
+
+<span>→</span>
+
+</button>
+
+
+<button type="button" data-ask="I need handyman services">
+
+I need handyman services
+
+<span>→</span>
+
+</button>
+
+
+<button type="button" data-ask="What is included in regular cleaning?">
+
+What's included in regular cleaning?
+
+<span>→</span>
+
+</button>
+
+
+<button type="button" data-ask="How can I request an estimate?">
+
+I'd like an estimate
+
+<span>→</span>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- INPUT -->
+
+<div class="dls-chat-input">
+
+
+<input
+type="text"
+id="dlsUserInput"
+placeholder="Ask DLS Assistant..."
+autocomplete="off"
+>
+
+
+<button
+class="dls-send"
+type="button"
+aria-label="Send"
+>
+
+↑
+
+</button>
+
+
+</div>
+
+
+<div class="dls-chat-footer">
+
+DLS Services • Professional Cleaning & Handyman
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+<script>(function(){
+
+
+/* =========================================================
+   DLS ASSISTANT
+========================================================= */
+
+
+const dlsRobotImage =
+"imagens/robo-avatar.jpg";
+
+
+const dlsChatBody =
+document.getElementById("dlsChatBody");
+
+
+const dlsInput =
+document.getElementById("dlsUserInput");
+
+
+
+/* =========================================================
+   ADD USER MESSAGE
+========================================================= */
+
+function dlsAddUserMessage(text){
+
+    const message = document.createElement("div");
+
+    message.className =
+        "dls-user-message";
+
+    message.innerHTML = `
+        <p>${dlsEscape(text)}</p>
+    `;
+
+    dlsChatBody.appendChild(message);
+
+    dlsScrollBottom();
+}
+
+
+/* =========================================================
+   ADD AI MESSAGE
+========================================================= */
+
+function dlsAddAIMessage(text){
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "dls-message dls-message-ai";
+
+    message.innerHTML = `
+
+        <div class="dls-message-avatar">
+
+            <img
+            src="${dlsRobotImage}"
+            alt="DLS Assistant"
+            onerror="this.parentNode.classList.add('no-img')"
+            >
+            <span class="dls-avatar-fallback">DLS</span>
+
+        </div>
+
+
+        <div class="dls-message-content">
+
+            <span class="dls-message-label">
+            DLS Assistant
+            </span>
+
+            <p>
+            ${text}
+            </p>
+
+        </div>
+
+    `;
+
+    dlsChatBody.appendChild(message);
+
+    dlsScrollBottom();
+}
+
+
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
+
+function dlsShowTyping(){
+
+    const typing =
+        document.createElement("div");
+
+    typing.className =
+        "dls-message dls-message-ai";
+
+    typing.id =
+        "dlsTyping";
+
+    typing.innerHTML = `
+
+        <div class="dls-message-avatar">
+
+            <img
+            src="${dlsRobotImage}"
+            alt="DLS Assistant"
+            onerror="this.parentNode.classList.add('no-img')"
+            >
+            <span class="dls-avatar-fallback">DLS</span>
+
+        </div>
+
+
+        <div class="dls-message-content">
+
+            <span class="dls-message-label">
+            DLS Assistant
+            </span>
+
+            <div class="dls-typing">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    `;
+
+    dlsChatBody.appendChild(typing);
+
+    dlsScrollBottom();
+}
+
+
+function dlsRemoveTyping(){
+
+    const typing =
+        document.getElementById("dlsTyping");
+
+    if(typing){
+
+        typing.remove();
+
+    }
+}
+
+
+/* =========================================================
+   ASK QUESTION
+========================================================= */
+
+function dlsAsk(question){
+
+    dlsAddUserMessage(question);
+
+    dlsShowTyping();
+
+    setTimeout(() => {
+
+        dlsRemoveTyping();
+
+        const answer =
+            dlsGetAnswer(question);
+
+        dlsAddAIMessage(answer);
+
+    }, 700);
+
+}
+
+
+/* =========================================================
+   SEND
+========================================================= */
+
+function dlsSendMessage(){
+
+    const text =
+        dlsInput.value.trim();
+
+    if(!text) return;
+
+    dlsInput.value = "";
+
+    dlsAsk(text);
+}
+
+
+dlsInput.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+
+            e.preventDefault();
+
+            dlsSendMessage();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   RESPONSE ENGINE
+========================================================= */
+
+function dlsGetAnswer(question){
+
+    const q =
+        question
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"");
+
+
+
+    /* respostas específicas primeiro (corrige: "regular cleaning" caía na resposta genérica) */
+    if(q.includes("regular") || q.includes("included") || q.includes("what do you clean")){
+        return `Our Regular Cleaning includes dusting, making beds, vacuuming carpets and rugs, vacuuming and mopping floors, cleaning counters and sinks, exterior appliance cleaning, complete bathroom cleaning, and trash removal.<br><br>We focus on the details that help your space feel fresh and cared for.`;
+    }
+    if(q.includes("deep clean")){
+        return `Deep Cleaning includes everything from Regular Cleaning, plus more detailed attention to areas that may have been neglected — such as baseboards, blinds, ceiling fans, detailed kitchen cleaning, and detailed bathroom cleaning.<br><br>It's ideal when your home needs extra attention.`;
+    }
+    if(q.includes("commercial") || q.includes("office") || q.includes("business")){
+        return `Yes! DLS Services also provides Commercial Cleaning — workstations, common areas, cafeterias, restrooms, trash and recycling, and floor maintenance.<br><br>It can be arranged on a recurring or as-needed basis.`;
+    }
+    if(q.includes("summer kitchen") || q.includes("outdoor kitchen")){
+        return `Yes. DLS offers Summer Kitchen projects as part of our Handyman & Remodeling services.<br><br>Estimates depend on the scope, materials, design, and installation requirements.`;
+    }
+    if(q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("pricing")){
+        return `Every home and project is different, so DLS does not use one fixed price. The estimate depends on the type of service, size of the space, level of cleaning needed, materials and other project details.<br><br>The best next step is to <a href="#quote">request a free estimate</a>.`;
+    }
+
+    /* CLEANING */
+
+    if(
+        q.includes("cleaning") ||
+        q.includes("clean my house") ||
+        q.includes("house clean")
+    ){
+
+        return `
+        DLS Services offers professional cleaning
+        for residential and commercial spaces.
+
+        We offer Regular Cleaning, Deep Cleaning,
+        and Commercial Cleaning.
+
+        Would you like to request a free estimate?
+        `;
+
+    }
+
+
+    /* REGULAR CLEANING */
+
+    if(
+        q.includes("regular") ||
+        q.includes("included") ||
+        q.includes("what do you clean")
+    ){
+
+        return `
+        Our Regular Cleaning includes dusting,
+        making beds, vacuuming carpets and rugs,
+        vacuuming and mopping floors, cleaning
+        counters and sinks, exterior appliance
+        cleaning, complete bathroom cleaning,
+        and trash removal.
+
+        We focus on the details that help your
+        space feel fresh and cared for.
+        `;
+
+    }
+
+
+    /* DEEP CLEANING */
+
+    if(
+        q.includes("deep clean") ||
+        q.includes("deep cleaning")
+    ){
+
+        return `
+        Deep Cleaning includes everything from
+        Regular Cleaning, plus more detailed
+        attention to areas that may have been
+        neglected.
+
+        This can include baseboards, blinds,
+        ceiling fans, detailed kitchen cleaning,
+        and detailed bathroom cleaning.
+
+        It's ideal when your home needs extra
+        attention.
+        `;
+
+    }
+
+
+    /* COMMERCIAL */
+
+    if(
+        q.includes("commercial") ||
+        q.includes("office") ||
+        q.includes("business")
+    ){
+
+        return `
+        Yes! DLS Services also provides
+        Commercial Cleaning.
+
+        Services can include workstations,
+        common areas, cafeterias, restrooms,
+        trash and recycling, and floor
+        maintenance.
+
+        Commercial cleaning can be arranged
+        on a recurring or as-needed basis.
+        `;
+
+    }
+
+
+    /* ADD-ONS */
+
+    if(
+        q.includes("window") ||
+        q.includes("oven") ||
+        q.includes("refrigerator") ||
+        q.includes("fridge")
+    ){
+
+        return `
+        DLS offers additional cleaning services
+        such as interior window cleaning,
+        refrigerator cleaning, and oven cleaning.
+
+        These can be requested as add-ons
+        depending on your cleaning needs.
+        `;
+
+    }
+
+
+    /* FREQUENCY */
+
+    if(
+        q.includes("weekly") ||
+        q.includes("bi-weekly") ||
+        q.includes("biweekly") ||
+        q.includes("monthly") ||
+        q.includes("recurring")
+    ){
+
+        return `
+        Yes. Regular Cleaning can be arranged
+        on a recurring basis, including weekly,
+        bi-weekly, or monthly service.
+
+        Your estimate will depend on your home's
+        specific needs.
+        `;
+
+    }
+
+
+    /* PRICE */
+
+    if(
+        q.includes("price") ||
+        q.includes("cost") ||
+        q.includes("how much") ||
+        q.includes("pricing")
+    ){
+
+        return `
+        Every home and project is different,
+        so DLS does not use one fixed price.
+
+        The estimate depends on factors such as
+        the type of service, size of the space,
+        level of cleaning needed, materials,
+        difficulty, and other project details.
+
+        The best next step is to request a
+        free estimate.
+        `;
+
+    }
+
+
+    /* HANDYMAN */
+
+    if(
+        q.includes("handyman") ||
+        q.includes("remodel") ||
+        q.includes("renovation") ||
+        q.includes("repair")
+    ){
+
+        return `
+        DLS also offers Handyman & Remodeling
+        services.
+
+        Services include summer kitchens,
+        drywall, finish and texture, masonry,
+        carpentry, painting, demolition,
+        appliance installation, and general
+        handyman services.
+
+        Would you like to tell us about your project?
+        `;
+
+    }
+
+
+    /* SUMMER KITCHEN */
+
+    if(
+        q.includes("summer kitchen") ||
+        q.includes("outdoor kitchen")
+    ){
+
+        return `
+        Yes. DLS offers Summer Kitchen projects
+        as part of our Handyman & Remodeling
+        services.
+
+        Project estimates depend on the scope,
+        materials, design, and installation
+        requirements.
+        `;
+
+    }
+
+
+    /* SERVICE AREA */
+
+    if(
+        q.includes("area") ||
+        q.includes("serve") ||
+        q.includes("location") ||
+        q.includes("where")
+    ){
+
+        return `
+        Service availability depends on the
+        location and type of service.
+
+        Send us your address through the
+        estimate request and the DLS team can
+        confirm availability.
+        `;
+
+    }
+
+
+    /* APPOINTMENT */
+
+    if(
+        q.includes("appointment") ||
+        q.includes("schedule") ||
+        q.includes("book") ||
+        q.includes("booking")
+    ){
+
+        return `
+        You can request your preferred date
+        and time when submitting your estimate
+        request.
+
+        Please note that the appointment is
+        only confirmed after DLS confirms
+        availability.
+        `;
+
+    }
+
+
+    /* ESTIMATE */
+
+    if(
+        q.includes("estimate") ||
+        q.includes("quote") ||
+        q.includes("request") ||
+        q.includes("free")
+    ){
+
+        return `
+        Absolutely!
+
+        To request a free estimate, click
+        <a href="#quote">Request a Free Estimate</a> or
+        complete the quote form on this page.
+
+        DLS will review your information and
+        get back to you with the next steps.
+        `;
+
+    }
+
+
+    /* HOURS */
+
+    if(
+        q.includes("hours") ||
+        q.includes("open") ||
+        q.includes("when")
+    ){
+
+        return `
+        DLS Services operates Monday through
+        Friday, with normal service starting
+        at 8:00 AM.
+
+        You can request your preferred date
+        and time, and DLS will confirm
+        availability.
+        `;
+
+    }
+
+
+    /* GREETING */
+
+    if(
+        q.includes("hello") ||
+        /\bhi\b/.test(q) ||
+        q.includes("hey") ||
+        q.includes("good morning") ||
+        q.includes("good afternoon")
+    ){
+
+        return `
+        Hi! It's great to hear from you.
+
+        I'm here to help you learn more about
+        DLS Services.
+
+        You can ask me about cleaning,
+        handyman services, pricing, or
+        requesting an estimate.
+        `;
+
+    }
+
+
+    /* FALLBACK */
+
+    return `
+    I'd be happy to help!
+
+    I can answer questions about DLS cleaning
+    services, deep cleaning, commercial cleaning,
+    add-ons, recurring cleaning, handyman and
+    remodeling services, estimates, and
+    appointments.
+
+    If you have a specific question, just
+    type it below.
+
+    If you're ready to get started, you can
+    also request a free estimate.
+    `;
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function dlsEscape(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   AUTO SCROLL
+========================================================= */
+
+function dlsScrollBottom(){
+
+    setTimeout(() => {
+
+        dlsChatBody.scrollTo({
+
+            top:
+                dlsChatBody.scrollHeight,
+
+            behavior:"smooth"
+
+        });
+
+    },50);
+
+}
+
+
+/* botões de perguntas rápidas e enviar */
+document.querySelectorAll('#assistant [data-ask]').forEach(function(b){
+    b.addEventListener('click', function(){ dlsAsk(b.getAttribute('data-ask')); });
+});
+document.querySelector('#assistant .dls-send').addEventListener('click', dlsSendMessage);
+document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
+    img.addEventListener('error', function(){ img.parentNode.classList.add('no-img'); });
+    if (img.complete && !img.naturalWidth) img.parentNode.classList.add('no-img');
+});
+
+})();</script>
+
+
+<!-- =========================================
+     09 — REQUEST A QUOTE (ORÇAMENTO)
+========================================== -->
+<style>
+    /* =========================================================
+       DLS SERVICES — COMPACT QUOTE SECTION
+    ========================================================= */
+
+    .dls-compact-quote {
+        width: 100%;
+        background: #F8FAF9;
+        padding: 55px 3vw; /* bordas laterais iguais às outras seções */
+        box-sizing: border-box;
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-compact-quote * {
+        box-sizing: border-box;
+    }
+
+    .dls-quote-container {
+        width: 100%;
+        max-width: 1320px; /* antes 1180px */
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+       TOP AREA
+    ========================================================= */
+
+    .dls-quote-header {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 35px;
+    }
+
+    .dls-quote-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        color: #0D9FA5;
+
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2.3px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 12px;
+    }
+
+    .dls-quote-eyebrow::before,
+    .dls-quote-eyebrow::after {
+        content: "";
+
+        width: 24px;
+        height: 1px;
+
+        background: #0D9FA5;
+    }
+
+    .dls-quote-title {
+        margin: 0 0 12px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 400;
+
+        line-height: 1.05;
+    }
+
+    .dls-quote-title span {
+        color: #0D9FA5;
+    }
+
+    .dls-quote-description {
+        margin: 0;
+
+        color: #3B4F55;
+
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       MAIN LAYOUT
+    ========================================================= */
+
+    .dls-quote-main {
+        display: grid;
+
+        grid-template-columns: 0.85fr 1.15fr;
+
+        gap: 22px;
+
+        align-items: stretch;
+    }
+
+
+    /* =========================================================
+       IMAGE
+    ========================================================= */
+
+    .dls-quote-image {
+        position: relative;
+
+        min-height: 510px;
+
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #042F3B;
+    }
+
+    .dls-quote-image img {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+    }
+
+    .dls-quote-image-overlay {
+        position: absolute;
+
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+
+        padding: 17px 19px;
+
+        background: rgba(4, 47, 59, 0.88);
+
+        border-radius: 10px;
+
+        color: #FFFFFF;
+    }
+
+    .dls-quote-image-overlay small {
+        display: block;
+
+        margin-bottom: 5px;
+
+        color: #0D9FA5;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.7px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-quote-image-overlay strong {
+        display: block;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 19px;
+        font-weight: 400;
+
+        line-height: 1.2;
+    }
+
+
+    /* =========================================================
+       FORM AREA
+    ========================================================= */
+
+    .dls-quote-form-card {
+        position: relative;
+
+        background: #FFFFFF;
+
+        border: 1px solid rgba(6, 59, 74, 0.10);
+
+        border-radius: 18px;
+
+        padding: 30px;
+
+        box-shadow:
+            0 15px 45px rgba(4, 47, 59, 0.06);
+
+        overflow: hidden;
+    }
+
+
+    /* =========================================================
+       PROGRESS
+    ========================================================= */
+
+    .dls-form-progress {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 22px;
+    }
+
+    .dls-progress-step {
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color: #6E8085;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.2px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-progress-number {
+        width: 25px;
+        height: 25px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #EEF3F3;
+
+        color: #5A6D72;
+
+        font-size: 9px;
+    }
+
+    .dls-progress-step.active {
+        color: #042F3B;
+    }
+
+    .dls-progress-step.active .dls-progress-number {
+        background: #0D9FA5;
+        color: #FFFFFF;
+    }
+
+    .dls-progress-line {
+        flex: 1;
+
+        height: 1px;
+
+        background: #E4EBEC;
+
+        max-width: 80px;
+    }
+
+
+    /* =========================================================
+       SLIDER
+    ========================================================= */
+
+    .dls-form-window {
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+    .dls-form-slider {
+        display: flex;
+
+        width: 200%;
+
+        transition: transform 0.55s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    .dls-form-step {
+        width: 50%;
+
+        flex: 0 0 50%;
+    }
+
+    .dls-form-step-inner {
+        padding-right: 1px;
+    }
+
+
+    /* =========================================================
+       FORM HEADINGS
+    ========================================================= */
+
+    .dls-step-heading {
+        margin: 0 0 5px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 27px;
+        font-weight: 400;
+
+        line-height: 1.15;
+    }
+
+    .dls-step-description {
+        margin: 0 0 20px;
+
+        color: #3B4F55;
+
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       FIELDS
+    ========================================================= */
+
+    .dls-form-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .dls-form-field {
+        margin-bottom: 12px;
+    }
+
+    .dls-form-field.full {
+        grid-column: 1 / -1;
+    }
+
+    .dls-form-field label {
+        display: block;
+
+        margin-bottom: 6px;
+
+        color: #042F3B;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 0.8px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-form-field label span {
+        color: #0D9FA5;
+    }
+
+    .dls-form-field input,
+    .dls-form-field select,
+    .dls-form-field textarea {
+        width: 100%;
+
+        border: 1px solid #DDE5E6;
+
+        border-radius: 6px;
+
+        background: #FBFCFC;
+
+        color: #042F3B;
+
+        font-family: 'Montserrat', Arial, sans-serif;
+
+        font-size: 11px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+    .dls-form-field input,
+    .dls-form-field select {
+        height: 40px;
+
+        padding: 0 12px;
+    }
+
+    .dls-form-field textarea {
+        min-height: 80px;
+
+        padding: 11px 12px;
+
+        resize: vertical;
+    }
+
+    .dls-form-field input:focus,
+    .dls-form-field select:focus,
+    .dls-form-field textarea:focus {
+        border-color: #0D9FA5;
+
+        background: #FFFFFF;
+
+        box-shadow:
+            0 0 0 3px rgba(13, 159, 165, 0.08);
+    }
+
+    .dls-form-field input::placeholder,
+    .dls-form-field textarea::placeholder {
+        color: #7D8E92;
+    }
+
+    .dls-form-field input[readonly] {
+        background: #F1F5F5;
+
+        color: #5A6D72;
+    }
+
+
+    /* =========================================================
+       CLEANING DETAILS
+    ========================================================= */
+
+    .dls-cleaning-details {
+        display: none;
+
+        margin: 3px 0 13px;
+
+        padding: 13px;
+
+        background: #F4FAFA;
+
+        border: 1px solid rgba(13, 159, 165, 0.12);
+
+        border-radius: 8px;
+    }
+
+    .dls-details-title {
+        margin-bottom: 11px;
+
+        color: #0D9FA5;
+
+        font-size: 8px;
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+    }
+
+    .dls-cleaning-details .dls-form-field {
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .dls-step-buttons {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-top: 8px;
+    }
+
+    .dls-form-button {
+        border: none;
+
+        min-height: 42px;
+
+        padding: 0 20px;
+
+        border-radius: 5px;
+
+        font-family: 'Montserrat', Arial, sans-serif;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+    .dls-next-button,
+    .dls-submit-button {
+        margin-left: auto;
+
+        background: #042F3B;
+
+        color: #FFFFFF;
+    }
+
+    .dls-next-button:hover,
+    .dls-submit-button:hover {
+        background: #0D9FA5;
+    }
+
+    .dls-back-button {
+        background: transparent;
+
+        color: #3B4F55;
+
+        padding-left: 0;
+    }
+
+    .dls-back-button:hover {
+        color: #0D9FA5;
+    }
+
+
+    /* =========================================================
+       DISCLAIMER
+    ========================================================= */
+
+    .dls-form-note {
+        margin: 15px 0 0;
+
+        color: #62767B;
+
+        font-size: 8px;
+
+        line-height: 1.6;
+
+        text-align: center;
+    }
+
+
+    /* =========================================================
+       SUCCESS
+    ========================================================= */
+
+    .dls-quote-success {
+        display: none;
+
+        padding: 50px 25px;
+
+        text-align: center;
+    }
+
+    .dls-success-icon {
+        width: 48px;
+        height: 48px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #DDF2F2;
+
+        color: #0D9FA5;
+
+        font-size: 20px;
+    }
+
+    .dls-quote-success h3 {
+        margin: 0 0 8px;
+
+        color: #042F3B;
+
+        font-family: 'DM Serif Display', Georgia, serif;
+
+        font-size: 28px;
+        font-weight: 400;
+    }
+
+    .dls-quote-success p {
+        max-width: 390px;
+
+        margin: 0 auto;
+
+        color: #3B4F55;
+
+        font-size: 10px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+        .dls-compact-quote {
+            padding: 45px 18px;
+        }
+
+        .dls-quote-main {
+            grid-template-columns: 0.75fr 1.25fr;
+
+            gap: 16px;
+        }
+
+        .dls-quote-image {
+            min-height: 520px;
+        }
+
+        .dls-quote-form-card {
+            padding: 25px;
+        }
+
+        .dls-step-heading {
+            font-size: 25px;
+        }
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+        .dls-compact-quote {
+            padding: 38px 12px;
+        }
+
+        .dls-quote-header {
+            margin-bottom: 25px;
+        }
+
+        .dls-quote-title {
+            font-size: 35px;
+        }
+
+        .dls-quote-description {
+            font-size: 10px;
+
+            max-width: 330px;
+
+            margin: 0 auto;
+        }
+
+        .dls-quote-main {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+        .dls-quote-image {
+            width: 100%;
+
+            height: 190px;
+            min-height: 190px;
+
+            border-radius: 14px;
+        }
+
+        .dls-quote-image-overlay {
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+
+            padding: 11px 13px;
+        }
+
+        .dls-quote-image-overlay small {
+            font-size: 7px;
+        }
+
+        .dls-quote-image-overlay strong {
+            font-size: 16px;
+        }
+
+        .dls-quote-form-card {
+            width: 100%;
+
+            padding: 23px 18px;
+
+            border-radius: 14px;
+        }
+
+        .dls-form-progress {
+            margin-bottom: 18px;
+        }
+
+        .dls-progress-step {
+            font-size: 7px;
+        }
+
+        .dls-progress-number {
+            width: 23px;
+            height: 23px;
+        }
+
+        .dls-progress-line {
+            max-width: none;
+        }
+
+        .dls-step-heading {
+            font-size: 26px;
+        }
+
+        .dls-step-description {
+            font-size: 9px;
+
+            margin-bottom: 17px;
+        }
+
+        .dls-form-grid {
+            grid-template-columns: 1fr;
+
+            gap: 0;
+        }
+
+        .dls-form-field.full {
+            grid-column: auto;
+        }
+
+        .dls-form-field {
+            margin-bottom: 11px;
+        }
+
+        .dls-form-field input,
+        .dls-form-field select {
+            height: 44px;
+
+            font-size: 12px;
+
+            border-radius: 7px;
+        }
+
+        .dls-form-field textarea {
+            min-height: 90px;
+
+            font-size: 12px;
+
+            border-radius: 7px;
+        }
+
+        .dls-form-field label {
+            font-size: 8px;
+        }
+
+        .dls-cleaning-details {
+            padding: 11px;
+
+            margin-bottom: 11px;
+        }
+
+        .dls-step-buttons {
+            margin-top: 8px;
+        }
+
+        .dls-form-button {
+            min-height: 44px;
+
+            padding: 0 17px;
+
+            font-size: 8px;
+        }
+
+        .dls-form-note {
+            font-size: 7px;
+        }
+    }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 380px) {
+
+        .dls-quote-title {
+            font-size: 31px;
+        }
+
+        .dls-quote-image {
+            height: 170px;
+            min-height: 170px;
+        }
+
+        .dls-quote-form-card {
+            padding: 20px 15px;
+        }
+
+        .dls-step-heading {
+            font-size: 24px;
+        }
+    }
+</style>
+
+
+<section class="dls-compact-quote" id="quote">
+
+    <div class="dls-quote-container">
+
+
+        <!-- =====================================================
+             HEADER
+        ===================================================== -->
+
+        <div class="dls-quote-header">
+
+            <div class="dls-quote-eyebrow">
+                REQUEST A QUOTE
+            </div>
+
+            <h2 class="dls-quote-title">
+                Let's take care
+                <br>
+                <span>of your space.</span>
+            </h2>
+
+            <p class="dls-quote-description">
+                Tell us a little about what you need.
+                We'll review your request and get back
+                to you with the next steps.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             IMAGE + FORM
+        ===================================================== -->
+
+        <div class="dls-quote-main">
+
+
+            <!-- IMAGE -->
+
+            <div class="dls-quote-image">
+
+                <img
+                    src="imagens/orcamento.jpg"
+                    alt="DLS Services professional cleaning a wooden table"
+                    loading="lazy"
+                    style="object-position: 68% 30%;"
+                >
+
+                <div class="dls-quote-image-overlay">
+
+                    <small>
+                        DLS SERVICES
+                    </small>
+
+                    <strong>
+                        Your space deserves
+                        genuine care.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="dls-quote-form-card">
+
+
+                <!-- PROGRESS -->
+
+                <div class="dls-form-progress">
+
+                    <div
+                        class="dls-progress-step active"
+                        id="dlsProgressOne"
+                    >
+
+                        <div class="dls-progress-number">
+                            01
+                        </div>
+
+                        <span>
+                            Your Information
+                        </span>
+
+                    </div>
+
+
+                    <div class="dls-progress-line"></div>
+
+
+                    <div
+                        class="dls-progress-step"
+                        id="dlsProgressTwo"
+                    >
+
+                        <div class="dls-progress-number">
+                            02
+                        </div>
+
+                        <span>
+                            Project Details
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM WINDOW -->
+
+                <div class="dls-form-window">
+
+                    <form
+                        id="dlsQuoteForm"
+                        class="dls-form-slider"
+                    >
+
+
+                        <!-- =================================================
+                             STEP 1
+                        ================================================== -->
+
+                        <div class="dls-form-step">
+
+                            <div class="dls-form-step-inner">
+
+                                <h3 class="dls-step-heading">
+                                    Tell us about you.
+                                </h3>
+
+                                <p class="dls-step-description">
+                                    Start with your contact and property
+                                    information.
+                                </p>
+
+
+                                <!-- NAME -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            First Name <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            name="first_name"
+                                            placeholder="First name"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Last Name <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            name="last_name"
+                                            placeholder="Last name"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- CONTACT -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Email <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="you@email.com"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Phone <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="dlsPhone"
+                                            name="phone"
+                                            placeholder="(000) 000-0000"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- ADDRESS -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Street Address <span>*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        placeholder="Street address"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- ZIP / CITY / STATE -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            ZIP Code <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="dlsZip"
+                                            name="zip"
+                                            placeholder="ZIP code"
+                                            maxlength="5"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            City
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="dlsCity"
+                                            name="city"
+                                            placeholder="City"
+                                            readonly
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        State
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="dlsState"
+                                        name="state"
+                                        placeholder="State"
+                                        readonly
+                                    >
+
+                                </div>
+
+
+                                <!-- SERVICE -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Service Type <span>*</span>
+                                    </label>
+
+                                    <select
+                                        name="service_type"
+                                        id="dlsService"
+                                        required
+                                    >
+
+                                        <option
+                                            value=""
+                                            selected
+                                            disabled
+                                        >
+                                            Select a service
+                                        </option>
+
+                                        <option value="Regular Cleaning">
+                                            Regular Cleaning
+                                        </option>
+
+                                        <option value="Deep Cleaning">
+                                            Deep Cleaning
+                                        </option>
+
+                                        <option value="Commercial Cleaning">
+                                            Commercial Cleaning
+                                        </option>
+
+                                        <option value="Handyman & Remodeling">
+                                            Handyman & Remodeling
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- NEXT -->
+
+                                <div class="dls-step-buttons">
+
+                                    <button
+                                        type="button"
+                                        class="dls-form-button dls-next-button"
+                                        id="dlsNextButton"
+                                    >
+                                        Continue
+                                        <span> →</span>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             STEP 2
+                        ================================================== -->
+
+                        <div class="dls-form-step">
+
+                            <div class="dls-form-step-inner">
+
+                                <h3 class="dls-step-heading">
+                                    Tell us about the project.
+                                </h3>
+
+                                <p class="dls-step-description">
+                                    A few more details will help us
+                                    understand what you need.
+                                </p>
+
+
+                                <!-- CLEANING DETAILS -->
+
+                                <div
+                                    class="dls-cleaning-details"
+                                    id="dlsCleaningDetails"
+                                >
+
+                                    <div class="dls-details-title">
+                                        Cleaning Details
+                                    </div>
+
+
+                                    <div class="dls-form-grid">
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Bedrooms
+                                            </label>
+
+                                            <select name="bedrooms">
+
+                                                <option value="">
+                                                    Select
+                                                </option>
+
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5+</option>
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Bathrooms
+                                            </label>
+
+                                            <select name="bathrooms">
+
+                                                <option value="">
+                                                    Select
+                                                </option>
+
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4+</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="dls-form-grid">
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Approx. Square Feet
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                name="square_feet"
+                                                placeholder="e.g. 2,000"
+                                            >
+
+                                        </div>
+
+
+                                        <div class="dls-form-field">
+
+                                            <label>
+                                                Cleaning Frequency
+                                            </label>
+
+                                            <select name="frequency">
+
+                                                <option value="">
+                                                    Select frequency
+                                                </option>
+
+                                                <option>
+                                                    One-Time
+                                                </option>
+
+                                                <option>
+                                                    Weekly
+                                                </option>
+
+                                                <option>
+                                                    Bi-Weekly
+                                                </option>
+
+                                                <option>
+                                                    Monthly
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- DATE / TIME -->
+
+                                <div class="dls-form-grid">
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Preferred Date
+                                        </label>
+
+                                        <input
+                                            type="date"
+                                            name="preferred_date"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="dls-form-field">
+
+                                        <label>
+                                            Preferred Time
+                                        </label>
+
+                                        <select name="preferred_time">
+
+                                            <option value="">
+                                                Select time
+                                            </option>
+
+                                            <option>
+                                                Morning
+                                            </option>
+
+                                            <option>
+                                                Midday
+                                            </option>
+
+                                            <option>
+                                                Afternoon
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- NOTES -->
+
+                                <div class="dls-form-field">
+
+                                    <label>
+                                        Tell Us More
+                                    </label>
+
+                                    <textarea
+                                        name="notes"
+                                        placeholder="Tell us about your cleaning, repair, or remodeling needs..."
+                                    ></textarea>
+
+                                </div>
+
+
+                                <!-- BUTTONS -->
+
+                                <div class="dls-step-buttons">
+
+                                    <button
+                                        type="button"
+                                        class="dls-form-button dls-back-button"
+                                        id="dlsBackButton"
+                                    >
+                                        ← Back
+                                    </button>
+
+
+                                    <button
+                                        type="submit"
+                                        class="dls-form-button dls-submit-button"
+                                    >
+                                        Request Estimate
+                                        <span> →</span>
+                                    </button>
+
+                                </div>
+
+
+                                <p class="dls-form-note">
+                                    Estimates are personalized based on
+                                    the scope and details of each project.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- =================================================
+                         SUCCESS
+                    ================================================== -->
+
+                    <div
+                        class="dls-quote-success"
+                        id="dlsQuoteSuccess"
+                    >
+
+                        <div class="dls-success-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            Request Received
+                        </h3>
+
+                        <p>
+                            Thank you for contacting DLS Services.
+                            Our team will review your request and
+                            get back to you with the next steps.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+(function () {
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const dlsQuoteForm =
+        document.getElementById("dlsQuoteForm");
+
+    const dlsNextButton =
+        document.getElementById("dlsNextButton");
+
+    const dlsBackButton =
+        document.getElementById("dlsBackButton");
+
+    const dlsProgressOne =
+        document.getElementById("dlsProgressOne");
+
+    const dlsProgressTwo =
+        document.getElementById("dlsProgressTwo");
+
+    const dlsQuoteSuccess =
+        document.getElementById("dlsQuoteSuccess");
+
+    const dlsPhone =
+        document.getElementById("dlsPhone");
+
+    const dlsZip =
+        document.getElementById("dlsZip");
+
+    const dlsCity =
+        document.getElementById("dlsCity");
+
+    const dlsState =
+        document.getElementById("dlsState");
+
+    const dlsService =
+        document.getElementById("dlsService");
+
+    const dlsCleaningDetails =
+        document.getElementById("dlsCleaningDetails");
+
+
+    /* =========================================================
+       PHONE MASK
+    ========================================================= */
+
+    dlsPhone.addEventListener(
+        "input",
+        function(event) {
+
+            let value =
+                event.target.value
+                .replace(/\D/g, "")
+                .slice(0, 10);
+
+
+            if (value.length > 6) {
+
+                event.target.value =
+                    "(" +
+                    value.substring(0, 3) +
+                    ") " +
+                    value.substring(3, 6) +
+                    "-" +
+                    value.substring(6);
+
+            } else if (value.length > 3) {
+
+                event.target.value =
+                    "(" +
+                    value.substring(0, 3) +
+                    ") " +
+                    value.substring(3);
+
+            } else {
+
+                event.target.value = value;
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       ZIP CODE LOOKUP
+    ========================================================= */
+
+    dlsZip.addEventListener(
+        "input",
+        async function(event) {
+
+            let zip =
+                event.target.value
+                .replace(/\D/g, "")
+                .slice(0, 5);
+
+
+            event.target.value = zip;
+
+
+            if (zip.length === 5) {
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `https://api.zippopotam.us/us/${zip}`
+                        );
+
+
+                    if (response.ok) {
+
+                        const data =
+                            await response.json();
+
+
+                        dlsCity.value =
+                            data.places[0]["place name"];
+
+
+                        dlsState.value =
+                            data.places[0]["state abbreviation"];
+
+                    }
+
+                } catch (error) {
+
+                    console.log(
+                        "ZIP lookup unavailable."
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       SHOW CLEANING DETAILS
+    ========================================================= */
+
+    function updateDlsCleaningDetails() {
+
+        const service =
+            dlsService.value;
+
+
+        if (
+            service === "Regular Cleaning" ||
+            service === "Deep Cleaning"
+        ) {
+
+            dlsCleaningDetails.style.display =
+                "block";
+
+        } else {
+
+            dlsCleaningDetails.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    dlsService.addEventListener(
+        "change",
+        updateDlsCleaningDetails
+    );
+
+
+    /* =========================================================
+       VALIDATE STEP 1
+    ========================================================= */
+
+    function validateStepOne() {
+
+        const stepOne =
+            document.querySelector(
+                ".dls-form-step:first-child"
+            );
+
+
+        const requiredFields =
+            stepOne.querySelectorAll(
+                "input[required], select[required]"
+            );
+
+
+        let valid = true;
+
+
+        requiredFields.forEach(
+            function(field) {
+
+                if (!field.checkValidity()) {
+
+                    field.reportValidity();
+
+                    valid = false;
+
+                }
+
+            }
+        );
+
+
+        return valid;
+
+    }
+
+
+    /* =========================================================
+       GO TO STEP 2
+    ========================================================= */
+
+    dlsNextButton.addEventListener(
+        "click",
+        function() {
+
+            if (!validateStepOne()) {
+                return;
+            }
+
+
+            dlsQuoteForm.style.transform =
+                "translateX(-50%)";
+
+
+            dlsProgressOne.classList.remove(
+                "active"
+            );
+
+
+            dlsProgressTwo.classList.add(
+                "active"
+            );
+
+
+            /*
+                Keep the second step at the
+                user's viewport position.
+            */
+
+            document
+                .querySelector(".dls-quote-form-card")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+        }
+    );
+
+
+    /* =========================================================
+       BACK TO STEP 1
+    ========================================================= */
+
+    dlsBackButton.addEventListener(
+        "click",
+        function() {
+
+            dlsQuoteForm.style.transform =
+                "translateX(0)";
+
+
+            dlsProgressTwo.classList.remove(
+                "active"
+            );
+
+
+            dlsProgressOne.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       SUBMIT
+    ========================================================= */
+
+    dlsQuoteForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            /*
+                Connect this form to your Wix Form,
+                CRM, Jotform, Make, Zapier,
+                Google Sheets or webhook.
+
+                The current code only shows
+                the success state.
+            */
+
+
+            dlsQuoteForm.style.display =
+                "none";
+
+
+            document.querySelector(
+                ".dls-form-progress"
+            ).style.display = "none";
+
+
+            dlsQuoteSuccess.style.display =
+                "block";
+
+        }
+    );
+
+})();
+</script>
+
+
+<!-- =========================================
+     10 — RODAPÉ
+========================================== -->
+<style>
+/* =========================================
+   RODAPÉ
+========================================= */
+.dls-footer{ background:#042F3B; color:#fff; font-family:'Montserrat',Arial,sans-serif; }
+.dls-footer *{ box-sizing:border-box; margin:0; padding:0; }
+.ft-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; }
+
+/* faixa de chamada */
+.ft-cta{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  padding:44px 0; border-bottom:1px solid rgba(255,255,255,.10); }
+.ft-cta h2{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(28px,3.2vw,42px); line-height:1.1; }
+.ft-cta h2 span{ color:#5FD3D7; }
+.ft-cta-btn{ display:inline-flex; align-items:center; gap:12px; min-height:52px; padding:0 26px; background:#0D9FA5; color:#fff;
+  text-decoration:none; border-radius:6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; transition:.25s ease; }
+.ft-cta-btn:hover{ background:#fff; color:#042F3B; }
+
+/* colunas */
+.ft-grid{ display:grid; grid-template-columns:1.4fr 1fr 1.1fr 1.3fr; gap:48px; padding:52px 0 44px; }
+.ft-logo img{ height:64px; width:auto; display:block; filter:brightness(0) invert(1); }
+.ft-about{ margin-top:18px; font-size:14px; line-height:1.8; color:rgba(255,255,255,.78); max-width:340px; }
+.ft-social{ display:flex; gap:10px; margin-top:22px; }
+.ft-social a{ width:42px; height:42px; border-radius:50%; display:grid; place-items:center; color:#fff;
+  border:1px solid rgba(255,255,255,.25); transition:.25s ease; }
+.ft-social a:hover{ background:#0D9FA5; border-color:#0D9FA5; }
+.ft-social svg{ width:18px; height:18px; }
+
+.ft-title{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#5FD3D7; margin-bottom:18px; }
+.ft-list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+.ft-list a, .ft-list span{ color:rgba(255,255,255,.82); text-decoration:none; font-size:14px; line-height:1.5; transition:color .2s ease; }
+.ft-list a:hover{ color:#fff; }
+.ft-contact li{ display:flex; gap:12px; align-items:flex-start; }
+.ft-contact svg{ width:18px; height:18px; flex:none; margin-top:1px; color:#5FD3D7; }
+
+/* barra final */
+.ft-bottom{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  padding:22px 0 26px; border-top:1px solid rgba(255,255,255,.10); font-size:12.5px; color:rgba(255,255,255,.65); }
+.ft-bottom a{ color:rgba(255,255,255,.8); text-decoration:none; }
+.ft-bottom a:hover{ color:#fff; }
+
+@media (max-width:1000px){
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:40px 32px; }
+}
+@media (max-width:600px){
+  .ft-wrap{ padding:0 18px; }
+  .ft-cta{ padding:36px 0; }
+  .ft-cta-btn{ width:100%; justify-content:center; }
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:34px 20px; padding:40px 0 34px; }
+  .ft-brand, .ft-contact-col{ grid-column:1 / -1; }
+  .ft-bottom{ flex-direction:column; text-align:center; }
+}
+</style>
+
+<footer class="dls-footer" id="contact">
+  <div class="ft-wrap">
+
+    <div class="ft-cta">
+      <h2>Ready for a cleaner,<br><span>better-kept space?</span></h2>
+      <a class="ft-cta-btn" href="#quote">Request a Free Estimate <span>→</span></a>
+    </div>
+
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="ft-logo" href="#top"><img src="imagens/logo-header.png" alt="DLS Services" width="520" height="329" loading="lazy"></a>
+        <p class="ft-about">Professional cleaning and handyman &amp; remodeling services — delivered with attention to detail and genuine care for your space.</p>
+        <div class="ft-social">
+          <a data-contact="phone" href="#contact" aria-label="Call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          </a>
+          <a data-contact="email" href="#contact" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+          <a data-contact="instagram" href="#contact" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-title">Quick Links</div>
+        <ul class="ft-list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#quote">Free Estimate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-title">Services</div>
+        <ul class="ft-list">
+          <li><a href="#services">Regular Cleaning</a></li>
+          <li><a href="#services">Deep Cleaning</a></li>
+          <li><a href="#services">Commercial Cleaning</a></li>
+          <li><a href="#handyman">Handyman &amp; Remodeling</a></li>
+          <li><a href="#gallery">Summer Kitchens</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-contact-col">
+        <div class="ft-title">Contact</div>
+        <ul class="ft-list ft-contact">
+          <li data-show="phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <a data-contact="phone" data-text="phone" href="#contact"></a>
+          </li>
+          <li data-show="email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            <a data-contact="email" data-text="email" href="#contact"></a>
+          </li>
+          <li data-show="instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+            <a data-contact="instagram" data-text="instagram" href="#contact" target="_blank" rel="noopener"></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Monday – Friday<br>Starting at 8:00 AM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ft-bottom">
+      <span>© <span id="ftYear">2026</span> DLS Services. All rights reserved.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONTATOS DA DLS — PREENCHA AQUI (vale para o menu e o rodapé)
+   Deixe vazio ('') o que não tiver: o ícone leva ao rodapé e o texto some.
+========================================================= */
+var DLS_CONTACT = {
+  phone:     '',   // ex.: '(407) 555-1234'
+  email:     '',   // ex.: 'contact@dlsservices.com'
+  instagram: ''    // ex.: 'dlsservices'  (só o @, sem https)
+};
+
+(function(){
+  var c = DLS_CONTACT;
+  var links = {
+    phone:     c.phone ? 'tel:+1' + c.phone.replace(/\D/g,'').replace(/^1(?=\d{10}$)/,'') : '',
+    email:     c.email ? 'mailto:' + c.email : '',
+    instagram: c.instagram ? 'https://www.instagram.com/' + c.instagram.replace(/^@/,'') : ''
+  };
+  var texts = { phone:c.phone, email:c.email, instagram:c.instagram ? '@' + c.instagram.replace(/^@/,'') : '' };
+  document.querySelectorAll('[data-contact]').forEach(function(a){
+    var k = a.getAttribute('data-contact');
+    if (links[k]) a.setAttribute('href', links[k]); else { a.setAttribute('href', '#quote'); a.removeAttribute('target'); }
+    if (a.hasAttribute('data-text')) a.textContent = texts[k] || '';
+  });
+  document.querySelectorAll('[data-show]').forEach(function(li){
+    if (!c[li.getAttribute('data-show')]) li.style.display = 'none';
+  });
+  var y = document.getElementById('ftYear'); if (y) y.textContent = new Date().getFullYear();
+
+  /* menu: sombra ao rolar, abrir/fechar no celular, link ativo */
+  var header = document.querySelector('.dls-header');
+  var burger = header && header.querySelector('.hd-burger');
+  if (!header) return;
+  window.addEventListener('scroll', function(){ header.classList.toggle('scrolled', window.scrollY > 10); }, { passive:true });
+  burger.addEventListener('click', function(){
+    var open = header.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  header.querySelectorAll('.hd-mobile a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      /* fecha o menu primeiro e só depois rola até a seção (evita parar no lugar errado) */
+      var target = document.querySelector(a.getAttribute('href'));
+      header.classList.remove('open'); burger.setAttribute('aria-expanded','false');
+      if (target){ e.preventDefault(); setTimeout(function(){ target.scrollIntoView({ behavior:'smooth', block:'start' }); }, 360); }
+    });
+  });
+  var navLinks = header.querySelectorAll('.hd-nav a');
+  var targets = ['about','services','handyman','contact'].map(function(id){ return document.getElementById(id); });
+  function setActive(){
+    var current = 'top', y = window.scrollY + 140;
+    targets.forEach(function(el){ if (el && el.getBoundingClientRect().top + window.scrollY <= y) current = el.id; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = 'contact';
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', setActive, { passive:true }); setActive();
+})();
+</script>
+
+<!-- =========================================
+     AJUSTE GERAL DE LEITURA (vale para o site todo)
+     Textos de corpo maiores e mais legíveis.
+     Para mudar tudo de uma vez, edite só este bloco.
+========================================== -->
+<style>
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+
+/* HERO */
+.dls-description{ font-size:16px !important; line-height:1.75 !important; color:#3B4F55; }
+.dls-eyebrow{ font-size:12px; }
+.dls-badge{ font-size:11px; }
+.dls-btn{ font-size:12px; }
+
+/* ABOUT */
+.dls-about-text{ font-size:15px !important; line-height:1.85 !important; }
+.dls-about-eyebrow{ font-size:11px !important; }
+.dls-about-quote{ font-size:20px !important; }
+
+/* SERVICES */
+.svc-intro-copy{ font-size:15px !important; }
+.svc-card-description{ font-size:14px !important; line-height:1.7 !important; }
+.svc-learn{ font-size:11px !important; }
+.svc-card-number{ font-size:11px !important; }
+.svc-all-services a{ font-size:11px !important; }
+.svc-swipe-hint{ font-size:11px !important; }
+
+/* GALLERY */
+.gal-intro{ font-size:15px !important; }
+.gal-note{ font-size:13px !important; }
+.gal-badge{ font-size:10px !important; }
+.gal-proof-item{ font-size:12px !important; }
+
+/* ANTES E DEPOIS */
+.dba-slide-text{ font-size:15px !important; line-height:1.8 !important; }
+.dba-slide-eyebrow{ font-size:11px !important; }
+.dba-slide-button{ font-size:11px !important; }
+.dba-before-after-label{ font-size:10px !important; }
+
+/* REVIEWS */
+.rv-intro{ font-size:15px !important; }
+.rv-google-sub, .rv-promise p{ font-size:14px !important; color:rgba(255,255,255,.82) !important; }
+.rv-cta p{ font-size:14px !important; }
+
+/* ASSISTENTE */
+.dls-ai-description{ font-size:15px !important; }
+.dls-ai-feature strong{ font-size:14px !important; }
+.dls-ai-feature p{ font-size:13px !important; }
+.dls-ai-eyebrow{ font-size:11px !important; }
+.dls-ai-button{ font-size:11px !important; }
+.dls-message p{ font-size:13.5px !important; color:#3B4F55 !important; }
+.dls-user-message p{ font-size:13.5px !important; }
+.dls-message-label{ font-size:9.5px !important; }
+.dls-options button{ font-size:13px !important; }
+.dls-chat-input input{ font-size:14px !important; }
+.dls-chat-brand-text span{ font-size:11px !important; color:rgba(255,255,255,.82) !important; }
+.dls-chat-footer{ font-size:10px !important; }
+.dls-message a{ color:#0D9FA5; font-weight:600; }
+
+/* ORÇAMENTO (formulário) */
+.dls-quote-description{ font-size:14px !important; }
+.dls-quote-eyebrow{ font-size:11px !important; }
+.dls-step-description{ font-size:13px !important; }
+.dls-form-field label{ font-size:10px !important; }
+.dls-form-field input, .dls-form-field select, .dls-form-field textarea{ font-size:14px !important; }
+.dls-progress-step{ font-size:10px !important; }
+.dls-form-button{ font-size:11px !important; }
+.dls-form-note{ font-size:11px !important; }
+.dls-details-title{ font-size:10px !important; }
+.dls-quote-success p{ font-size:14px !important; }
+.dls-quote-image-overlay small{ font-size:10px !important; }
+
+
+/* BANNER NO CELULAR: espaço para o texto maior sem encostar nas setas */
+@media (max-width:520px){
+  .dls-slider, .dls-hero{ min-height:800px !important; }
+  .dls-slide{ grid-template-rows:290px 1fr !important; }
+  .dls-copy{ padding-bottom:96px !important; }
+}
+/* espaço do assistente igual às outras seções */
+.dls-ai-section{ padding-top:70px !important; padding-bottom:70px !important; }
+@media (max-width:600px){ .dls-ai-section{ padding-top:48px !important; padding-bottom:48px !important; } }
+
+/* CELULAR: nada de texto de corpo abaixo de 14px; campos com 16px (evita o zoom automático do iPhone) */
+@media (max-width:650px){
+  .dls-description, .dls-about-text, .dba-slide-text, .dls-ai-description{ font-size:15px !important; }
+  .svc-card-description, .gal-intro, .svc-intro-copy, .rv-intro, .rv-promise p, .rv-google-sub,
+  .rv-cta p, .dls-quote-description, .dls-step-description, .dls-ai-feature p{ font-size:14px !important; }
+  .dls-message p, .dls-user-message p, .dls-options button{ font-size:14px !important; }
+  .dls-form-field input, .dls-form-field select, .dls-form-field textarea, .dls-chat-input input{ font-size:16px !important; }
+  .dls-form-field label, .dls-progress-step{ font-size:10px !important; }
+  .dls-form-note{ font-size:11px !important; }
+  .dls-chat-brand-text span{ font-size:10px !important; }
+  .gal-proof-item{ font-size:11px !important; }
+}
+</style>
+
+</body>
+</html>

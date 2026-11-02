@@ -1,0 +1,23 @@
+<style>
+/* =========================================
+   04 — IMAGEM LARGA (ocupa a tela toda na horizontal)
+========================================= */
+.dls-faixa{
+  width:100%;
+  height:clamp(260px, 38vw, 520px); /* altura: mínimo 260px, máximo 520px */
+  overflow:hidden;
+  background:#DDF2F2;
+}
+.dls-faixa img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+</style>
+
+<!-- 04 — IMAGEM LARGA: coloque o arquivo em imagens/faixa.jpg -->
+<section class="dls-faixa" aria-label="DLS Services">
+  <img src="imagens/faixa.jpg" alt="DLS Services" loading="lazy" onerror="this.closest('section').style.display='none'">
+</section>

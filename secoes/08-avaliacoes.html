@@ -1,0 +1,166 @@
+<style>
+/* =========================================
+   AVALIAÇÕES (REVIEWS) — novo design
+========================================= */
+.dls-reviews{
+  --navy:#063B4A; --deep:#042F3B; --teal:#0D9FA5; --soft:#DDF2F2; --text:#53656A; --line:#E4EBEA;
+  background:#FFFFFF;
+  padding:64px 3vw 70px;
+  font-family:'Montserrat',Arial,sans-serif;
+  color:var(--navy);
+  box-sizing:border-box;
+}
+.dls-reviews *{ box-sizing:border-box; margin:0; padding:0; }
+.rv-wrap{ max-width:1320px; margin:0 auto; }
+
+/* Cabeçalho */
+.rv-head{ display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:end; margin-bottom:34px; }
+.rv-eyebrow{ display:flex; align-items:center; gap:12px; color:var(--teal); font-size:11px; font-weight:700; letter-spacing:2.2px; text-transform:uppercase; margin-bottom:14px; }
+.rv-eyebrow::before{ content:""; width:34px; height:2px; background:var(--teal); }
+.rv-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(38px,4.4vw,60px); line-height:1.02; letter-spacing:-1px; }
+.rv-title span{ color:var(--teal); }
+.rv-intro{ color:var(--text); font-size:14px; line-height:1.85; max-width:520px; }
+
+/* Faixa principal escura */
+.rv-band{
+  position:relative; overflow:hidden;
+  display:grid; grid-template-columns:1.15fr 1fr 1fr 1fr;
+  background:var(--deep); color:#fff; border-radius:22px;
+}
+.rv-band::before{ /* círculo decorativo */
+  content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.08); right:-120px; top:-170px; pointer-events:none;
+}
+.rv-google{ padding:38px 36px; border-right:1px solid rgba(255,255,255,.10); display:flex; flex-direction:column; justify-content:center; }
+.rv-google-label{ font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.rv-stars{ color:#F5C451; font-size:26px; letter-spacing:4px; margin:10px 0 6px; line-height:1; }
+.rv-google-text{ font-family:'DM Serif Display',Georgia,serif; font-size:24px; line-height:1.2; }
+.rv-google-sub{ font-size:12px; line-height:1.7; color:rgba(255,255,255,.7); margin-top:8px; max-width:300px; }
+
+.rv-promise{ padding:38px 30px; border-right:1px solid rgba(255,255,255,.10); }
+.rv-promise:last-child{ border-right:none; }
+.rv-promise-icon{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:rgba(13,159,165,.18); color:#5FD3D7; font-size:18px; margin-bottom:18px; }
+.rv-promise h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:22px; line-height:1.15; margin-bottom:8px; }
+.rv-promise p{ font-size:12px; line-height:1.7; color:rgba(255,255,255,.68); }
+
+/* Cards de avaliações reais (aparecem quando tiverem texto) */
+.rv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px; }
+.rv-grid:not(:has(.rv-card:not([hidden]))){ display:none; } /* sem avaliações = esconde a área */
+.rv-card{ background:#F8FAF9; border:1px solid var(--line); border-radius:18px; padding:28px; display:flex; flex-direction:column; position:relative; }
+.rv-card::before{ content:"“"; position:absolute; top:6px; right:22px; font-family:'DM Serif Display',Georgia,serif; font-size:90px; line-height:1; color:var(--soft); }
+.rv-card-stars{ color:#F5C451; font-size:14px; letter-spacing:2px; margin-bottom:14px; }
+.rv-card-text{ font-family:'DM Serif Display',Georgia,serif; font-size:19px; line-height:1.4; color:var(--navy); flex:1; position:relative; }
+.rv-author{ display:flex; align-items:center; gap:11px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line); }
+.rv-avatar{ width:38px; height:38px; border-radius:50%; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:13px; font-weight:700; }
+.rv-author b{ display:block; font-size:12px; font-weight:700; color:var(--navy); }
+.rv-author small{ display:block; font-size:10px; color:#89979A; margin-top:2px; }
+
+/* Chamada final */
+.rv-cta{ margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  background:var(--soft); border-radius:18px; padding:26px 32px; }
+.rv-cta h3{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:26px; line-height:1.15; color:var(--navy); }
+.rv-cta p{ font-size:12px; color:var(--text); margin-top:5px; }
+.rv-buttons{ display:flex; gap:10px; flex-wrap:wrap; }
+.rv-btn{ display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 22px; border-radius:6px; text-decoration:none;
+  font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; transition:.25s ease; }
+.rv-btn-dark{ background:var(--deep); color:#fff; border:1px solid var(--deep); }
+.rv-btn-dark:hover{ background:var(--teal); border-color:var(--teal); }
+.rv-btn-line{ background:#fff; color:var(--deep); border:1px solid rgba(4,47,59,.18); }
+.rv-btn-line:hover{ border-color:var(--teal); color:var(--teal); }
+
+/* Tablet */
+@media(max-width:1000px){
+  .rv-head{ grid-template-columns:1fr; gap:16px; }
+  .rv-band{ grid-template-columns:1fr 1fr 1fr; }
+  .rv-google{ grid-column:1 / -1; border-right:none; border-bottom:1px solid rgba(255,255,255,.10); }
+  .rv-grid{ grid-template-columns:1fr 1fr; }
+}
+/* Celular */
+@media(max-width:650px){
+  .dls-reviews{ padding:44px 12px 50px; }
+  .rv-band{ grid-template-columns:1fr; border-radius:18px; }
+  .rv-google{ padding:30px 24px; }
+  .rv-promise{ padding:22px 24px; border-right:none; border-bottom:1px solid rgba(255,255,255,.10);
+    display:grid; grid-template-columns:44px 1fr; gap:0 14px; align-items:start; }
+  .rv-promise:last-child{ border-bottom:none; }
+  .rv-promise-icon{ margin-bottom:0; grid-row:span 2; }
+  .rv-promise h3{ font-size:20px; margin-bottom:4px; }
+  .rv-grid{ grid-template-columns:1fr; gap:12px; }
+  .rv-cta{ padding:24px 20px; }
+  .rv-buttons, .rv-btn{ width:100%; justify-content:center; }
+}
+</style>
+
+<section class="dls-reviews" id="reviews" aria-label="Client reviews">
+  <div class="rv-wrap">
+
+    <div class="rv-head">
+      <div>
+        <div class="rv-eyebrow">Client Reviews</div>
+        <h2 class="rv-title">Trusted by the<br><span>People We Serve.</span></h2>
+      </div>
+      <p class="rv-intro">
+        Every job is a chance to earn our clients' trust — with reliable service,
+        attention to detail and an experience they can feel confident about.
+      </p>
+    </div>
+
+    <div class="rv-band">
+      <div class="rv-google">
+        <div class="rv-google-label">Reviews on Google</div>
+        <div class="rv-stars" aria-hidden="true">★★★★★</div>
+        <div class="rv-google-text">See what our clients say about us.</div>
+        <p class="rv-google-sub">Real feedback from homeowners and businesses we've served.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">◷</div>
+        <h3>On Time &amp; Reliable</h3>
+        <p>We show up when we say we will and finish what we start.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">✦</div>
+        <h3>Detail-Focused Work</h3>
+        <p>Every corner checked, every surface cared for — visit after visit.</p>
+      </div>
+      <div class="rv-promise">
+        <div class="rv-promise-icon">✓</div>
+        <h3>Clear Communication</h3>
+        <p>Straight answers, honest estimates and no surprises.</p>
+      </div>
+    </div>
+
+    <!-- AVALIAÇÕES REAIS: copie o texto de uma avaliação do Google, troque nome/iniciais
+         e APAGUE a palavra "hidden" do card para ele aparecer.
+         Enquanto todos estiverem com "hidden", esta área fica escondida. -->
+    <div class="rv-grid">
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">AB</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">CD</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+      <article class="rv-card" hidden>
+        <div class="rv-card-stars">★★★★★</div>
+        <p class="rv-card-text">Texto da avaliação real aqui.</p>
+        <div class="rv-author"><span class="rv-avatar">EF</span><div><b>Nome do Cliente</b><small>Google Review</small></div></div>
+      </article>
+    </div>
+
+    <div class="rv-cta">
+      <div>
+        <h3>Worked with us recently?</h3>
+        <p>Your review helps other families and businesses choose with confidence.</p>
+      </div>
+      <div class="rv-buttons">
+        <!-- Os dois botões abrem o perfil da DLS no Google -->
+        <a class="rv-btn rv-btn-line" href="https://share.google/36vPb43xz5mpIJVYI" target="_blank" rel="noopener">Read Our Reviews</a>
+        <a class="rv-btn rv-btn-dark" href="https://share.google/36vPb43xz5mpIJVYI" target="_blank" rel="noopener">Leave a Google Review <span>→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLS Services — Hero Slider</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #063B4A;
+  --teal: #0D9FA5;
+  --soft-teal: #DDF2F2;
+  --off-white: #F8FAF9;
+  --white: #FFFFFF;
+  --text: #53656A;
+
+  /* ===== AJUSTE DE ESPAÇOS (mude só estes números) ===== */
+  --hero-altura: 580px;      /* altura do banner no computador (antes 680px) */
+  --margem-lateral: 5vw;     /* espaço do texto até a borda esquerda (antes 7vw) */
+  --espaco-topo: 40px;       /* espaço acima do texto (antes 70px) */
+  --espaco-baixo: 95px;      /* espaço abaixo do texto (antes 120px) */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--off-white);
+  color: var(--navy);
+}
+
+.dls-hero {
+  position: relative;
+  width: 100%;
+  min-height: var(--hero-altura);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.dls-slider {
+  position: relative;
+  min-height: var(--hero-altura);
+  padding-top: 0;
+}
+
+.dls-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(25px);
+  transition: opacity .75s ease, transform .9s ease, visibility .75s ease;
+}
+
+.dls-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.dls-copy {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-baixo) var(--margem-lateral);
+  background: var(--white);
+}
+
+.dls-copy-inner {
+  max-width: 570px;
+}
+
+.dls-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.dls-eyebrow::before {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background: var(--teal);
+}
+
+.dls-title {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: clamp(44px, 4.4vw, 72px);
+  line-height: .98;
+  letter-spacing: -.025em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.dls-title span { color: var(--teal); }
+
+.dls-description {
+  max-width: 510px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 34px;
+}
+
+.dls-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dls-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: all .25s ease;
+}
+
+.dls-btn-primary {
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid var(--teal);
+}
+
+.dls-btn-primary:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.dls-btn-secondary {
+  color: var(--teal);
+  background: transparent;
+  border: 1px solid var(--teal);
+}
+
+.dls-btn-secondary:hover {
+  background: var(--soft-teal);
+  transform: translateY(-2px);
+}
+
+.dls-image {
+  position: relative;
+  overflow: hidden;
+  background: #dfe9e8;
+}
+
+.dls-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(6,59,74,.12) 0%, rgba(6,59,74,0) 35%);
+  pointer-events: none;
+}
+
+.dls-image img,
+.dls-image video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.01);
+}
+
+.dls-slide.active .dls-image img,
+.dls-slide.active .dls-image video {
+  animation: dlsZoom 12s ease forwards;
+}
+
+@keyframes dlsZoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.08); }
+}
+
+.dls-badges {
+  position: absolute;
+  z-index: 10;
+  left: var(--margem-lateral);
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.dls-badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.dls-badge-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(13,159,165,.45);
+  border-radius: 50%;
+  color: var(--teal);
+  font-size: 13px;
+}
+
+.dls-controls {
+  position: absolute;
+  z-index: 30;
+  right: 4.2%;
+  bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dls-count {
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  background: rgba(255,255,255,.9); /* fundinho claro: lê bem sobre vídeo escuro */
+  padding: 7px 12px;
+  border-radius: 20px;
+}
+
+.dls-line {
+  width: 105px;
+  height: 2px;
+  background: rgba(255,255,255,.75);
+  overflow: hidden;
+}
+
+.dls-line-progress {
+  width: 50%;
+  height: 100%;
+  background: var(--teal);
+  transition: transform .4s ease;
+}
+
+.dls-arrow {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(6,59,74,.16);
+  background: rgba(255,255,255,.9);
+  color: var(--navy);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all .25s ease;
+}
+
+.dls-arrow:hover {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+}
+
+.dls-division {
+  position: absolute;
+  z-index: 10;
+  right: 4.2%;
+  top: 112px;
+  padding: 8px 13px;
+  background: rgba(255,255,255,.92);
+  color: var(--navy);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.dls-mobile-nav { display: none; }
+
+/* Telas médias: esconde o 3º selo para não invadir o vídeo */
+@media (max-width: 1150px) {
+  .dls-badges { gap: 18px; }
+  .dls-badge:nth-child(3) { display: none; }
+}
+
+@media (max-width: 900px) {
+  .dls-slider, .dls-hero { min-height: 700px; }
+  .dls-slide {
+    inset: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 55% 45%;
+  }
+  .dls-copy {
+    order: 2;
+    padding: 28px var(--margem-lateral) 90px;
+    align-items: flex-start;
+  }
+  .dls-image {
+    order: 1;
+  }
+  .dls-title { font-size: clamp(42px, 10vw, 64px); }
+  .dls-description { font-size: 13px; line-height: 1.65; margin-bottom: 22px; }
+  .dls-badges { display: none; }
+  .dls-controls { right: var(--margem-lateral); bottom: 25px; }
+  .dls-division { top: 18px; right: var(--margem-lateral); }
+}
+
+@media (max-width: 520px) {
+  .dls-slider, .dls-hero { min-height: 680px; }
+  .dls-slide { grid-template-rows: 43% 57%; }
+  .dls-copy { padding-top: 22px; }
+  .dls-eyebrow { font-size: 9px; margin-bottom: 13px; }
+  .dls-title { font-size: 43px; }
+  .dls-actions { gap: 8px; }
+  .dls-btn { width: 100%; min-height: 46px; }
+  .dls-controls { bottom: 18px; }
+  .dls-line { width: 65px; }
+}
+</style>
+</head>
+
+<body>
+
+<section class="dls-hero" aria-label="DLS Services hero">
+
+
+
+  <div class="dls-slider">
+
+    <!-- CLEANING SLIDE -->
+    <article class="dls-slide active" data-slide="0">
+      <div class="dls-copy">
+        <div class="dls-copy-inner">
+          <div class="dls-eyebrow">Professional Cleaning Services</div>
+
+          <h1 class="dls-title">
+            Elevated Cleaning.<br>
+            <span>Exceptional Living.</span>
+          </h1>
+
+          <p class="dls-description">
+            Reliable, detail-oriented cleaning solutions for homes,
+            businesses and spaces that deserve professional care.
+          </p>
+
+          <div class="dls-actions">
+            <a href="#quote" class="dls-btn dls-btn-primary">
+              Request a Free Estimate
+            </a>
+            <a href="#cleaning" class="dls-btn dls-btn-secondary">
+              Explore Cleaning
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dls-image">
+        <!-- VÍDEO HOUSE CLEANING (Magnific: pressure water machine) -->
+        <video
+          class="dls-video"
+          src="videos/house-cleaning.mp4"
+          poster="videos/poster-cleaning.jpg"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="House cleaning video"
+        ></video>
+      </div>
+
+      <div class="dls-badges">
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✓</span>
+          7+ Years Experience
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✦</span>
+          Attention to Detail
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">♡</span>
+          Customer Focused
+        </div>
+      </div>
+
+      <div class="dls-division">01 · Cleaning Services</div>
+    </article>
+
+    <!-- HANDYMAN SLIDE -->
+    <article class="dls-slide" data-slide="1">
+      <div class="dls-copy">
+        <div class="dls-copy-inner">
+          <div class="dls-eyebrow">Handyman & Remodeling</div>
+
+          <h2 class="dls-title">
+            Reliable Solutions.<br>
+            <span>Quality Work.</span>
+          </h2>
+
+          <p class="dls-description">
+            From everyday repairs to home improvements, DLS delivers
+            dependable solutions with professionalism and attention to detail.
+          </p>
+
+          <div class="dls-actions">
+            <a href="#quote" class="dls-btn dls-btn-primary">
+              Request a Project Estimate
+            </a>
+            <a href="#handyman" class="dls-btn dls-btn-secondary">
+              Explore Handyman
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dls-image">
+        <!-- VÍDEO HANDYMAN (Magnific: hands keeping chair kitchen) -->
+        <video
+          class="dls-video"
+          src="videos/handyman.mp4"
+          poster="videos/poster-handyman.jpg"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Handyman video"
+        ></video>
+      </div>
+
+      <div class="dls-badges">
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✓</span>
+          Professional Service
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">✦</span>
+          Quality Workmanship
+        </div>
+        <div class="dls-badge">
+          <span class="dls-badge-icon">♡</span>
+          Reliable Solutions
+        </div>
+      </div>
+
+      <div class="dls-division">02 · Handyman & Remodeling</div>
+    </article>
+
+    <div class="dls-controls">
+      <div class="dls-count"><span id="dlsCurrent">01</span> / 02</div>
+      <div class="dls-line">
+        <div class="dls-line-progress" id="dlsProgress"></div>
+      </div>
+      <button class="dls-arrow" id="dlsPrev" aria-label="Previous slide">‹</button>
+      <button class="dls-arrow" id="dlsNext" aria-label="Next slide">›</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const slides = document.querySelectorAll('.dls-slide');
+  const current = document.getElementById('dlsCurrent');
+  const progress = document.getElementById('dlsProgress');
+  const next = document.getElementById('dlsNext');
+  const prev = document.getElementById('dlsPrev');
+
+  let index = 0;
+  let timer;
+  const interval = 12000;
+
+  function showSlide(newIndex) {
+    index = (newIndex + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    // Toca só o vídeo do slide ativo e pausa os outros (economiza internet e bateria)
+    slides.forEach((slide, i) => {
+      const video = slide.querySelector('video');
+      if (!video) return;
+      if (i === index) {
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    current.textContent = String(index + 1).padStart(2, '0');
+    progress.style.transform = `translateX(${index * 100}%)`;
+  }
+
+  function startAutoPlay() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(index + 1), interval);
+  }
+
+  next.addEventListener('click', () => {
+    showSlide(index + 1);
+    startAutoPlay();
+  });
+
+  prev.addEventListener('click', () => {
+    showSlide(index - 1);
+    startAutoPlay();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      showSlide(index + 1);
+      startAutoPlay();
+    }
+    if (event.key === 'ArrowLeft') {
+      showSlide(index - 1);
+      startAutoPlay();
+    }
+  });
+
+  showSlide(0);
+  startAutoPlay();
+})();
+</script>
+
+</body>
+</html>

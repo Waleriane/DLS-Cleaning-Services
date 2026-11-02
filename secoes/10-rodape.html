@@ -1,0 +1,188 @@
+<style>
+/* =========================================
+   RODAPÉ
+========================================= */
+.dls-footer{ background:#042F3B; color:#fff; font-family:'Montserrat',Arial,sans-serif; }
+.dls-footer *{ box-sizing:border-box; margin:0; padding:0; }
+.ft-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; }
+
+/* faixa de chamada */
+.ft-cta{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  padding:44px 0; border-bottom:1px solid rgba(255,255,255,.10); }
+.ft-cta h2{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(28px,3.2vw,42px); line-height:1.1; }
+.ft-cta h2 span{ color:#5FD3D7; }
+.ft-cta-btn{ display:inline-flex; align-items:center; gap:12px; min-height:52px; padding:0 26px; background:#0D9FA5; color:#fff;
+  text-decoration:none; border-radius:6px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; transition:.25s ease; }
+.ft-cta-btn:hover{ background:#fff; color:#042F3B; }
+
+/* colunas */
+.ft-grid{ display:grid; grid-template-columns:1.4fr 1fr 1.1fr 1.3fr; gap:48px; padding:52px 0 44px; }
+.ft-logo img{ height:64px; width:auto; display:block; filter:brightness(0) invert(1); }
+.ft-about{ margin-top:18px; font-size:14px; line-height:1.8; color:rgba(255,255,255,.78); max-width:340px; }
+.ft-social{ display:flex; gap:10px; margin-top:22px; }
+.ft-social a{ width:42px; height:42px; border-radius:50%; display:grid; place-items:center; color:#fff;
+  border:1px solid rgba(255,255,255,.25); transition:.25s ease; }
+.ft-social a:hover{ background:#0D9FA5; border-color:#0D9FA5; }
+.ft-social svg{ width:18px; height:18px; }
+
+.ft-title{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#5FD3D7; margin-bottom:18px; }
+.ft-list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+.ft-list a, .ft-list span{ color:rgba(255,255,255,.82); text-decoration:none; font-size:14px; line-height:1.5; transition:color .2s ease; }
+.ft-list a:hover{ color:#fff; }
+.ft-contact li{ display:flex; gap:12px; align-items:flex-start; }
+.ft-contact svg{ width:18px; height:18px; flex:none; margin-top:1px; color:#5FD3D7; }
+
+/* barra final */
+.ft-bottom{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+  padding:22px 0 26px; border-top:1px solid rgba(255,255,255,.10); font-size:12.5px; color:rgba(255,255,255,.65); }
+.ft-bottom a{ color:rgba(255,255,255,.8); text-decoration:none; }
+.ft-bottom a:hover{ color:#fff; }
+
+@media (max-width:1000px){
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:40px 32px; }
+}
+@media (max-width:600px){
+  .ft-wrap{ padding:0 18px; }
+  .ft-cta{ padding:36px 0; }
+  .ft-cta-btn{ width:100%; justify-content:center; }
+  .ft-grid{ grid-template-columns:1fr 1fr; gap:34px 20px; padding:40px 0 34px; }
+  .ft-brand, .ft-contact-col{ grid-column:1 / -1; }
+  .ft-bottom{ flex-direction:column; text-align:center; }
+}
+</style>
+
+<footer class="dls-footer" id="contact">
+  <div class="ft-wrap">
+
+    <div class="ft-cta">
+      <h2>Ready for a cleaner,<br><span>better-kept space?</span></h2>
+      <a class="ft-cta-btn" href="#quote">Request a Free Estimate <span>→</span></a>
+    </div>
+
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="ft-logo" href="#top"><img src="imagens/logo-header.png" alt="DLS Services" width="520" height="329" loading="lazy"></a>
+        <p class="ft-about">Professional cleaning and handyman &amp; remodeling services — delivered with attention to detail and genuine care for your space.</p>
+        <div class="ft-social">
+          <a data-contact="phone" href="#contact" aria-label="Call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          </a>
+          <a data-contact="email" href="#contact" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+          <a data-contact="instagram" href="#contact" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="ft-title">Quick Links</div>
+        <ul class="ft-list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#quote">Free Estimate</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="ft-title">Services</div>
+        <ul class="ft-list">
+          <li><a href="#services">Regular Cleaning</a></li>
+          <li><a href="#services">Deep Cleaning</a></li>
+          <li><a href="#services">Commercial Cleaning</a></li>
+          <li><a href="#handyman">Handyman &amp; Remodeling</a></li>
+          <li><a href="#gallery">Summer Kitchens</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-contact-col">
+        <div class="ft-title">Contact</div>
+        <ul class="ft-list ft-contact">
+          <li data-show="phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <a data-contact="phone" data-text="phone" href="#contact"></a>
+          </li>
+          <li data-show="email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            <a data-contact="email" data-text="email" href="#contact"></a>
+          </li>
+          <li data-show="instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+            <a data-contact="instagram" data-text="instagram" href="#contact" target="_blank" rel="noopener"></a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Monday – Friday<br>Starting at 8:00 AM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ft-bottom">
+      <span>© <span id="ftYear">2026</span> DLS Services. All rights reserved.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONTATOS DA DLS — PREENCHA AQUI (vale para o menu e o rodapé)
+   Deixe vazio ('') o que não tiver: o ícone leva ao rodapé e o texto some.
+========================================================= */
+var DLS_CONTACT = {
+  phone:     '',   // ex.: '(407) 555-1234'
+  email:     '',   // ex.: 'contact@dlsservices.com'
+  instagram: ''    // ex.: 'dlsservices'  (só o @, sem https)
+};
+
+(function(){
+  var c = DLS_CONTACT;
+  var links = {
+    phone:     c.phone ? 'tel:+1' + c.phone.replace(/\D/g,'').replace(/^1(?=\d{10}$)/,'') : '',
+    email:     c.email ? 'mailto:' + c.email : '',
+    instagram: c.instagram ? 'https://www.instagram.com/' + c.instagram.replace(/^@/,'') : ''
+  };
+  var texts = { phone:c.phone, email:c.email, instagram:c.instagram ? '@' + c.instagram.replace(/^@/,'') : '' };
+  document.querySelectorAll('[data-contact]').forEach(function(a){
+    var k = a.getAttribute('data-contact');
+    if (links[k]) a.setAttribute('href', links[k]); else { a.setAttribute('href', '#quote'); a.removeAttribute('target'); }
+    if (a.hasAttribute('data-text')) a.textContent = texts[k] || '';
+  });
+  document.querySelectorAll('[data-show]').forEach(function(li){
+    if (!c[li.getAttribute('data-show')]) li.style.display = 'none';
+  });
+  var y = document.getElementById('ftYear'); if (y) y.textContent = new Date().getFullYear();
+
+  /* menu: sombra ao rolar, abrir/fechar no celular, link ativo */
+  var header = document.querySelector('.dls-header');
+  var burger = header && header.querySelector('.hd-burger');
+  if (!header) return;
+  window.addEventListener('scroll', function(){ header.classList.toggle('scrolled', window.scrollY > 10); }, { passive:true });
+  burger.addEventListener('click', function(){
+    var open = header.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  header.querySelectorAll('.hd-mobile a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      /* fecha o menu primeiro e só depois rola até a seção (evita parar no lugar errado) */
+      var target = document.querySelector(a.getAttribute('href'));
+      header.classList.remove('open'); burger.setAttribute('aria-expanded','false');
+      if (target){ e.preventDefault(); setTimeout(function(){ target.scrollIntoView({ behavior:'smooth', block:'start' }); }, 360); }
+    });
+  });
+  var navLinks = header.querySelectorAll('.hd-nav a');
+  var targets = ['about','services','handyman','contact'].map(function(id){ return document.getElementById(id); });
+  function setActive(){
+    var current = 'top', y = window.scrollY + 140;
+    targets.forEach(function(el){ if (el && el.getBoundingClientRect().top + window.scrollY <= y) current = el.id; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = 'contact';
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', setActive, { passive:true }); setActive();
+})();
+</script>

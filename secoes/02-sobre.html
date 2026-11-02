@@ -1,0 +1,344 @@
+<style>
+    .dls-about-story {
+        width: 100%;
+        background: #F8FAF9;
+        padding: 40px 3vw; /* antes 70px 25px — menos borda */
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .dls-about-story * {
+        box-sizing: border-box;
+    }
+
+    .dls-about-story-container {
+        max-width: 1380px; /* antes 1180px — ocupa mais a largura da tela */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 42% 58%;
+        min-height: 470px;
+    }
+
+
+    /* =========================================
+       LOGO SIDE
+    ========================================= */
+
+    .dls-about-logo-side {
+        background: #FFFFFF; /* antes #042F3B (verde escuro) */
+        border-right: 1px solid #E3EEEE; /* linha fina separando logo e texto */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 55px;
+        overflow: hidden;
+    }
+
+    .dls-about-logo-side::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(13, 159, 165, 0.18);
+        border-radius: 50%;
+        top: -100px;
+        left: -90px;
+    }
+
+    .dls-about-logo-side::after {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 330px;
+        border: 1px solid rgba(13, 159, 165, 0.12);
+        border-radius: 50%;
+        right: -180px;
+        bottom: -170px;
+    }
+
+    .dls-about-logo-wrapper {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .dls-about-logo {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* removido o filtro que deixava a logo branca: agora aparece nas cores originais */
+    }
+
+    .dls-about-logo-line {
+        display: none; /* escondida: a logo nova já tem a linha dela embaixo de HOUSE CLEANING */
+        width: 45px;
+        height: 2px;
+        background: #0D9FA5;
+        margin: 25px auto 0;
+    }
+
+
+    /* =========================================
+       CONTENT SIDE
+    ========================================= */
+
+    .dls-about-content {
+        background: #FFFFFF;
+        padding: 65px 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dls-about-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #0D9FA5;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+
+    .dls-about-eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: #0D9FA5;
+    }
+
+    .dls-about-title {
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 45px;
+        line-height: 1.08;
+        font-weight: 400;
+        margin: 0 0 24px;
+        max-width: 540px;
+    }
+
+    .dls-about-title span {
+        color: #0D9FA5;
+    }
+
+    .dls-about-text {
+        color: #53656A;
+        font-size: 13px;
+        line-height: 1.9;
+        max-width: 540px;
+        margin: 0 0 15px;
+    }
+
+    .dls-about-quote {
+        margin-top: 22px;
+        padding: 18px 0 18px 20px;
+        border-left: 2px solid #0D9FA5;
+        color: #042F3B;
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: 18px;
+        line-height: 1.45;
+        max-width: 500px;
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================= */
+
+    @media (max-width: 950px) {
+
+        .dls-about-story {
+            padding: 32px 3vw;
+        }
+
+        .dls-about-story-container {
+            grid-template-columns: 40% 60%;
+        }
+
+        .dls-about-logo-side {
+            padding: 35px;
+        }
+
+        .dls-about-logo {
+            max-width: 290px;
+        }
+
+        .dls-about-content {
+            padding: 50px 45px;
+        }
+
+        .dls-about-title {
+            font-size: 37px;
+        }
+
+        .dls-about-text {
+            font-size: 12px;
+        }
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 700px) {
+
+        .dls-about-story {
+            padding: 20px 12px;
+        }
+
+        .dls-about-story-container {
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+        }
+
+        .dls-about-logo-side {
+            width: 100%;
+            min-height: 245px;
+            border-right: none;
+            border-bottom: 1px solid #E3EEEE;
+            padding: 35px 25px;
+        }
+
+        .dls-about-logo {
+            max-width: 250px;
+        }
+
+        .dls-about-logo-line {
+            margin-top: 18px;
+        }
+
+        .dls-about-content {
+            width: 100%;
+            padding: 38px 25px 42px;
+        }
+
+        .dls-about-eyebrow {
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 13px;
+        }
+
+        .dls-about-title {
+            font-size: 31px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .dls-about-text {
+            font-size: 11px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .dls-about-quote {
+            font-size: 15px;
+            margin-top: 18px;
+            padding-left: 16px;
+        }
+    }
+
+
+    /* =========================================
+       SMALL MOBILE
+    ========================================= */
+
+    @media (max-width: 400px) {
+
+        .dls-about-logo-side {
+            min-height: 220px;
+        }
+
+        .dls-about-logo {
+            max-width: 180px;
+        }
+
+        .dls-about-content {
+            padding: 32px 21px 36px;
+        }
+
+        .dls-about-title {
+            font-size: 28px;
+        }
+    }
+</style>
+
+
+<section class="dls-about-story">
+
+    <div class="dls-about-story-container">
+
+
+        <!-- =========================================
+             LEFT — LOGO
+        ========================================== -->
+
+        <div class="dls-about-logo-side">
+
+            <div class="dls-about-logo-wrapper">
+
+                <!-- LOGO DA DLS (arquivo na pasta imagens/) -->
+                <img
+                    class="dls-about-logo"
+                    src="imagens/logo-dls.png"
+                    width="900" height="644"
+                    alt="DLS Services - House Cleaning"
+                >
+
+                <div class="dls-about-logo-line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             RIGHT — CONTENT
+        ========================================== -->
+
+        <div class="dls-about-content">
+
+            <div class="dls-about-eyebrow">
+                OUR STORY
+            </div>
+
+
+            <h2 class="dls-about-title">
+                Built on Trust,
+                <br>
+                <span>Driven by Excellence.</span>
+            </h2>
+
+
+            <p class="dls-about-text">
+                DLS Services was founded with a simple purpose:
+                to make homes, rentals, and businesses cleaner,
+                safer, and more functional.
+            </p>
+
+
+            <p class="dls-about-text">
+                What started as a passion for helping people
+                maintain their spaces has grown into a trusted
+                cleaning and handyman service, serving our
+                community with professionalism, integrity,
+                and care.
+            </p>
+
+
+            <div class="dls-about-quote">
+                We care for your space with the same
+                responsibility with which we built our name.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

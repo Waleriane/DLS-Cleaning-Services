@@ -1,0 +1,172 @@
+<style>
+/* =========================================
+   05 — GALLERY (fotos do DEPOIS dos serviços)
+========================================= */
+.dls-gallery{
+  --navy:#063B4A; --teal:#0D9FA5; --soft:#DDF2F2; --text:#53656A;
+  background:#F8FAF9;
+  padding:56px 3vw 64px;
+  font-family:'Montserrat',Arial,sans-serif;
+  color:var(--navy);
+  box-sizing:border-box;
+}
+.dls-gallery *{ box-sizing:border-box; margin:0; padding:0; }
+.gal-wrap{ max-width:1440px; margin:0 auto; }
+
+/* Cabeçalho */
+.gal-head{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; margin-bottom:26px; }
+.gal-eyebrow{ display:flex; align-items:center; gap:12px; color:var(--teal); font-size:11px; font-weight:700; letter-spacing:2.2px; text-transform:uppercase; margin-bottom:14px; }
+.gal-eyebrow::before{ content:""; width:34px; height:2px; background:var(--teal); }
+.gal-title{ font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:clamp(38px,4.4vw,60px); line-height:1; letter-spacing:-1px; }
+.gal-title span{ color:var(--teal); }
+.gal-intro{ color:var(--text); font-size:14px; line-height:1.85; max-width:560px; }
+.gal-intro strong{ color:var(--navy); font-weight:600; }
+
+/* Faixa de garantias: deixa claro o que são as fotos */
+.gal-proof{ display:flex; flex-wrap:wrap; gap:10px 28px; padding:16px 0; margin-bottom:26px; border-top:1px solid rgba(6,59,74,.10); border-bottom:1px solid rgba(6,59,74,.10); }
+.gal-proof-item{ display:flex; align-items:center; gap:9px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); }
+.gal-proof-icon{ width:26px; height:26px; border-radius:50%; display:grid; place-items:center; background:var(--soft); color:var(--teal); font-size:12px; }
+
+/* Grade de fotos: 4 por linha no computador */
+.gal-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.gal-item{ position:relative; overflow:hidden; background:#dfe9e8; aspect-ratio:4/5; cursor:zoom-in; border:0; display:block; width:100%; }
+.gal-item img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s cubic-bezier(.2,.8,.2,1); }
+.gal-item.gal-wide{ grid-column:span 2; aspect-ratio:auto; } /* foto larga ocupa 2 espaços */
+.gal-item:hover img{ transform:scale(1.04); }
+.gal-item::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(6,59,74,.72) 0%, rgba(6,59,74,0) 45%); pointer-events:none; }
+
+/* Selo fixo "AFTER" em todas as fotos */
+.gal-badge{ position:absolute; top:12px; left:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; background:#fff; color:var(--navy); font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:6px 10px; border-radius:20px; box-shadow:0 4px 14px rgba(6,59,74,.12); }
+.gal-badge i{ font-style:normal; color:var(--teal); font-size:11px; }
+
+/* Nome do ambiente sempre visível */
+.gal-label{ position:absolute; left:16px; right:16px; bottom:14px; z-index:2; color:#fff; text-align:left; }
+.gal-label b{ display:block; font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:20px; line-height:1.15; }
+.gal-label small{ display:block; font-size:9px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; opacity:.85; margin-top:4px; }
+
+.gal-note{ margin-top:18px; color:var(--text); font-size:11px; text-align:center; }
+
+/* Foto ampliada (ao clicar) */
+.gal-lightbox{ position:fixed; inset:0; z-index:9999; background:rgba(4,30,38,.92); display:none; align-items:center; justify-content:center; padding:24px; }
+.gal-lightbox.open{ display:flex; }
+.gal-lightbox figure{ max-width:min(1100px,100%); max-height:100%; display:flex; flex-direction:column; align-items:center; }
+.gal-lightbox img{ max-width:100%; max-height:80vh; object-fit:contain; display:block; }
+.gal-lightbox figcaption{ color:#fff; margin-top:14px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; text-align:center; }
+.gal-lb-btn{ position:absolute; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); color:#fff; font-size:22px; cursor:pointer; }
+.gal-lb-close{ top:18px; right:18px; }
+.gal-lb-prev{ left:18px; top:50%; transform:translateY(-50%); }
+.gal-lb-next{ right:18px; top:50%; transform:translateY(-50%); }
+
+@media(max-width:1000px){
+  .gal-head{ grid-template-columns:1fr; gap:16px; }
+  .gal-grid{ grid-template-columns:repeat(2,1fr); }
+  .gal-item.gal-wide{ aspect-ratio:16/9; }
+}
+@media(max-width:620px){
+  .dls-gallery{ padding:40px 12px 48px; }
+  .gal-grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
+  .gal-label b{ font-size:16px; }
+  .gal-badge{ top:8px; left:8px; font-size:8px; padding:5px 8px; }
+  .gal-proof{ gap:10px 18px; }
+  .gal-proof-item{ font-size:10px; }
+  .gal-lb-prev,.gal-lb-next{ top:auto; bottom:18px; transform:none; }
+}
+</style>
+
+<section class="dls-gallery" id="gallery" aria-label="Gallery of finished work">
+  <div class="gal-wrap">
+
+    <div class="gal-head">
+      <div>
+        <div class="gal-eyebrow">Our Work · After Service</div>
+        <h2 class="gal-title">The Finished Result.<br><span>Real Spaces, Real Care.</span></h2>
+      </div>
+      <p class="gal-intro">
+        Every photo in this gallery was taken <strong>right after our team finished the job</strong>
+        — this is how we leave our clients' kitchens, bathrooms, closets and outdoor spaces.
+      </p>
+    </div>
+
+    <div class="gal-proof">
+      <div class="gal-proof-item"><span class="gal-proof-icon">✓</span>Photographed after service</div>
+      <div class="gal-proof-item"><span class="gal-proof-icon">⌂</span>Real client spaces</div>
+      <div class="gal-proof-item"><span class="gal-proof-icon">✦</span>Same standard on every visit</div>
+    </div>
+
+    <div class="gal-grid">
+      <!-- Para adicionar foto: copie um bloco <button> e troque imagem e nomes -->
+      <button class="gal-item gal-wide" type="button" data-title="Summer Kitchen">
+        <img src="imagens/galeria-07.jpg" alt="Outdoor summer kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Summer Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Summer Kitchen">
+        <img src="imagens/galeria-08.jpg" alt="Covered summer kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Summer Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Bathroom">
+        <img src="imagens/galeria-02.jpg" alt="Bathroom after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Bathroom</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Laundry Room">
+        <img src="imagens/galeria-03.jpg" alt="Laundry room after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Laundry Room</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Kitchen">
+        <img src="imagens/galeria-04.jpg" alt="Kitchen after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Kitchen</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Custom Closet">
+        <img src="imagens/galeria-05.jpg" alt="Custom closet after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Custom Closet</b><small>After cleaning</small></span>
+      </button>
+      <button class="gal-item" type="button" data-title="Primary Bathroom">
+        <img src="imagens/galeria-06.jpg" alt="Primary bathroom after cleaning by DLS Services" loading="lazy">
+        <span class="gal-badge"><i>✓</i> After</span>
+        <span class="gal-label"><b>Primary Bathroom</b><small>After cleaning</small></span>
+      </button>
+    </div>
+
+    <p class="gal-note">Tap any photo to see it larger.</p>
+  </div>
+
+  <div class="gal-lightbox" id="galLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="gal-lb-btn gal-lb-close" type="button" aria-label="Close">×</button>
+    <button class="gal-lb-btn gal-lb-prev" type="button" aria-label="Previous photo">‹</button>
+    <figure><img src="" alt=""><figcaption></figcaption></figure>
+    <button class="gal-lb-btn gal-lb-next" type="button" aria-label="Next photo">›</button>
+  </div>
+</section>
+
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.dls-gallery .gal-item'));
+  var box = document.getElementById('galLightbox');
+  if (!box || !items.length) return;
+  var img = box.querySelector('img'), cap = box.querySelector('figcaption'), i = 0;
+  function show(n){
+    i = (n + items.length) % items.length;
+    var src = items[i].querySelector('img');
+    img.src = src.src; img.alt = src.alt;
+    cap.textContent = items[i].getAttribute('data-title') + ' — after service · ' + (i+1) + ' / ' + items.length;
+  }
+  function open(n){ show(n); box.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ box.classList.remove('open'); document.body.style.overflow=''; }
+  items.forEach(function(el, n){ el.addEventListener('click', function(){ open(n); }); });
+  box.querySelector('.gal-lb-close').addEventListener('click', close);
+  box.querySelector('.gal-lb-prev').addEventListener('click', function(){ show(i-1); });
+  box.querySelector('.gal-lb-next').addEventListener('click', function(){ show(i+1); });
+  box.addEventListener('click', function(e){ if (e.target === box) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') { e.stopPropagation(); show(i+1); }
+    if (e.key === 'ArrowLeft') { e.stopPropagation(); show(i-1); }
+  }, true);
+})();
+</script>
