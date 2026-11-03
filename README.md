@@ -11,6 +11,7 @@ Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 - `handyman.html` — página Handyman & Remodeling
 - `js/respostas.js` — respostas do assistente virtual (chat da página e pop-up)
 - `js/chat-popup.js` — botão flutuante do assistente em todas as páginas
+- `js/formularios.js` — envio dos formulários para o e-mail da DLS (FormSubmit)
 - `js/site.js` — contatos (telefone, e-mail, Instagram) e funcionamento do menu, usado nas duas páginas
 - `js/servicos.js` — textos da janela "Learn More" de cada serviço
 - `imagens/` — logo, fotos da galeria, antes/depois, robô
@@ -24,5 +25,6 @@ Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 - **Avaliações reais:** seção Reviews — apague `hidden` do card depois de colocar o texto.
 
 ## Pendências
-- Ligar o formulário de orçamento (e-mail / WhatsApp / Supabase) — hoje ele não envia.
+- Ativar o FormSubmit: no 1º envio, a DLS recebe um e-mail "Confirm your email" e clica em ativar (uma vez só).
+- Preencher telefone e Instagram em `js/site.js`.
 - Fotos dos cards de serviço ainda vêm por link do Magnific.

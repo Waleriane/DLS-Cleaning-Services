@@ -3,9 +3,9 @@
    Deixe vazio ('') o que não tiver: o ícone leva ao formulário e o texto some.
 ========================================================= */
 var DLS_CONTACT = {
-  phone:     '',   // ex.: '(407) 555-1234'
+  phone:     '',   // PREENCHER — ex.: '(407) 555-1234'
   email:     'dlsservices19@gmail.com',
-  instagram: ''    // ex.: 'dlsservices'  (só o @, sem https)
+  instagram: ''    // PREENCHER — ex.: 'dlsservices'  (só o @, sem https)
 };
 
 (function(){
@@ -19,7 +19,7 @@ var DLS_CONTACT = {
   document.querySelectorAll('[data-contact]').forEach(function(a){
     var k = a.getAttribute('data-contact');
     if (links[k]) a.setAttribute('href', links[k]);
-    else if (!a.hasAttribute('data-text')) a.style.display = 'none';   /* sem o dado: esconde o ícone */
+    else { a.setAttribute('href', '/contact.html'); a.removeAttribute('target'); }   /* sem o dado ainda: leva à página de contato */
     if (a.hasAttribute('data-text')) a.textContent = texts[k] || '';
   });
   document.querySelectorAll('[data-show]').forEach(function(li){
