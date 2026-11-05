@@ -38,8 +38,15 @@ function dlsCollect(form, subject){
 function dlsSendViaSheet(data, subject){
   var body = new URLSearchParams(data); body.append('_subject', subject);
   return dlsFetchTimeout(DLS_SHEET_URL, { method:'POST', body: body }, 15000)
-    .then(function(r){ return r.json(); })
-    .then(function(j){ if (!j || !j.ok) throw new Error((j && j.error) || 'sheet failed'); });
+    .then(function(r){ return r.text(); })
+    .then(function(t){
+      var j = null; try { j = JSON.parse(t); } catch(e){}
+      if (!j || !j.ok){
+        console.warn('[DLS] A planilha recusou o envio. Resposta:', j ? j.error : t.slice(0, 300));
+        throw new Error((j && j.error) || 'sheet failed');
+      }
+      console.log('[DLS] Pedido salvo na planilha e e-mail enviado.');
+    }, function(e){ console.warn('[DLS] Não foi possível falar com a planilha:', e); throw e; });
 }
 
 /* reserva: FormSubmit (só se a planilha falhar) */
