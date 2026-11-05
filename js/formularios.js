@@ -44,11 +44,13 @@ function dlsSendViaSheet(data, subject){
 
 /* reserva: FormSubmit (só se a planilha falhar) */
 function dlsSendViaFormSubmit(data, subject){
-  var d = Object.assign({}, data, { _subject: subject, _template: 'table', _captcha: 'false' });
-  if (d.email) d._replyto = d.email;
-  return dlsFetchTimeout('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, {
-    method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(d)
-  }, 10000).then(function(r){ if (!r.ok) throw new Error('send failed'); return r.json(); })
+  /* envio "simples" (sem pré-checagem do navegador), que o FormSubmit não bloqueia */
+  var fd = new FormData();
+  Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+  fd.append('_subject', subject); fd.append('_template', 'table'); fd.append('_captcha', 'false');
+  if (data.email) fd.append('_replyto', data.email);
+  return dlsFetchTimeout('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, { method:'POST', body: fd }, 10000)
+    .then(function(r){ if (!r.ok) throw new Error('send failed'); return r.json(); })
     .then(function(j){ if (j && (j.success === false || j.success === 'false')) throw new Error(j.message || 'send failed'); });
 }
 
