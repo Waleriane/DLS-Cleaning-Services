@@ -5,7 +5,7 @@
 var DLS_CONTACT = {
   phone:     '',   // PREENCHER — ex.: '(407) 555-1234'
   email:     'dlsservices19@gmail.com',
-  instagram: ''    // PREENCHER — ex.: 'dlsservices'  (só o @, sem https)
+  instagram: 'dls.cleaningservices'
 };
 
 (function(){
