@@ -4,7 +4,7 @@
    e-mail "Confirm your email" e precisa clicar UMA vez em ativar.
    Para trocar o e-mail que recebe os pedidos, mude só a linha abaixo.
 ========================================================= */
-var DLS_FORM_EMAIL = 'dlsservices19@gmail.com';
+var DLS_FORM_EMAIL = 'walerianediene@gmail.com';   // TESTE — depois voltar para 'dlsservices19@gmail.com'
 
 function dlsSendForm(form, subject){
   var data = {};
