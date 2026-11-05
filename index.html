@@ -3425,7 +3425,7 @@ html{ scroll-padding-top:86px; }
 
 </style>
 
-<script src="js/respostas.js?v=20261105d"></script>
+<script src="js/respostas.js?v=20261105e"></script>
 <section class="dls-ai-section" id="assistant" aria-label="DLS Virtual Assistant">
 
 
@@ -3997,7 +3997,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 })();</script>
 
 
-<script src="js/formularios.js?v=20261105d"></script>
+<script src="js/formularios.js?v=20261105e"></script>
 <!-- =========================================
      09 — REQUEST A QUOTE (ORÇAMENTO)
 ========================================== -->
@@ -5738,6 +5738,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
                     dlsQuoteForm.style.display = "none";
                     document.querySelector(".dls-form-progress").style.display = "none";
                     dlsQuoteSuccess.style.display = "block";
+                    document.querySelector(".dls-quote-form-card").scrollIntoView({ behavior: "smooth", block: "center" });
                 })
                 .catch(function () {
                     dlsBusy(btn, false);
@@ -5903,7 +5904,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
   </div>
 </footer>
 
-<script src="js/site.js?v=20261105d"></script>
+<script src="js/site.js?v=20261105e"></script>
 
 <!-- =========================================
      JANELA DE DETALHES DOS SERVIÇOS
@@ -5973,7 +5974,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
     </div>
   </div>
 </div>
-<script src="js/servicos.js?v=20261105d"></script>
+<script src="js/servicos.js?v=20261105e"></script>
 
 <!-- =========================================
      AJUSTE GERAL DE LEITURA (vale para o site todo)
@@ -6099,6 +6100,6 @@ body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 }
 </style>
 
-<script src="js/chat-popup.js?v=20261105d"></script>
+<script src="js/chat-popup.js?v=20261105e"></script>
 </body>
 </html>

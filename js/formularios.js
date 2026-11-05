@@ -37,7 +37,7 @@ function dlsCollect(form, subject){
 /* 1º caminho: planilha do Google (salva a linha E manda o e-mail) */
 function dlsSendViaSheet(data, subject){
   var body = new URLSearchParams(data); body.append('_subject', subject);
-  return dlsFetchTimeout(DLS_SHEET_URL, { method:'POST', body: body }, 15000)
+  return dlsFetchTimeout(DLS_SHEET_URL, { method:'POST', body: body }, 12000)
     .then(function(r){ return r.text(); })
     .then(function(t){
       var j = null; try { j = JSON.parse(t); } catch(e){}
@@ -57,7 +57,7 @@ function dlsSendViaFormSubmit(data, subject){
   Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
   fd.append('_subject', subject); fd.append('_template', 'table'); fd.append('_captcha', 'false');
   if (data.email) fd.append('_replyto', data.email);
-  return dlsFetchTimeout('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, { method:'POST', body: fd }, 10000)
+  return dlsFetchTimeout('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, { method:'POST', body: fd }, 8000)
     .then(function(r){ if (!r.ok) throw new Error('send failed'); return r.json(); })
     .then(function(j){ if (j && (j.success === false || j.success === 'false')) throw new Error(j.message || 'send failed'); });
 }
@@ -76,14 +76,17 @@ function dlsBusy(btn, on){
   else { if (btn.dataset.label) btn.innerHTML = btn.dataset.label; btn.disabled = false; btn.style.opacity = ''; }
 }
 
-/* mensagem de erro com alternativa por e-mail */
-function dlsFormError(form){
+/* mensagem de erro com alternativa por e-mail — aparece logo abaixo do botão */
+function dlsFormError(form, btn){
+  btn = btn || form.querySelector('button[type="submit"]');
+  var anchor = (btn && btn.closest('.dls-step-buttons')) || btn || form.lastChild;
   var box = form.querySelector('.dls-send-error');
   if (!box){
-    box = document.createElement('p'); box.className = 'dls-send-error';
+    box = document.createElement('p'); box.className = 'dls-send-error'; box.setAttribute('role','alert');
     box.style.cssText = 'margin-top:12px;padding:12px 14px;border-radius:8px;background:#FDECEC;color:#8A1F1F;font-size:14px;line-height:1.5';
-    form.appendChild(box);
+    anchor.parentNode.insertBefore(box, anchor.nextSibling);
   }
-  box.innerHTML = "Sorry, we couldn't send your request right now. Please try again or email us at <a href=\"mailto:" + DLS_FORM_EMAIL + "\" style=\"color:#8A1F1F;font-weight:700\">" + DLS_FORM_EMAIL + "</a>.";
+  box.innerHTML = "Sorry, we couldn't send your request right now. Please try again in a moment or email us at <a href=\"mailto:" + DLS_FORM_EMAIL + "\" style=\"color:#8A1F1F;font-weight:700\">" + DLS_FORM_EMAIL + "</a>.";
   box.style.display = 'block';
+  box.scrollIntoView({ behavior:'smooth', block:'center' });
 }
