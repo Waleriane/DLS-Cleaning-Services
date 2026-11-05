@@ -365,7 +365,7 @@ html{ scroll-padding-top:86px; }
 .dls-header *{ box-sizing:border-box; margin:0; padding:0; }
 .hd-wrap{ max-width:1440px; margin:0 auto; padding:0 3vw; height:84px; display:flex; align-items:center; gap:28px; }
 .hd-logo{ display:flex; align-items:center; flex:none; }
-.hd-logo img{ height:62px; width:auto; display:block; }
+.hd-logo img{ height:68px; width:auto; display:block; }
 
 .hd-nav{ display:flex; align-items:center; gap:4px; margin:0 auto; }
 .hd-nav a{
@@ -424,7 +424,7 @@ html{ scroll-padding-top:86px; }
 }
 @media (max-width:520px){
   .hd-wrap{ gap:10px; }
-  .hd-logo img{ height:38px; }
+  .hd-logo img{ height:44px; }
   .hd-icons{ gap:6px; }
   .hd-icon{ width:36px; height:36px; }
   .hd-icon svg{ width:16px; height:16px; }
@@ -437,7 +437,7 @@ html{ scroll-padding-top:86px; }
 <header class="dls-header" id="top">
   <div class="hd-wrap">
     <a class="hd-logo" href="/" aria-label="DLS Services — Home">
-      <img src="imagens/logo-header.png" alt="DLS Services — House Cleaning" width="520" height="329">
+      <img src="imagens/logo-header.png" alt="DLS Services — House Cleaning" width="600" height="332">
     </a>
 
     <nav class="hd-nav" aria-label="Main menu">
@@ -972,8 +972,8 @@ html{ scroll-padding-top:86px; }
                 <img
                     class="dls-about-logo"
                     src="imagens/logo-dls.png"
-                    width="900" height="644"
-                    alt="DLS Services - House Cleaning"
+                    width="1000" height="607"
+                    alt="DLS Services — Cleaning, Remodeling, Maintenance"
                 >
 
                 <div class="dls-about-logo-line"></div>
@@ -5042,16 +5042,17 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
                                     <div class="dls-form-field">
 
                                         <label>
-                                            ZIP Code <span>*</span>
+                                            ZIP Code <small class="dls-opt">(optional)</small>
                                         </label>
 
                                         <input
                                             type="text"
                                             id="dlsZip"
                                             name="zip"
-                                            placeholder="ZIP code"
+                                            placeholder="If you know it"
                                             maxlength="5"
-                                            required
+                                            inputmode="numeric"
+                                            autocomplete="postal-code"
                                         >
 
                                     </div>
@@ -5060,15 +5061,16 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
                                     <div class="dls-form-field">
 
                                         <label>
-                                            City
+                                            City <span>*</span>
                                         </label>
 
                                         <input
                                             type="text"
                                             id="dlsCity"
                                             name="city"
-                                            placeholder="City"
-                                            readonly
+                                            placeholder="e.g. Orlando"
+                                            autocomplete="address-level2"
+                                            required
                                         >
 
                                     </div>
@@ -5079,15 +5081,17 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
                                 <div class="dls-form-field">
 
                                     <label>
-                                        State
+                                        State <span>*</span>
                                     </label>
 
                                     <input
                                         type="text"
                                         id="dlsState"
                                         name="state"
-                                        placeholder="State"
-                                        readonly
+                                        value="FL"
+                                        placeholder="e.g. FL"
+                                        autocomplete="address-level1"
+                                        required
                                     >
 
                                 </div>
@@ -5613,9 +5617,10 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 
     function validateStepOne() {
 
+        /* corrigido: pega a 1ª etapa pelo nome (antes quebrava com o campo anti-spam) */
         const stepOne =
-            document.querySelector(
-                ".dls-form-step:first-child"
+            dlsQuoteForm.querySelector(
+                ".dls-form-step"
             );
 
 
@@ -5628,19 +5633,15 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
         let valid = true;
 
 
-        requiredFields.forEach(
-            function(field) {
-
-                if (!field.checkValidity()) {
-
-                    field.reportValidity();
-
-                    valid = false;
-
-                }
-
+        /* mostra o aviso só no primeiro campo que faltar */
+        for (let i = 0; i < requiredFields.length; i++) {
+            if (!requiredFields[i].checkValidity()) {
+                requiredFields[i].reportValidity();
+                requiredFields[i].focus();
+                valid = false;
+                break;
             }
-        );
+        }
 
 
         return valid;
@@ -5824,7 +5825,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 
     <div class="ft-grid">
       <div class="ft-brand">
-        <a class="ft-logo" href="/"><img src="imagens/logo-header.png" alt="DLS Services" width="520" height="329" loading="lazy"></a>
+        <a class="ft-logo" href="/"><img src="imagens/logo-header.png" alt="DLS Services" width="600" height="332" loading="lazy"></a>
         <p class="ft-about"><strong style="color:#063B4A">Clean spaces. Functional spaces. Better living.</strong><br>Professional cleaning, handyman &amp; remodeling services with attention to detail and genuine care for your space.</p>
         <div class="ft-social">
           <a data-contact="phone" href="#contact" aria-label="Call">
@@ -6047,6 +6048,7 @@ body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 .dls-form-note{ font-size:11px !important; }
 .dls-optin{ display:flex; align-items:flex-start; gap:10px; margin:4px 0 16px; cursor:pointer; font-size:14px !important; line-height:1.5; color:#3B4F55; text-transform:none !important; letter-spacing:0 !important; font-weight:500 !important; }
 .dls-optin input{ width:20px !important; height:20px !important; min-height:0 !important; flex:none; margin-top:1px; accent-color:#0D9FA5; padding:0 !important; }
+.dls-opt{ font-size:11px; font-weight:600; color:#6E8085; text-transform:none; letter-spacing:0; }
 .dls-pref-note{ margin:2px 0 12px; padding:9px 12px; background:#F2F8F8; border-left:3px solid #0D9FA5; border-radius:6px; font-size:12.5px; line-height:1.5; color:#3B4F55; }
 .dls-details-title{ font-size:10px !important; }
 .dls-quote-success p{ font-size:14px !important; }
