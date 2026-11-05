@@ -87,3 +87,11 @@ function json_(obj) {
 function doGet() {
   return ContentService.createTextOutput('DLS form receiver is running.');
 }
+
+/**
+ * RODE ESTA FUNÇÃO UMA VEZ NO EDITOR (selecione "autorizarEmail" e clique em Executar)
+ * para o Google pedir a permissão de enviar e-mail. Ela manda um e-mail de teste.
+ */
+function autorizarEmail() {
+  MailApp.sendEmail(NOTIFY_EMAIL, 'DLS Services — teste de autorização', 'Pronto! O formulário do site já pode enviar e-mails.');
+}
