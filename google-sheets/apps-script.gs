@@ -20,9 +20,11 @@ function doPost(e) {
     data['Date'] = Utilities.formatDate(new Date(), 'America/New_York', 'yyyy-MM-dd HH:mm');
 
     saveRow_(data);
-    sendEmail_(data, subject);
+    // se o e-mail falhar, o pedido já está salvo na planilha — não perde o cliente
+    let mailError = '';
+    try { sendEmail_(data, subject); } catch (mailErr) { mailError = String(mailErr); }
 
-    return json_({ ok: true });
+    return json_({ ok: true, mailError: mailError });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   } finally {

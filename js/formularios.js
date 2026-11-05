@@ -45,7 +45,8 @@ function dlsSendViaSheet(data, subject){
         console.warn('[DLS] A planilha recusou o envio. Resposta:', j ? j.error : t.slice(0, 300));
         throw new Error((j && j.error) || 'sheet failed');
       }
-      console.log('[DLS] Pedido salvo na planilha e e-mail enviado.');
+      if (j.mailError) console.warn('[DLS] Pedido salvo na planilha, mas o e-mail falhou:', j.mailError);
+      else console.log('[DLS] Pedido salvo na planilha e e-mail enviado.');
     }, function(e){ console.warn('[DLS] Não foi possível falar com a planilha:', e); throw e; });
 }
 
