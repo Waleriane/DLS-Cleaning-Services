@@ -1,8 +1,10 @@
 /* =========================================================
-   ENVIO DOS FORMULÁRIOS — chegam no e-mail da DLS
-   Serviço: FormSubmit (gratuito). No 1º envio, a DLS recebe um
-   e-mail "Confirm your email" e precisa clicar UMA vez em ativar.
-   Para trocar o e-mail que recebe os pedidos, mude só a linha abaixo.
+   ENVIO DOS FORMULÁRIOS
+   Caminho principal: script da planilha do Google (salva a linha e
+   manda o e-mail — o e-mail de destino fica no próprio script,
+   em NOTIFY_EMAIL). Reserva: FormSubmit, só se a planilha falhar.
+   O botão nunca fica travado: depois de alguns segundos sem
+   resposta, volta e mostra um aviso.
 ========================================================= */
 /* PLANILHA DO GOOGLE: cole aqui o endereço do Apps Script (termina em /exec).
    Vazio = não salva na planilha (só envia o e-mail). */
@@ -10,27 +12,51 @@ var DLS_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxVOrh9SXa4qf2fnoVR
 
 var DLS_FORM_EMAIL = 'walerianediene@gmail.com';   // TESTE — depois voltar para 'dlsservices19@gmail.com'
 
-function dlsSendForm(form, subject){
+/* espera no máximo X segundos; nunca deixa o botão travado em "Sending..." */
+function dlsFetchTimeout(url, opts, ms){
+  return new Promise(function(resolve, reject){
+    var done = false, t = setTimeout(function(){ if (!done){ done = true; reject(new Error('timeout')); } }, ms);
+    fetch(url, opts).then(function(r){ if (!done){ done = true; clearTimeout(t); resolve(r); } },
+                          function(e){ if (!done){ done = true; clearTimeout(t); reject(e); } });
+  });
+}
+
+/* monta os dados do formulário */
+function dlsCollect(form, subject){
   var data = {};
   new FormData(form).forEach(function(v, k){ if (String(v).trim() !== '') data[k] = v; });
-  if (data._honey) return Promise.resolve();            /* robô de spam: ignora */
-  delete data._honey;
-  data._subject  = subject;
-  data._template = 'table';
-  data._captcha  = 'false';
-  if (data.email) data._replyto = data.email;           /* "Responder" vai direto para o cliente */
-  data['Sent from'] = location.href;
-  dlsSaveToSheet(data, subject);
-  return fetch('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  }).then(function(r){
-    if (!r.ok) throw new Error('send failed');
-    return r.json();
-  }).then(function(j){
-    if (j && (j.success === false || j.success === 'false')) throw new Error(j.message || 'send failed');
-  });
+  var spam = !!data._honey; delete data._honey;
+  data['Form'] = /Contact/i.test(subject) ? 'Contact' : 'Quote Request';
+  if (data.first_name || data.last_name) data['Name'] = ((data.first_name || '') + ' ' + (data.last_name || '')).trim();
+  else if (data.name){ data['Name'] = data.name; delete data.name; }
+  data['Offers opt-in'] = data.offers_opt_in ? 'Yes' : 'No'; delete data.offers_opt_in;
+  data['Page'] = location.pathname;
+  return { data: data, spam: spam };
+}
+
+/* 1º caminho: planilha do Google (salva a linha E manda o e-mail) */
+function dlsSendViaSheet(data, subject){
+  var body = new URLSearchParams(data); body.append('_subject', subject);
+  return dlsFetchTimeout(DLS_SHEET_URL, { method:'POST', body: body }, 15000)
+    .then(function(r){ return r.json(); })
+    .then(function(j){ if (!j || !j.ok) throw new Error((j && j.error) || 'sheet failed'); });
+}
+
+/* reserva: FormSubmit (só se a planilha falhar) */
+function dlsSendViaFormSubmit(data, subject){
+  var d = Object.assign({}, data, { _subject: subject, _template: 'table', _captcha: 'false' });
+  if (d.email) d._replyto = d.email;
+  return dlsFetchTimeout('https://formsubmit.co/ajax/' + DLS_FORM_EMAIL, {
+    method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(d)
+  }, 10000).then(function(r){ if (!r.ok) throw new Error('send failed'); return r.json(); })
+    .then(function(j){ if (j && (j.success === false || j.success === 'false')) throw new Error(j.message || 'send failed'); });
+}
+
+function dlsSendForm(form, subject){
+  var c = dlsCollect(form, subject);
+  if (c.spam) return Promise.resolve();            /* robô de spam: ignora */
+  if (!DLS_SHEET_URL) return dlsSendViaFormSubmit(c.data, subject);
+  return dlsSendViaSheet(c.data, subject).catch(function(){ return dlsSendViaFormSubmit(c.data, subject); });
 }
 
 /* botão mostra "Sending..." enquanto envia */
@@ -50,19 +76,4 @@ function dlsFormError(form){
   }
   box.innerHTML = "Sorry, we couldn't send your request right now. Please try again or email us at <a href=\"mailto:" + DLS_FORM_EMAIL + "\" style=\"color:#8A1F1F;font-weight:700\">" + DLS_FORM_EMAIL + "</a>.";
   box.style.display = 'block';
-}
-
-/* salva uma cópia na planilha do Google (não atrapalha o envio do e-mail) */
-function dlsSaveToSheet(data, subject){
-  if (!DLS_SHEET_URL) return;
-  try {
-    var row = {};
-    Object.keys(data).forEach(function(k){ if (k.charAt(0) !== '_' && k !== 'Sent from') row[k] = data[k]; });
-    row['Form'] = /Contact/i.test(subject) ? 'Contact' : 'Quote Request';
-    if (row.first_name || row.last_name) row['Name'] = ((row.first_name || '') + ' ' + (row.last_name || '')).trim();
-    else if (row.name){ row['Name'] = row.name; delete row.name; }
-    row['Offers opt-in'] = row.offers_opt_in ? 'Yes' : 'No'; delete row.offers_opt_in;
-    row['Page'] = location.pathname;
-    fetch(DLS_SHEET_URL, { method:'POST', mode:'no-cors', body:new URLSearchParams(row) });
-  } catch(e){}
 }
