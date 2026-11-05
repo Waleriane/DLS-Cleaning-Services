@@ -60,6 +60,8 @@ img{ display:block; max-width:100%; }
 .ct-field textarea{ min-height:170px; resize:vertical; line-height:1.6; }
 .ct-field input::placeholder, .ct-field textarea::placeholder{ color:#8A9B9F; }
 .ct-field input:focus, .ct-field select:focus, .ct-field textarea:focus{ border-color:#0D9FA5; background:#fff; box-shadow:0 0 0 4px rgba(13,159,165,.12); }
+.dls-optin{ display:flex; align-items:flex-start; gap:10px; margin:4px 0 16px; cursor:pointer; font-size:14px !important; line-height:1.5; color:#3B4F55; text-transform:none !important; letter-spacing:0 !important; font-weight:500 !important; }
+.dls-optin input{ width:20px !important; height:20px !important; min-height:0 !important; flex:none; margin-top:1px; accent-color:#0D9FA5; padding:0 !important; }
 .ct-submit{ width:100%; min-height:58px; border:0; border-radius:10px; background:#0D9FA5; color:#fff; cursor:pointer;
   font-family:inherit; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:10px; transition:.25s ease; }
 .ct-submit:hover{ background:#063B4A; }
@@ -311,6 +313,7 @@ html{ scroll-padding-top:86px; }
           <label for="ctMessage">Message <span>*</span></label>
           <textarea id="ctMessage" name="message" placeholder="Tell us about your project or any questions you have..." required></textarea>
         </div>
+        <label class="dls-optin"><input type="checkbox" name="offers_opt_in" value="yes"> <span>Yes, send me occasional offers and updates from DLS Services. You can unsubscribe anytime.</span></label>
         <button type="submit" class="ct-submit">Send Message <span>→</span></button>
         <div class="ct-success" id="ctSuccess">Thank you! Your message has been received. Our team will get back to you soon.</div>
         <p class="ct-alt">Need a detailed estimate? <a href="/#quote">Use our full quote form →</a></p>

@@ -27,4 +27,5 @@ Site em HTML/CSS/JS puro, pronto para a Vercel (não precisa de build).
 ## Pendências
 - Ativar o FormSubmit: no 1º envio, a DLS recebe um e-mail "Confirm your email" e clica em ativar (uma vez só).
 - Preencher telefone e Instagram em `js/site.js`.
+- Planilha do Google: colar `google-sheets/apps-script.gs` no Apps Script da planilha, publicar como app da Web e colocar o endereço em `DLS_SHEET_URL` (`js/formularios.js`).
 - Fotos dos cards de serviço ainda vêm por link do Magnific.
