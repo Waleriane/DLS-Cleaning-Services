@@ -6,7 +6,7 @@
 ========================================================= */
 /* PLANILHA DO GOOGLE: cole aqui o endereço do Apps Script (termina em /exec).
    Vazio = não salva na planilha (só envia o e-mail). */
-var DLS_SHEET_URL = '';
+var DLS_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxVOrh9SXa4qf2fnoVRVv-nTeBboD9nu_j0UUSFdPXr93S2QutJAbwCl9Fsy0vY0KKy/exec';
 
 var DLS_FORM_EMAIL = 'walerianediene@gmail.com';   // TESTE — depois voltar para 'dlsservices19@gmail.com'
 
