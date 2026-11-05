@@ -10,6 +10,15 @@
 const NOTIFY_EMAIL = 'walerianediene@gmail.com';
 const SHEET_NAME = 'Leads';
 
+/**
+ * PASSO ÚNICO: com esta função selecionada lá em cima, clique em "Executar"
+ * e aceite as permissões. Ela manda um e-mail de teste para NOTIFY_EMAIL.
+ */
+function autorizarEmail() {
+  MailApp.sendEmail(NOTIFY_EMAIL, 'DLS Services — teste de autorização', 'Pronto! O formulário do site já pode enviar e-mails.');
+  SpreadsheetApp.getActiveSpreadsheet();
+}
+
 function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -88,12 +97,4 @@ function json_(obj) {
 // abre no navegador para conferir se está publicado
 function doGet() {
   return ContentService.createTextOutput('DLS form receiver is running.');
-}
-
-/**
- * RODE ESTA FUNÇÃO UMA VEZ NO EDITOR (selecione "autorizarEmail" e clique em Executar)
- * para o Google pedir a permissão de enviar e-mail. Ela manda um e-mail de teste.
- */
-function autorizarEmail() {
-  MailApp.sendEmail(NOTIFY_EMAIL, 'DLS Services — teste de autorização', 'Pronto! O formulário do site já pode enviar e-mails.');
 }
