@@ -4,7 +4,7 @@
 ========================================================= */
 var DLS_CONTACT = {
   phone:     '',   // PREENCHER — ex.: '(407) 555-1234'
-  email:     'dlsservices19@gmail.com',
+  email:     'contact@dlsservicesfl.com',
   instagram: 'dls.cleaningservices'
 };
 

@@ -10,7 +10,7 @@
    Vazio = não salva na planilha (só envia o e-mail). */
 var DLS_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzhGfUIBDIO7rRu-vPR2Eq5sSGEbAqu5UC9OBLPnNpJhDiYpGZ8mWpydBqUj5tbvIXnNQ/exec';
 
-var DLS_FORM_EMAIL = 'walerianediene@gmail.com';   // TESTE — depois voltar para 'dlsservices19@gmail.com'
+var DLS_FORM_EMAIL = 'contact@dlsservicesfl.com';   // e-mail de reserva (FormSubmit) e mostrado nos avisos de erro
 
 /* espera no máximo X segundos; nunca deixa o botão travado em "Sending..." */
 function dlsFetchTimeout(url, opts, ms){

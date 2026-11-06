@@ -6,8 +6,8 @@
  * Depois: Implantar > Gerenciar implantações > ✏️ > Versão: Nova versão > Implantar.
  */
 
-// E-MAIL QUE RECEBE OS AVISOS (teste: o seu; depois: dlsservices19@gmail.com)
-const NOTIFY_EMAIL = 'walerianediene@gmail.com';
+// E-MAILS QUE RECEBEM OS AVISOS (separados por vírgula)
+const NOTIFY_EMAIL = 'contact@dlsservicesfl.com, dlsservices19@gmail.com';
 const SHEET_NAME = 'Leads';
 
 /**

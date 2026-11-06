@@ -35,7 +35,7 @@ function dlsGetAnswer(question){
         return `DLS works with Residential Remodeling, Commercial Remodeling, Home Improvements, Space Renovation and General Property Improvements.<br><br>The scope is defined for each project. You can <a href="/#quote">request an estimate</a> and tell us about your plans.`;
     }
     if(q.includes("email") || q.includes("contact") || q.includes("instagram") || q.includes("phone") || q.includes("call")){
-        return `You can reach DLS Services by email at <a href="mailto:dlsservices19@gmail.com">dlsservices19@gmail.com</a>, or <a href="/#quote">request an estimate</a> right here on the site.`;
+        return `You can reach DLS Services by email at <a href="mailto:contact@dlsservicesfl.com">contact@dlsservicesfl.com</a>, or <a href="/#quote">request an estimate</a> right here on the site.`;
     }
     if(q.includes("area") || q.includes("serve") || q.includes("location") || q.includes("where") || q.includes("orlando")){
         return `DLS Services serves Orlando, Florida and nearby areas.<br><br>Send your address through the <a href="/#quote">estimate request</a> and the DLS team will confirm availability for your location.`;
