@@ -6,6 +6,7 @@
 ========================================================= */
 (function(){
   if (typeof dlsGetAnswer !== 'function') return;
+  var ai = window.DLS_AI ? DLS_AI.session() : null, busy = false;
   var KEY = 'dlsChatHidden';
   function hiddenNow(){ try { return sessionStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
   function remember(){ try { sessionStorage.setItem(KEY, '1'); } catch(e){} }
@@ -71,15 +72,25 @@
   function esc(t){ var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
   function add(html, me){ var m = document.createElement('div'); m.className = 'dcw-msg' + (me ? ' dcw-me' : ''); m.innerHTML = html; body.appendChild(m); body.scrollTop = body.scrollHeight; return m; }
   function ask(q){
+    if (busy) return; busy = true;
     add(esc(q), true);
     var t = add('<span></span><span></span><span></span>'); t.className = 'dcw-msg dcw-typing';
-    setTimeout(function(){ t.remove(); add(dlsGetAnswer(q).replace(/\s+/g,' ').trim()); }, 600);
+    var t0 = Date.now();
+    var p = ai ? ai.ask(q) : Promise.resolve({ html: dlsGetAnswer(q) });
+    p.then(function(res){
+      setTimeout(function(){
+        t.remove();
+        var m = add(String(res.html || '').replace(/\s+/g,' ').trim());
+        if (ai) DLS_AI.renderExtras(m, res, ask);
+        body.scrollTop = body.scrollHeight; busy = false;
+      }, Math.max(0, 600 - (Date.now() - t0)));
+    });
   }
   function start(){
     if (started) return; started = true;
     add("Hi! I'm the DLS Virtual Assistant. How can I help you today?");
     var o = document.createElement('div'); o.className = 'dcw-opts';
-    ['I need cleaning','Regular vs. Deep cleaning','Handyman & remodeling','How does pricing work?','Where do you serve?'].forEach(function(q){
+    ['Book a cleaning','Regular vs. Deep cleaning','Handyman & remodeling','How does pricing work?','Talk to the team'].forEach(function(q){
       var b = document.createElement('button'); b.type = 'button'; b.textContent = q;
       b.addEventListener('click', function(){ ask(q === 'Regular vs. Deep cleaning' ? 'What is the difference between regular and deep cleaning?' : q); });
       o.appendChild(b);
@@ -93,7 +104,7 @@
   w.querySelector('.dcw-x').addEventListener('click', function(){ remember(); w.remove(); });
   w.querySelector('.dcw-form').addEventListener('submit', function(e){ e.preventDefault(); var q = input.value.trim(); if (!q) return; input.value = ''; ask(q); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-  body.addEventListener('click', function(e){ if (e.target.closest('a')) close(); });
+  
 
   /* dica aparece uma vez, alguns segundos depois de abrir a página */
   var tip = w.querySelector('.dcw-tip');

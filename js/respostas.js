@@ -1,381 +1,99 @@
 /* =========================================================
-   DLS ASSISTANT — RESPOSTAS (usadas no chat da página e no pop-up)
-   Para mudar uma resposta, edite aqui. Baseado no briefing da DLS.
+   DLS ASSISTANT — RESPOSTAS PRONTAS (modo reserva)
+   Usado quando a OpenAI não está configurada ou fora do ar.
+   Baseado no briefing da DLS. Para mudar uma resposta, edite o
+   texto dentro de "say" no tema correspondente.
 ========================================================= */
+var DLS_PHONE_TXT = '(407) 285-1212';
+var DLS_EMAIL_TXT = 'contact@dlsservicesfl.com';
+
+/* cada tema: palavras que ativam (words) e a resposta (say).
+   "book": true = abre o agendamento passo a passo pelo chat. */
+var DLS_TOPICS = [
+  { id:'book', book:true,
+    words:['book','schedule','i want a','i need a','i would like','id like','sign up','hire','appointment','reserve','booking','set up a cleaning','marcar','agendar','agendamento','reservar','agenda','cita','programar','quote','estimate','orcamento','presupuesto','cotizacion'] },
+  { id:'notoffered',
+    words:['garage','organiz','closet','outdoor','patio','yard','pressure wash','window outside','exterior window','garagem','organizacao','quintal'],
+    say:"Thanks for asking! DLS does <b>not</b> offer outdoor area cleaning, garage cleaning, light organization or closet organization.<br><br>Our cleaning services are Regular, Deep and Commercial Cleaning, plus add-ons for interior windows, refrigerator and oven." },
+  { id:'difference',
+    words:['difference','differ','vs','versus','compare','diferenca','diferencia'],
+    say:"<b>Regular Cleaning</b> is recurring maintenance (weekly, bi-weekly or monthly) to keep your home clean and fresh.<br><br><b>Deep Cleaning</b> includes everything in Regular, plus detailed baseboards, blinds, ceiling fans, detailed kitchen and bathroom cleaning, and neglected or hard-to-reach areas — ideal when a space hasn't had a detailed cleaning in a while." },
+  { id:'regular',
+    words:['regular','recurring','weekly','biweekly','bi-weekly','monthly','maintenance clean','what is included','what\'s included','included','limpeza regular','semanal','mensal'],
+    say:"<b>Regular Cleaning</b> includes dusting, making beds, vacuuming carpets and rugs, vacuuming and mopping floors, cleaning countertops and sinks, cabinet exteriors, exterior of appliances, complete bathroom cleaning and trash removal.<br><br>It's available <b>weekly, bi-weekly or monthly</b>." },
+  { id:'deep',
+    words:['deep','detailed','thorough','move out','move-out','move in','move-in','limpeza pesada','profunda','pesada'],
+    say:"<b>Deep Cleaning</b> includes everything in Regular Cleaning, plus detailed baseboards, blinds, ceiling fans, detailed kitchen and bathroom cleaning, and neglected or hard-to-reach areas. It's available as an occasional or on-demand service." },
+  { id:'commercial',
+    words:['commercial','office','business','company','store','workspace','escritorio','empresa','comercial','oficina'],
+    say:"Yes! DLS offers <b>Commercial Cleaning</b> — workstations, common areas, cafeterias, restrooms, trash and recycling, and floor maintenance. It can be recurring or on-demand, adapted to your business." },
+  { id:'addons',
+    words:['window','fridge','refrigerator','oven','add-on','addon','add on','extra','janela','geladeira','forno','ventana','refrigerador','horno'],
+    say:"Our cleaning <b>add-ons</b> are interior window cleaning, refrigerator cleaning and oven cleaning. You can add them to any cleaning service." },
+  { id:'summer',
+    words:['summer kitchen','outdoor kitchen','bbq','grill','cozinha gourmet','cozinha externa'],
+    say:"Yes — DLS builds and improves <b>summer kitchens</b> (construction, installation, finishing and structural improvements). Each project is evaluated according to your space and needs, and a site visit may be needed." },
+  { id:'remodel',
+    words:['remodel','renovat','renovation','reform','improvement','reforma','remodelacao','remodelacion'],
+    say:"DLS handles <b>residential and commercial remodeling</b>, home improvements, space renovation and general property improvements. The scope is defined for each project." },
+  { id:'handyman',
+    words:['handyman','repair','fix','broken','drywall','masonry','carpentry','carpenter','paint','painting','demolition','install','installation','appliance','conserto','consertar','reparo','pintura','marcenaria','alvenaria','instalacao','reparacion','arreglar'],
+    say:"Our <b>Handyman &amp; Remodeling</b> services include summer kitchens, drywall/finish/texture, general repairs and maintenance, masonry, carpentry, painting, demolition, appliance installation and remodeling.<br><br>Every project is evaluated individually — a site visit may be needed." },
+  { id:'cleaning',
+    words:['clean','cleaning','maid','housekeep','limpeza','limpar','faxina','diarista','limpieza'],
+    say:"DLS offers <b>Regular Cleaning</b> (weekly, bi-weekly or monthly), <b>Deep Cleaning</b> and <b>Commercial Cleaning</b>, plus add-ons for interior windows, refrigerator and oven." },
+  { id:'price',
+    words:['price','cost','how much','pricing','rate','charge','fee','cheap','discount','quanto','preco','valor','custa','desconto','cuanto','precio'],
+    say:"DLS doesn't use fixed prices — every estimate is <b>personalized</b>. It depends on the type of service, size of the space, amount of work, materials, complexity, urgency and your needs." },
+  { id:'area',
+    words:['area','serve','location','where','orlando','kissimmee','city','cities','near','region','florida','onde','atende','cidade','donde'],
+    say:"DLS serves <b>Orlando, Florida and nearby areas</b>. Share your city or address and our team will confirm availability for your location." },
+  { id:'hours',
+    words:['hour','open','time','when','weekend','saturday','sunday','horario','hora','sabado','domingo'],
+    say:"DLS works <b>Monday to Friday</b>, usually starting at <b>8:00 AM</b>. You can tell us your preferred date and time and we'll confirm availability." },
+  { id:'experience',
+    words:['experience','how long','years','insured','licensed','trust','reliable','experiencia','anos','confiavel'],
+    say:"DLS Services has <b>7+ years of experience</b> providing professional cleaning, handyman and remodeling services, with attention to detail and genuine care for every space." },
+  { id:'contact',
+    words:['contact','phone','call','email','e-mail','text','talk','speak','human','person','agent','representative','owner','whatsapp','telefone','ligar','falar','atendente','pessoa','llamar','hablar'],
+    say:"Of course! You can talk to the DLS team directly:", contact:true },
+  { id:'thanks',
+    words:['thank','thanks','thx','obrigad','gracias','great','perfect','awesome','ok thanks'],
+    say:"You're welcome! 😊 Is there anything else I can help you with?" },
+  { id:'hello',
+    words:['hello','hi','hey','good morning','good afternoon','good evening','ola','oi','bom dia','boa tarde','hola','buenos'],
+    say:"Hi! 👋 I'm the DLS assistant. I can explain our services, help you choose the right one, or <b>book a cleaning or a project estimate</b> right here. How can I help?" }
+];
+
+function dlsNorm(t){
+  return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9@'\- ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+
+/* encontra o tema com mais palavras batendo (palavra inteira ou começo de palavra) */
+function dlsMatchTopic(text){
+  var q = ' ' + dlsNorm(text) + ' ';
+  var best = null, bestScore = 0;
+  DLS_TOPICS.forEach(function(t){
+    var score = 0;
+    t.words.forEach(function(w){
+      var n = dlsNorm(w);
+      if (!n) return;
+      if (n.length <= 3){ if (q.indexOf(' ' + n + ' ') > -1) score += 1; }
+      else if (q.indexOf(' ' + n) > -1) score += n.split(' ').length + 0.5;
+    });
+    /* "hello"/"thanks" só ganham quando a frase é curta */
+    if ((t.id === 'hello' || t.id === 'thanks') && q.split(' ').length > 7) score = 0;
+    /* pedir para marcar/orçar tem prioridade sobre o resto */
+    if (t.book && score > 0) score += 10;
+    if (score > bestScore){ bestScore = score; best = t; }
+  });
+  return best;
+}
+
+/* compatibilidade com o código antigo: devolve só o texto */
 function dlsGetAnswer(question){
-
-    const q =
-        question
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"");
-
-
-
-    /* respostas conforme o BRIEFING (específicas primeiro) */
-    if(q.includes("garage") || q.includes("organiz") || q.includes("closet") || q.includes("outdoor area") || q.includes("patio clean") || q.includes("yard")){
-        return `Thanks for asking! DLS does not offer outdoor area cleaning, garage cleaning, light organization or closet organization.<br><br>Our cleaning services are Regular Cleaning, Deep Cleaning and Commercial Cleaning, plus add-ons for interior windows, refrigerator and oven. Would you like to know more about any of them?`;
-    }
-    if(q.includes("difference") || (q.includes("regular") && q.includes("deep"))){
-        return `Regular Cleaning is recurring maintenance (weekly, bi-weekly or monthly) to keep your home clean and pleasant.<br><br>Deep Cleaning includes everything from Regular Cleaning, plus detailed baseboards, blinds, ceiling fans, detailed kitchen and bathroom cleaning, neglected areas and hard-to-reach areas — ideal when a space hasn't had a detailed cleaning in a while.`;
-    }
-    if(q.includes("regular") || q.includes("included") || q.includes("what do you clean")){
-        return `Our Regular Cleaning includes dusting, making beds, vacuuming carpets and rugs, vacuuming and mopping floors, cleaning countertops and sinks, cleaning cabinet exteriors, exterior appliance cleaning, complete bathroom cleaning, and trash removal.<br><br>It's available weekly, bi-weekly or monthly.`;
-    }
-    if(q.includes("deep clean")){
-        return `Deep Cleaning includes everything from Regular Cleaning, plus detailed baseboard cleaning, blinds, ceiling fans, detailed kitchen cleaning, detailed bathroom cleaning, neglected areas and hard-to-reach areas.<br><br>It's ideal for spaces that haven't had a detailed cleaning in a while, or whenever you want a more complete clean.`;
-    }
-    if(q.includes("commercial") || q.includes("office") || q.includes("business")){
-        return `Yes! DLS Services provides Commercial Cleaning — workstations, common areas, cafeterias, restrooms, trash and recycling, and floor maintenance.<br><br>It can be recurring or on-demand, and adapted to each company's needs.`;
-    }
-    if(q.includes("summer kitchen") || q.includes("outdoor kitchen")){
-        return `Yes. Summer Kitchens are part of our Handyman & Remodeling services — they can involve construction, installation, finishing and structural improvements.<br><br>Each project is evaluated according to your space and needs.`;
-    }
-    if(q.includes("remodel") || q.includes("renovat")){
-        return `DLS works with Residential Remodeling, Commercial Remodeling, Home Improvements, Space Renovation and General Property Improvements.<br><br>The scope is defined for each project. You can <a href="/#quote">request an estimate</a> and tell us about your plans.`;
-    }
-    if(q.includes("email") || q.includes("contact") || q.includes("instagram") || q.includes("phone") || q.includes("call")){
-        return `You can reach DLS Services by email at <a href="mailto:contact@dlsservicesfl.com">contact@dlsservicesfl.com</a>, or <a href="/#quote">request an estimate</a> right here on the site.`;
-    }
-    if(q.includes("area") || q.includes("serve") || q.includes("location") || q.includes("where") || q.includes("orlando")){
-        return `DLS Services serves Orlando, Florida and nearby areas.<br><br>Send your address through the <a href="/#quote">estimate request</a> and the DLS team will confirm availability for your location.`;
-    }
-    if(q.includes("price") || q.includes("cost") || q.includes("how much") || q.includes("pricing") || q.includes("discount")){
-        return `DLS doesn't publish fixed prices — every estimate is personalized. It depends on the type of service, size of the space, amount of work, materials (quantity and quality), complexity, difficulty, urgency and your specific needs.<br><br>The best next step is to <a href="/#quote">request a free estimate</a>.`;
-    }
-
-    /* CLEANING */
-
-    if(
-        q.includes("cleaning") ||
-        q.includes("clean my house") ||
-        q.includes("house clean")
-    ){
-
-        return `
-        DLS Services offers professional cleaning
-        for residential and commercial spaces.
-
-        We offer Regular Cleaning, Deep Cleaning,
-        and Commercial Cleaning.
-
-        Would you like to request a free estimate?
-        `;
-
-    }
-
-
-    /* REGULAR CLEANING */
-
-    if(
-        q.includes("regular") ||
-        q.includes("included") ||
-        q.includes("what do you clean")
-    ){
-
-        return `
-        Our Regular Cleaning includes dusting,
-        making beds, vacuuming carpets and rugs,
-        vacuuming and mopping floors, cleaning
-        counters and sinks, exterior appliance
-        cleaning, complete bathroom cleaning,
-        and trash removal.
-
-        We focus on the details that help your
-        space feel fresh and cared for.
-        `;
-
-    }
-
-
-    /* DEEP CLEANING */
-
-    if(
-        q.includes("deep clean") ||
-        q.includes("deep cleaning")
-    ){
-
-        return `
-        Deep Cleaning includes everything from
-        Regular Cleaning, plus more detailed
-        attention to areas that may have been
-        neglected.
-
-        This can include baseboards, blinds,
-        ceiling fans, detailed kitchen cleaning,
-        and detailed bathroom cleaning.
-
-        It's ideal when your home needs extra
-        attention.
-        `;
-
-    }
-
-
-    /* COMMERCIAL */
-
-    if(
-        q.includes("commercial") ||
-        q.includes("office") ||
-        q.includes("business")
-    ){
-
-        return `
-        Yes! DLS Services also provides
-        Commercial Cleaning.
-
-        Services can include workstations,
-        common areas, cafeterias, restrooms,
-        trash and recycling, and floor
-        maintenance.
-
-        Commercial cleaning can be arranged
-        on a recurring or as-needed basis.
-        `;
-
-    }
-
-
-    /* ADD-ONS */
-
-    if(
-        q.includes("window") ||
-        q.includes("oven") ||
-        q.includes("refrigerator") ||
-        q.includes("fridge")
-    ){
-
-        return `
-        DLS offers additional cleaning services
-        such as interior window cleaning,
-        refrigerator cleaning, and oven cleaning.
-
-        These can be requested as add-ons
-        depending on your cleaning needs.
-        `;
-
-    }
-
-
-    /* FREQUENCY */
-
-    if(
-        q.includes("weekly") ||
-        q.includes("bi-weekly") ||
-        q.includes("biweekly") ||
-        q.includes("monthly") ||
-        q.includes("recurring")
-    ){
-
-        return `
-        Yes. Regular Cleaning can be arranged
-        on a recurring basis, including weekly,
-        bi-weekly, or monthly service.
-
-        Your estimate will depend on your home's
-        specific needs.
-        `;
-
-    }
-
-
-    /* PRICE */
-
-    if(
-        q.includes("price") ||
-        q.includes("cost") ||
-        q.includes("how much") ||
-        q.includes("pricing")
-    ){
-
-        return `
-        Every home and project is different,
-        so DLS does not use one fixed price.
-
-        The estimate depends on factors such as
-        the type of service, size of the space,
-        level of cleaning needed, materials,
-        difficulty, and other project details.
-
-        The best next step is to request a
-        free estimate.
-        `;
-
-    }
-
-
-    /* HANDYMAN */
-
-    if(
-        q.includes("handyman") ||
-        q.includes("remodel") ||
-        q.includes("renovation") ||
-        q.includes("repair")
-    ){
-
-        return `
-        DLS also offers Handyman & Remodeling
-        services.
-
-        Services include summer kitchens,
-        drywall, finish and texture, masonry,
-        carpentry, painting, demolition,
-        appliance installation, general
-        handyman services, and remodeling.
-
-        Would you like to tell us about your project?
-        `;
-
-    }
-
-
-    /* SUMMER KITCHEN */
-
-    if(
-        q.includes("summer kitchen") ||
-        q.includes("outdoor kitchen")
-    ){
-
-        return `
-        Yes. DLS offers Summer Kitchen projects
-        as part of our Handyman & Remodeling
-        services.
-
-        Project estimates depend on the scope,
-        materials, design, and installation
-        requirements.
-        `;
-
-    }
-
-
-    /* SERVICE AREA */
-
-    if(
-        q.includes("area") ||
-        q.includes("serve") ||
-        q.includes("location") ||
-        q.includes("where")
-    ){
-
-        return `
-        Service availability depends on the
-        location and type of service.
-
-        Send us your address through the
-        estimate request and the DLS team can
-        confirm availability.
-        `;
-
-    }
-
-
-    /* APPOINTMENT */
-
-    if(
-        q.includes("appointment") ||
-        q.includes("schedule") ||
-        q.includes("book") ||
-        q.includes("booking")
-    ){
-
-        return `
-        You can request your preferred date
-        and time when submitting your estimate
-        request.
-
-        Please note that the appointment is
-        only confirmed after DLS confirms
-        availability.
-        `;
-
-    }
-
-
-    /* ESTIMATE */
-
-    if(
-        q.includes("estimate") ||
-        q.includes("quote") ||
-        q.includes("request") ||
-        q.includes("free")
-    ){
-
-        return `
-        Absolutely!
-
-        To request a free estimate, click
-        <a href="/#quote">Request a Free Estimate</a> or
-        complete the quote form on this page.
-
-        DLS will review your information and
-        get back to you with the next steps.
-        `;
-
-    }
-
-
-    /* HOURS */
-
-    if(
-        q.includes("hours") ||
-        q.includes("open") ||
-        q.includes("when")
-    ){
-
-        return `
-        DLS Services operates Monday through
-        Friday, with normal service starting
-        at 8:00 AM.
-
-        You can request your preferred date
-        and time, and DLS will confirm
-        availability.
-        `;
-
-    }
-
-
-    /* GREETING */
-
-    if(
-        q.includes("hello") ||
-        /\bhi\b/.test(q) ||
-        q.includes("hey") ||
-        q.includes("good morning") ||
-        q.includes("good afternoon")
-    ){
-
-        return `
-        Hi! It's great to hear from you.
-
-        I'm here to help you learn more about
-        DLS Services.
-
-        You can ask me about cleaning,
-        handyman services, pricing, or
-        requesting an estimate.
-        `;
-
-    }
-
-
-    /* FALLBACK */
-
-    return `
-    I'd be happy to help!
-
-    I can answer questions about DLS cleaning
-    services, deep cleaning, commercial cleaning,
-    add-ons, recurring cleaning, handyman and
-    remodeling services, estimates, and
-    appointments.
-
-    If you have a specific question, just
-    type it below.
-
-    If you're ready to get started, you can
-    also request a free estimate.
-    `;
-
+  var t = dlsMatchTopic(question);
+  if (t && t.say) return t.say;
+  if (t && t.book) return "I can help you book! Tell me which service you need.";
+  return "I'm not sure about that one — our team can help you directly.";
 }

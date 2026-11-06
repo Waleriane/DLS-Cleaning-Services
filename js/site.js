@@ -3,7 +3,7 @@
    Deixe vazio ('') o que não tiver: o ícone leva ao formulário e o texto some.
 ========================================================= */
 var DLS_CONTACT = {
-  phone:     '',   // PREENCHER — ex.: '(407) 555-1234'
+  phone:     '(407) 285-1212',
   email:     'contact@dlsservicesfl.com',
   instagram: 'dls.cleaningservices'
 };

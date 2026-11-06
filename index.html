@@ -3425,7 +3425,9 @@ html{ scroll-padding-top:86px; }
 
 </style>
 
-<script src="js/respostas.js?v=20261106b"></script>
+<script src="js/respostas.js?v=20261106c"></script>
+<script src="js/formularios.js?v=20261106c"></script>
+<script src="js/assistente.js?v=20261106c"></script>
 <section class="dls-ai-section" id="assistant" aria-label="DLS Virtual Assistant">
 
 
@@ -3813,6 +3815,8 @@ function dlsAddAIMessage(text){
     dlsChatBody.appendChild(message);
 
     dlsScrollBottom();
+
+    return message;
 }
 
 
@@ -3886,22 +3890,31 @@ function dlsRemoveTyping(){
    ASK QUESTION
 ========================================================= */
 
+var dlsAI = window.DLS_AI ? DLS_AI.session() : null;
+var dlsBusyChat = false;
+
 function dlsAsk(question){
+
+    if(dlsBusyChat) return;
+    dlsBusyChat = true;
 
     dlsAddUserMessage(question);
 
     dlsShowTyping();
 
-    setTimeout(() => {
+    var started = Date.now();
+    var p = dlsAI ? dlsAI.ask(question)
+                  : Promise.resolve({ html: dlsGetAnswer(question) });
 
-        dlsRemoveTyping();
-
-        const answer =
-            dlsGetAnswer(question);
-
-        dlsAddAIMessage(answer);
-
-    }, 700);
+    p.then(function(res){
+        setTimeout(function(){
+            dlsRemoveTyping();
+            var m = dlsAddAIMessage(res.html);
+            DLS_AI && DLS_AI.renderExtras(m.querySelector(".dls-message-content"), res, dlsAsk);
+            dlsScrollBottom();
+            dlsBusyChat = false;
+        }, Math.max(0, 600 - (Date.now() - started)));
+    });
 
 }
 
@@ -3997,7 +4010,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 })();</script>
 
 
-<script src="js/formularios.js?v=20261106b"></script>
+
 <!-- =========================================
      09 — REQUEST A QUOTE (ORÇAMENTO)
 ========================================== -->
@@ -5904,7 +5917,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
   </div>
 </footer>
 
-<script src="js/site.js?v=20261106b"></script>
+<script src="js/site.js?v=20261106c"></script>
 
 <!-- =========================================
      JANELA DE DETALHES DOS SERVIÇOS
@@ -5974,7 +5987,7 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
     </div>
   </div>
 </div>
-<script src="js/servicos.js?v=20261106b"></script>
+<script src="js/servicos.js?v=20261106c"></script>
 
 <!-- =========================================
      AJUSTE GERAL DE LEITURA (vale para o site todo)
@@ -6100,6 +6113,6 @@ body{ overflow-x:hidden; -webkit-font-smoothing:antialiased; }
 }
 </style>
 
-<script src="js/chat-popup.js?v=20261106b"></script>
+<script src="js/chat-popup.js?v=20261106c"></script>
 </body>
 </html>

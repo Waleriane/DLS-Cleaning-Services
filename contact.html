@@ -327,6 +327,7 @@ html{ scroll-padding-top:86px; }
         <h2>We're Here <span>for You.</span></h2>
         <p>Whether you need recurring cleaning, a deep clean or a handyman project, our team is ready to help.</p>
         <ul class="ct-details">
+          <li><span class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><strong>Phone</strong><a href="tel:+14072851212" data-contact="phone" data-text="phone">(407) 285-1212</a></div></li>
           <li><span class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span><div><strong>Email</strong><a href="mailto:contact@dlsservicesfl.com" data-contact="email" data-text="email">contact@dlsservicesfl.com</a></div></li>
           <li><span class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>Hours</strong>Monday – Friday, from 8:00 AM</div></li>
           <li><span class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><div><strong>Service Area</strong>Orlando, Florida &amp; nearby areas</div></li>
@@ -1535,7 +1536,9 @@ html{ scroll-padding-top:86px; }
 
 </style>
 
-<script src="js/respostas.js?v=20261106b"></script>
+<script src="js/respostas.js?v=20261106c"></script>
+<script src="js/formularios.js?v=20261106c"></script>
+<script src="js/assistente.js?v=20261106c"></script>
 <section class="dls-ai-section" id="assistant" aria-label="DLS Virtual Assistant">
 
 
@@ -1923,6 +1926,8 @@ function dlsAddAIMessage(text){
     dlsChatBody.appendChild(message);
 
     dlsScrollBottom();
+
+    return message;
 }
 
 
@@ -1996,22 +2001,31 @@ function dlsRemoveTyping(){
    ASK QUESTION
 ========================================================= */
 
+var dlsAI = window.DLS_AI ? DLS_AI.session() : null;
+var dlsBusyChat = false;
+
 function dlsAsk(question){
+
+    if(dlsBusyChat) return;
+    dlsBusyChat = true;
 
     dlsAddUserMessage(question);
 
     dlsShowTyping();
 
-    setTimeout(() => {
+    var started = Date.now();
+    var p = dlsAI ? dlsAI.ask(question)
+                  : Promise.resolve({ html: dlsGetAnswer(question) });
 
-        dlsRemoveTyping();
-
-        const answer =
-            dlsGetAnswer(question);
-
-        dlsAddAIMessage(answer);
-
-    }, 700);
+    p.then(function(res){
+        setTimeout(function(){
+            dlsRemoveTyping();
+            var m = dlsAddAIMessage(res.html);
+            DLS_AI && DLS_AI.renderExtras(m.querySelector(".dls-message-content"), res, dlsAsk);
+            dlsScrollBottom();
+            dlsBusyChat = false;
+        }, Math.max(0, 600 - (Date.now() - started)));
+    });
 
 }
 
@@ -2280,9 +2294,9 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
   </div>
 </footer>
 
-<script src="js/site.js?v=20261106b"></script>
+<script src="js/site.js?v=20261106c"></script>
 
-<script src="js/formularios.js?v=20261106b"></script>
+
 <script>
 /* formulário de contato: valida, envia ao e-mail da DLS e mostra confirmação */
 (function(){
@@ -2307,6 +2321,6 @@ document.querySelectorAll('#assistant img[data-robo]').forEach(function(img){
 })();
 </script>
 
-<script src="js/chat-popup.js?v=20261106b"></script>
+<script src="js/chat-popup.js?v=20261106c"></script>
 </body>
 </html>
